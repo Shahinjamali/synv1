@@ -1,95 +1,71 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+// app/page.tsx
+import { Suspense } from 'react';
+import Layout from '@/components/layout/Layout';
+// import Banner from '@/components/sections/home/Banner';
+// import About from '@/components/sections/home/About';
+import GlobalLoader from '@/components/common/GlobalLoader';
 
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+import {
+  getProducts,
+  getServices,
+  getTestimonials,
+  getThreeBlogs,
+} from '@/utils/api';
+// import ClientHome from '@/components/sections/home/ClientHome';
+import { Product } from '@/types/products';
+import { Service } from '@/types/services';
+import { TestimonialData, Blogs } from '@/types/content';
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+export const metadata = {
+  title: 'Synix Solutions - Home',
+  description:
+    'Explore sustainable lubricants and AI-driven maintenance solutions.',
+};
+
+export default async function Home() {
+  try {
+    // Fetch all critical data in parallel
+    const [productsRes, servicesRes, testimonialsRes, blogsRes] =
+      await Promise.all([
+        getProducts({ limit: 6 }),
+        getServices({ limit: 6 }),
+        getTestimonials(),
+        getThreeBlogs(),
+      ]);
+
+    const products: Product[] = productsRes?.data?.items ?? [];
+    const services: Service[] = servicesRes?.data?.items ?? [];
+    const testimonials: TestimonialData[] = testimonialsRes?.data ?? [];
+    const blogs: Blogs[] = blogsRes?.data ?? [];
+
+    return (
+      <Layout>
+        {/* <Banner /> */}
+        {/* <About /> */}
+        <Suspense
+          fallback={
+            <div className="flex justify-center items-center min-h-[200px]">
+              fallback={<GlobalLoader stage="data" />}
+            </div>
+          }
+        >
+          {/* <ClientHome
+            products={products}
+            services={services}
+            testimonials={testimonials}
+            blogs={blogs}
+          /> */}
+        </Suspense>
+      </Layout>
+    );
+  } catch (error) {
+    console.error('[Home Page] Data fetch failed:', error);
+    return (
+      <Layout>
+        <div className="text-center py-16 text-red-600 font-semibold">
+          Error loading Synix homepage content. Please try again later.
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+      </Layout>
+    );
+  }
 }

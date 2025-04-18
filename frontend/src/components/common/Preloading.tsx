@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
-import styles from '@/styles/synixCss/components/common/Preloading.module.css';
+import styles from './Preloading.module.css';
 
 interface PreloadingProps {
   text?: string;

@@ -1,0 +1,25 @@
+/* styles/AboutBanner.module.css */
+.icon-ai::before {
+  content: '\f085'; /* Example: FontAwesome "cogs" icon */
+  font-family: 'FontAwesome'; /* Adjust to your icon font */
+}
+
+.iconLubricant::before {
+  content: '\f0e0'; /* Example: FontAwesome "oil-can" icon */
+  font-family: 'FontAwesome';
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 2.5s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

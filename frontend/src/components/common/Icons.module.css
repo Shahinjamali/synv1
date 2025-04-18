@@ -1,0 +1,19 @@
+.iconSvg {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.iconFill {
+  fill: var(--icon-default-color);
+  transition: fill 0.3s ease;
+}
+
+/* Individual icon hover */
+.iconSvg:hover .iconFill {
+  fill: var(--icon-hover-color);
+}
+
+/* Parent hover */
+.icon:hover .iconFill {
+  fill: var(--icon-hover-color);
+}

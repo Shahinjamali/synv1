@@ -1,7 +1,7 @@
 // components/ui/Loading.tsx
 'use client';
 
-import styles from '@/styles/synixCss/components/common/Loading.module.css';
+import styles from './Loading.module.css';
 import { memo } from 'react';
 
 interface LoadingProps {
