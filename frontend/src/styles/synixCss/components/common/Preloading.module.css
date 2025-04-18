@@ -1,0 +1,52 @@
+.preloadingContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  background-color: rgb(247, 247, 247);
+  z-index: 9999;
+  animation: fadeOut 0.3s ease-out forwards;
+  animation-delay: calc(var(--preload-delay) - 0.3s);
+}
+
+.spinner {
+  border: 6px solid #12203c; /* Fallback to blue-900 if CSS vars aren't defined */
+  border-radius: 50%;
+  border-top: 6px solid #faa31a !important; /* Fallback to orange-500 */
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite; /* Ensure animation is applied */
+}
+
+.preloadingText {
+  font-family: var(--font-primary, sans-serif); /* Fallback font */
+  color: #12203c;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

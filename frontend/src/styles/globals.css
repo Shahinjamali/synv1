@@ -1,0 +1,8 @@
+/* --- CORRECT for Tailwind v4+ --- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* --- End CORRECT --- */
+
+/* You can add your own custom global styles below these */
+@import './synixCss/synix.css';
