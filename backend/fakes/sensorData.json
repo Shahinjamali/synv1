@@ -1,0 +1,62 @@
+﻿[
+  {
+    "_id": "65df5678c9d0e1f401",
+    "sensorId": "65de4567b8c9d0e1f301",
+    "value": 75.5,
+    "unit": "°C",
+    "metadata": { "quality": "good", "source": "raw" },
+    "expiresAt": "2025-05-21T10:00:00.000Z",
+    "equipmentId": "65dd3456a7b8c9d0e1f201",
+    "createdAt": "2025-02-20T10:00:00.000Z"
+  },
+  {
+    "_id": "65df5678c9d0e1f402",
+    "sensorId": "65de4567b8c9d0e1f302",
+    "value": 4.8,
+    "unit": "m/s²",
+    "metadata": { "quality": "suspect", "source": "raw" },
+    "expiresAt": "2025-05-21T10:15:00.000Z",
+    "equipmentId": "65dd3456a7b8c9d0e1f201",
+    "createdAt": "2025-02-20T10:15:00.000Z"
+  },
+  {
+    "_id": "65df5678c9d0e1f403",
+    "sensorId": "65de4567b8c9d0e1f303",
+    "value": 120,
+    "unit": "psi",
+    "metadata": { "quality": "good", "source": "processed" },
+    "expiresAt": "2025-05-21T10:30:00.000Z",
+    "equipmentId": "65dd3456a7b8c9d0e1f202",
+    "createdAt": "2025-02-20T10:30:00.000Z"
+  },
+  {
+    "_id": "65df5678c9d0e1f404",
+    "sensorId": "65de4567b8c9d0e1f304",
+    "value": 1800,
+    "unit": "Hz",
+    "metadata": { "quality": "error", "source": "raw" },
+    "expiresAt": "2025-05-21T10:45:00.000Z",
+    "equipmentId": "65dd3456a7b8c9d0e1f203",
+    "createdAt": "2025-02-20T10:45:00.000Z"
+  },
+  {
+    "_id": "65df5678c9d0e1f405",
+    "sensorId": "65de4567b8c9d0e1f305",
+    "value": 90,
+    "unit": "psi",
+    "metadata": { "quality": "good", "source": "manual" },
+    "expiresAt": "2025-05-21T11:00:00.000Z",
+    "equipmentId": "65dd3456a7b8c9d0e1f204",
+    "createdAt": "2025-02-20T11:00:00.000Z"
+  },
+  {
+    "_id": "65df5678c9d0e1f41e",
+    "sensorId": "65de4567b8c9d0e1f31e",
+    "value": 2.5,
+    "unit": "m/s",
+    "metadata": { "quality": "good", "source": "raw" },
+    "expiresAt": "2025-05-22T14:30:00.000Z",
+    "equipmentId": "65dd3456a7b8c9d0e1f21e",
+    "createdAt": "2025-02-22T14:30:00.000Z"
+  }
+]

@@ -1,0 +1,88 @@
+﻿[
+  {
+    "_id": "65e56789e1f601a2b3c501",
+    "userId": "65d8f1a2b3c4d5e6f7a8b9c1",
+    "action": "create",
+    "entity": {
+      "entityType": "Product",
+      "entityId": "65db1234e5f6a7b8c9d0e1f1"
+    },
+    "details": { "name": "Synix EcoCut 4000", "category": "Cutting Fluids" },
+    "metadata": {
+      "ipAddress": "192.168.1.10",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+      "context": "API call"
+    },
+    "loggedAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "_id": "65e56789e1f601a2b3c502",
+    "userId": "65d8f1a2b3c4d5e6f7a8b9c2",
+    "action": "update",
+    "entity": { "entityType": "Sensor", "entityId": "65de4567b8c9d0e1f303" },
+    "details": { "statusChange": "maintenance" },
+    "metadata": {
+      "ipAddress": "10.0.0.5",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)",
+      "context": "UI action",
+      "previousState": { "status": "active" },
+      "newState": { "status": "maintenance" }
+    },
+    "loggedAt": "2025-01-02T09:00:00.000Z"
+  },
+  {
+    "_id": "65e56789e1f601a2b3c503",
+    "userId": null,
+    "action": "system",
+    "entity": { "entityType": "Report", "entityId": "65e12345a7b8c9d0e1f403" },
+    "details": { "reportType": "oee-report", "oee": 82.5 },
+    "metadata": {
+      "context": "Automated generation"
+    },
+    "loggedAt": "2025-02-20T12:00:00.000Z"
+  },
+  {
+    "_id": "65e56789e1f601a2b3c504",
+    "userId": "65d8f1a2b3c4d5e6f7a8b9c4",
+    "action": "login",
+    "entity": { "entityType": "User", "entityId": "65d8f1a2b3c4d5e6f7a8b9c4" },
+    "details": { "email": "sarah.clark@synixsolutions.com" },
+    "metadata": {
+      "ipAddress": "172.16.254.1",
+      "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X)"
+    },
+    "loggedAt": "2025-02-20T11:00:00.000Z"
+  },
+  {
+    "_id": "65e56789e1f601a2b3c505",
+    "userId": "65d8f1a2b3c4d5e6f7a8b9c5",
+    "action": "delete",
+    "entity": { "entityType": "Order", "entityId": "65e23456b8c9d0e1f504" },
+    "details": {
+      "orderNumber": "ORD-1677073200000-321",
+      "reason": "Payment failed"
+    },
+    "metadata": {
+      "ipAddress": "192.168.0.100",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+      "context": "API call"
+    },
+    "loggedAt": "2025-02-20T12:00:00.000Z"
+  },
+  {
+    "_id": "65e56789e1f601a2b3c51e",
+    "userId": "65d8f1a2b3c4d5e6f7a8b9de",
+    "action": "access",
+    "entity": { "entityType": "Report", "entityId": "65e12345a7b8c9d0e1f41e" },
+    "details": {
+      "reportType": "custom",
+      "accessedBy": "lisa.walker@synixsolutions.com"
+    },
+    "metadata": {
+      "ipAddress": "10.10.10.10",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)",
+      "context": "UI action"
+    },
+    "loggedAt": "2025-02-22T14:30:00.000Z"
+  }
+]

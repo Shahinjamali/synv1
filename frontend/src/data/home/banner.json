@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "NextGeneration Lubrication Formulation",
+    "description": "Ultra-efficient lubricants designed to amplify performance and protect machinery.",
+    "image": "assets/images/resources/slideMWF-1.jpg",
+    "links": {
+      "readMore": "/about-us",
+      "contact": "/contact-us"
+    }
+  },
+  {
+    "id": 2,
+    "title": "Extraordinary Vibration Intelligence",
+    "description": "Detect hidden faults instantly for ultimate equipment reliability and performance.",
+    "image": "assets/images/resources/slidervibration-1.jpg",
+    "links": {
+      "readMore": "/about-us",
+      "contact": "/contact-us"
+    }
+  },
+  {
+    "id": 3,
+    "title": "Precision Oil Insights Monitoring",
+    "description": "Unlock peak machine performance through detailed real-time oil analytics.",
+    "image": "assets/images/resources/sliderOilAnalysis-1.jpg",
+    "links": {
+      "readMore": "/about-us",
+      "contact": "/contact-us"
+    }
+  }
+]

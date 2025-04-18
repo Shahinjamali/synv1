@@ -1,0 +1,122 @@
+﻿[
+  {
+    "_id": "65e34567c9d0e1f601",
+    "userId": "65d8f1a2b3c4d5e6f7a8b9c1",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d1",
+    "type": "sensor-alert",
+    "message": "Temperature exceeds 80°C on Main Gearbox.",
+    "relatedData": {
+      "entityType": "Sensor",
+      "entityId": "65de4567b8c9d0e1f301"
+    },
+    "status": "unread",
+    "priority": "high",
+    "sentAt": "2025-02-20T10:00:00.000Z",
+    "metadata": {
+      "sender": "system",
+      "actionUrl": "https://synixsolutions.com/sensors/SYNX-SEN-001"
+    },
+    "expiresAt": "2025-03-20T10:00:00.000Z",
+    "createdAt": "2025-02-20T10:00:00.000Z",
+    "updatedAt": "2025-02-20T10:00:00.000Z"
+  },
+  {
+    "_id": "65e34567c9d0e1f602",
+    "userId": "65d8f1a2b3c4d5e6f7a8b9c2",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d2",
+    "type": "maintenance-reminder",
+    "message": "Oil change due for Water Pump.",
+    "relatedData": {
+      "entityType": "Maintenance",
+      "entityId": "65dc2345f6a7b8c9d0e1f002"
+    },
+    "status": "read",
+    "priority": "medium",
+    "sentAt": "2025-02-20T11:00:00.000Z",
+    "metadata": {
+      "sender": "system",
+      "actionUrl": "https://synixsolutions.com/maintenance/65dc2345f6a7b8c9d0e1f002"
+    },
+    "expiresAt": "2025-03-20T11:00:00.000Z",
+    "createdAt": "2025-02-20T11:00:00.000Z",
+    "updatedAt": "2025-02-20T12:00:00.000Z"
+  },
+  {
+    "_id": "65e34567c9d0e1f603",
+    "userId": "65d8f1a2b3c4d5e6f7a8b9c3",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d3",
+    "type": "report-ready",
+    "message": "OEE Report for Drive Motor is ready.",
+    "relatedData": {
+      "entityType": "Report",
+      "entityId": "65e12345a7b8c9d0e1f403"
+    },
+    "status": "unread",
+    "priority": "low",
+    "sentAt": "2025-02-20T12:00:00.000Z",
+    "metadata": {
+      "sender": "automated",
+      "actionUrl": "https://synixsolutions.com/reports/oee-20250220-003.csv"
+    },
+    "expiresAt": "2025-03-20T12:00:00.000Z",
+    "createdAt": "2025-02-20T12:00:00.000Z",
+    "updatedAt": "2025-02-20T12:00:00.000Z"
+  },
+  {
+    "_id": "65e34567c9d0e1f604",
+    "userId": "65d8f1a2b3c4d5e6f7a8b9c4",
+    "companyId": null,
+    "type": "system-update",
+    "message": "Platform maintenance scheduled for Feb 25.",
+    "relatedData": {},
+    "status": "archived",
+    "priority": "medium",
+    "sentAt": "2025-02-20T13:00:00.000Z",
+    "metadata": { "sender": "system" },
+    "expiresAt": "2025-02-25T00:00:00.000Z",
+    "createdAt": "2025-02-20T13:00:00.000Z",
+    "updatedAt": "2025-02-20T14:00:00.000Z"
+  },
+  {
+    "_id": "65e34567c9d0e1f605",
+    "userId": "65d8f1a2b3c4d5e6f7a8b9c5",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d5",
+    "type": "order-status",
+    "message": "Your order ORD-1677076800000-654 has been processed.",
+    "relatedData": {
+      "entityType": "Order",
+      "entityId": "65e23456b8c9d0e1f505"
+    },
+    "status": "read",
+    "priority": "low",
+    "sentAt": "2025-02-20T14:00:00.000Z",
+    "metadata": {
+      "sender": "system",
+      "actionUrl": "https://synixsolutions.com/orders/ORD-1677076800000-654"
+    },
+    "expiresAt": "2025-03-20T14:00:00.000Z",
+    "createdAt": "2025-02-20T14:00:00.000Z",
+    "updatedAt": "2025-02-20T15:00:00.000Z"
+  },
+  {
+    "_id": "65e34567c9d0e1f61e",
+    "userId": "65d8f1a2b3c4d5e6f7a8b9de",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9df",
+    "type": "custom",
+    "message": "Conveyor speed report available.",
+    "relatedData": {
+      "entityType": "Report",
+      "entityId": "65e12345a7b8c9d0e1f41e"
+    },
+    "status": "unread",
+    "priority": "medium",
+    "sentAt": "2025-02-22T14:30:00.000Z",
+    "metadata": {
+      "sender": "system",
+      "actionUrl": "https://synixsolutions.com/reports/custom-20250222-030.pdf"
+    },
+    "expiresAt": "2025-03-22T14:30:00.000Z",
+    "createdAt": "2025-02-22T14:30:00.000Z",
+    "updatedAt": "2025-02-22T14:30:00.000Z"
+  }
+]

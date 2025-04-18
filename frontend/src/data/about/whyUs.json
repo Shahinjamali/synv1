@@ -1,0 +1,35 @@
+{
+  "title": "Pioneering Sustainable Industrial Efficiency",
+  "tagline": "This is Synix",
+  "qs": [
+    {
+      "id": 1,
+      "question": "What drives Synix Solutions?",
+      "answer": "Our core mission is to revolutionize industrial maintenance and lubrication. We aim to achieve this through cutting-edge, sustainable solutions that empower our clients to reach peak operational efficiency while minimizing environmental impact."
+    },
+    {
+      "id": 2,
+      "question": "What makes Synix's approach to lubrication unique?",
+      "answer": "We specialize in developing advanced, eco-friendly lubricants tailored to specific industrial needs. Our focus is on biodegradable, non-toxic, and long-lasting formulations that not only enhance equipment performance and longevity but also reduce environmental footprint. We even offer tracking for each batch from production to disposal."
+    },
+    {
+      "id": 3,
+      "question": "How does Synix help businesses optimize maintenance?",
+      "answer": "Synix provides condition-based maintenance and reliability services, employing proactive strategies like predictive, preventive, and proactive maintenance. We utilize advanced sensors, data analytics, oil analysis, and remote monitoring to anticipate failures, reduce downtime, and extend equipment life."
+    },
+    {
+      "id": 4,
+      "question": "What is the Synix Solutions Platform?",
+      "answer": "It's a powerful, data-driven platform giving clients a centralized, real-time view of their equipment and lubricant conditions. It integrates sensor data, oil analysis results, and predictive analytics, enabling proactive decision-making and optimized maintenance strategies. It also features maintenance management tools, reporting, e-commerce integration for ordering lubricants, and mobile access."
+    },
+    {
+      "id": 5,
+      "question": "What key benefits can businesses expect from partnering with Synix?",
+      "answer": "Clients can expect reduced equipment downtime and maintenance costs, improved equipment reliability and lifespan, and enhanced operational efficiency. Furthermore, our solutions promote minimized environmental impact through sustainable practices and provide peace of mind via data-driven insights, real-time monitoring, and predictive analytics."
+    }
+  ],
+  "images": {
+    "primary": "/assets/images/about/whyus-1.webp",
+    "secondary": "/assets/images/about/whyus-2.webp"
+  }
+}

@@ -1,0 +1,125 @@
+﻿[
+  {
+    "_id": "65e45678d0e1f601a2b3c401",
+    "productId": "65db1234e5f6a7b8c9d0e1f1",
+    "batchNumber": "SYNX-CF-2025-001",
+    "location": "NA-Warehouse",
+    "quantity": 100,
+    "status": "available",
+    "manufacturingDate": "2025-01-01T00:00:00.000Z",
+    "expiryDate": "2026-01-01T00:00:00.000Z",
+    "metadata": {
+      "supplier": "SynixOil Co.",
+      "storageConditions": "Store below 25°C",
+      "lastUpdatedBy": "65d8f1a2b3c4d5e6f7a8b9c1",
+      "qualityCheck": {
+        "status": "passed",
+        "checkedAt": "2025-01-15T00:00:00.000Z"
+      }
+    },
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-02-20T00:00:00.000Z"
+  },
+  {
+    "_id": "65e45678d0e1f601a2b3c402",
+    "productId": "65db1234e5f6a7b8c9d0e1f2",
+    "batchNumber": "SYNX-HF-2025-002",
+    "location": "EU-Warehouse",
+    "quantity": 50,
+    "status": "reserved",
+    "manufacturingDate": "2025-01-02T00:00:00.000Z",
+    "expiryDate": "2026-01-02T00:00:00.000Z",
+    "metadata": {
+      "supplier": "SynixFluids Ltd.",
+      "storageConditions": "Keep dry",
+      "lastUpdatedBy": "65d8f1a2b3c4d5e6f7a8b9c2",
+      "qualityCheck": { "status": "pending" }
+    },
+    "createdAt": "2025-01-02T00:00:00.000Z",
+    "updatedAt": "2025-02-19T00:00:00.000Z"
+  },
+  {
+    "_id": "65e45678d0e1f601a2b3c403",
+    "productId": "65db1234e5f6a7b8c9d0e1f3",
+    "batchNumber": "SYNX-GL-2025-003",
+    "location": "ASIA-Warehouse",
+    "quantity": 0,
+    "status": "shipped",
+    "manufacturingDate": "2025-01-03T00:00:00.000Z",
+    "expiryDate": "2026-01-03T00:00:00.000Z",
+    "metadata": {
+      "supplier": "SynixGear Inc.",
+      "storageConditions": "Avoid direct sunlight",
+      "lastUpdatedBy": "65d8f1a2b3c4d5e6f7a8b9c3",
+      "qualityCheck": {
+        "status": "passed",
+        "checkedAt": "2025-01-10T00:00:00.000Z"
+      }
+    },
+    "createdAt": "2025-01-03T00:00:00.000Z",
+    "updatedAt": "2025-02-18T00:00:00.000Z"
+  },
+  {
+    "_id": "65e45678d0e1f601a2b3c404",
+    "productId": "65db1234e5f6a7b8c9d0e1f4",
+    "batchNumber": "SYNX-GR-2025-004",
+    "location": "LATAM-Warehouse",
+    "quantity": 200,
+    "status": "available",
+    "manufacturingDate": "2025-01-04T00:00:00.000Z",
+    "expiryDate": "2026-01-04T00:00:00.000Z",
+    "metadata": {
+      "supplier": "SynixLube Co.",
+      "storageConditions": "Store below 30°C",
+      "lastUpdatedBy": "65d8f1a2b3c4d5e6f7a8b9c4",
+      "qualityCheck": {
+        "status": "passed",
+        "checkedAt": "2025-01-12T00:00:00.000Z"
+      }
+    },
+    "createdAt": "2025-01-04T00:00:00.000Z",
+    "updatedAt": "2025-02-17T00:00:00.000Z"
+  },
+  {
+    "_id": "65e45678d0e1f601a2b3c405",
+    "productId": "65db1234e5f6a7b8c9d0e1f5",
+    "batchNumber": "SYNX-IO-2025-005",
+    "location": "MEA-Warehouse",
+    "quantity": 75,
+    "status": "quarantined",
+    "manufacturingDate": "2025-01-05T00:00:00.000Z",
+    "expiryDate": "2025-12-31T00:00:00.000Z",
+    "metadata": {
+      "supplier": "SynixIndustries",
+      "storageConditions": "Check for contamination",
+      "lastUpdatedBy": "65d8f1a2b3c4d5e6f7a8b9c5",
+      "qualityCheck": {
+        "status": "failed",
+        "checkedAt": "2025-02-01T00:00:00.000Z"
+      }
+    },
+    "createdAt": "2025-01-05T00:00:00.000Z",
+    "updatedAt": "2025-02-16T00:00:00.000Z"
+  },
+  {
+    "_id": "65e45678d0e1f601a2b3c41e",
+    "productId": "65db1234e5f6a7b8c9d0e20e",
+    "batchNumber": "SYNX-IO-2025-030",
+    "location": "Other",
+    "quantity": 100,
+    "status": "available",
+    "manufacturingDate": "2025-01-30T00:00:00.000Z",
+    "expiryDate": "2026-01-30T00:00:00.000Z",
+    "metadata": {
+      "supplier": "SynixEco Ltd.",
+      "storageConditions": "Store in cool, dry place",
+      "lastUpdatedBy": "65d8f1a2b3c4d5e6f7a8b9de",
+      "qualityCheck": {
+        "status": "passed",
+        "checkedAt": "2025-02-15T00:00:00.000Z"
+      }
+    },
+    "createdAt": "2025-01-30T00:00:00.000Z",
+    "updatedAt": "2025-02-20T00:00:00.000Z"
+  }
+]

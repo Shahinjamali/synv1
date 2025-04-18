@@ -1,0 +1,32 @@
+{
+  "tagline": "Frequently Asked Questions",
+  "title": "Cearting Trust That Stand Of Time",
+  "description": "Synix Solutions is dedicated to transforming industrial maintenance through innovative and sustainable practices. We combine advanced, eco-friendly lubricant solutions tailored to specific needs  with comprehensive condition-based maintenance services, including predictive and proactive strategies. Our integrated Synix Solutions Platform provides real-time insights and data-driven analytics, enabling businesses to optimize equipment performance, enhance reliability, reduce operational costs, and minimize their environmental impact.",
+  "questions": [
+    {
+      "id": 1,
+      "question": "How does Synix leverage technology for predictive maintenance?",
+      "answer": "Synix utilizes advanced sensors and data analytics to anticipate potential equipment failures before they occur[cite: 10]. Our platform employs AI-powered algorithms to predict failures and remaining useful life, providing early warning systems and recommendations for proactive actions[cite: 22, 23]."
+    },
+    {
+      "id": 2,
+      "question": "Can the Synix platform integrate with our existing systems and sensors?",
+      "answer": "Yes, the Synix Solutions Platform is designed for integration. It supports sensor integration from a large variety of manufacturers [cite: 20] and offers API integration capabilities to connect with other industrial platforms[cite: 30]."
+    },
+    {
+      "id": 3,
+      "question": "How does Synix support sustainability beyond offering eco-friendly lubricants?",
+      "answer": "While our lubricants are designed to be biodegradable and non-toxic[cite: 4], our overall approach enhances sustainability by engineering lubricants to minimize friction, wear, and energy consumption, improving equipment longevity[cite: 5]. Furthermore, our maintenance services aim to optimize equipment performance, reducing waste and unnecessary resource use[cite: 9]."
+    },
+    {
+      "id": 4,
+      "question": "Is it possible to access equipment data and manage maintenance remotely?",
+      "answer": "Absolutely. Synix offers mobile accessibility through an app for real-time access to platform data and notifications[cite: 28]. The platform also enables remote monitoring of equipment performance and lubricant conditions[cite: 15, 28]."
+    },
+    {
+      "id": 5,
+      "question": "How can we order Synix lubricants and manage our inventory?",
+      "answer": "Our platform features e-commerce integration, allowing you to access the lubricant product catalog and place orders directly[cite: 29, 8]. It also includes tools for inventory management of lubricants and spare parts[cite: 24]."
+    }
+  ]
+}

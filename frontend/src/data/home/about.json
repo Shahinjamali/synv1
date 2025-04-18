@@ -1,0 +1,23 @@
+{
+  "tagline": "About Us",
+  "title": "Engineering Reliability, Powering Sustainable Future",
+  "description": "Delivering innovative, reliable solutions designed to enhance sustainability and performance. Our technologies drive efficiency and empower lasting results.",
+  "image": {
+    "src": "/assets/images/resources/aboutSynix.jpg",
+    "alt": "Synix team working on innovative engineering solutions",
+    "width": 600,
+    "height": 400
+  },
+  "points": [
+    {
+      "id": 1,
+      "title": "Innovative Lubrication Solutions",
+      "description": "Revolutionizing lubrication technologies for peak machinery efficiency and exceptional performance. Maximizing equipment life, optimizing productivity, and ensuring unmatched operational reliability."
+    },
+    {
+      "id": 2,
+      "title": "AI-Driven Predictive Maintenance Solutions",
+      "description": "Harnessing advanced artificial intelligence to predict, prevent, and eliminate downtime. Optimizing machine health, boosting productivity, and enhancing long-term equipment reliability."
+    }
+  ]
+}

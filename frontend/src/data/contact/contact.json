@@ -1,0 +1,22 @@
+{
+  "title": "Let us know about your next step",
+  "details": [
+    {
+      "type": "email",
+      "value": "info@synix.ca",
+      "url": "mailto:info@synix.ca",
+      "icon": "icon-email"
+    },
+    {
+      "type": "location",
+      "value": "2118, Dunfield Ave, Toronto, Ontario, Canada, M4S 0E4",
+      "icon": "icon-location"
+    },
+    {
+      "type": "phone",
+      "value": "+1 (647) 987-9696",
+      "url": "tel:+16479879696",
+      "icon": "icon-call"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "about": {
+    "logo": "/assets/images/resources/synixLogo-2.png",
+    "description": "Synix Solutions delivers cutting-edge lubricants and AI-powered predictive maintenance to optimize performance and sustainability.",
+    "socialTitle": "Connect With Us",
+    "socialLinks": [
+      {
+        "platform": "facebook",
+        "url": "https://facebook.com/synixsolutions",
+        "icon": "icon-facebook"
+      },
+      {
+        "platform": "twitter",
+        "url": "https://twitter.com/synixsolutions",
+        "icon": "icon-twitter"
+      },
+      {
+        "platform": "linkedin",
+        "url": "https://linkedin.com/company/synixsolutions",
+        "icon": "icon-link-in"
+      },
+      {
+        "platform": "instagram",
+        "url": "https://instagram.com/synixsolutions",
+        "icon": "icon-instagram"
+      }
+    ]
+  },
+  "services": {
+    "title": "Our Solutions",
+    "links": [
+      {
+        "name": "AI Predictive Maintenance",
+        "url": "/services/ai-maintenance"
+      },
+      { "name": "Industrial Lubricants", "url": "/services/lubricants" },
+      { "name": "Maintenance Consulting", "url": "/services/consulting" },
+      { "name": "Equipment Monitoring", "url": "/services/monitoring" },
+      { "name": "Sustainability Solutions", "url": "/services/sustainability" }
+    ]
+  },
+  "news": {
+    "title": "Latest Insights",
+    "articles": [
+      {
+        "title": "How AI is Revolutionizing Maintenance",
+        "url": "/blog/ai-maintenance-revolution",
+        "date": "March 15, 2025"
+      },
+      {
+        "title": "The Future of Lubricants in Industry",
+        "url": "/blog/future-lubricants",
+        "date": "February 28, 2025"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "details": [
+      {
+        "type": "email",
+        "value": "info@synix.ca",
+        "url": "mailto:info@synix.ca",
+        "icon": "icon-email"
+      },
+      {
+        "type": "location",
+        "value": "2118, Dunfield Ave, Toronto, Ontario, Canada, M4S 0E4",
+        "icon": "icon-location"
+      },
+      {
+        "type": "phone",
+        "value": "+1 (647) 987-9696",
+        "url": "tel:+16479879696",
+        "icon": "icon-call"
+      }
+    ]
+  },
+  "bottom": {
+    "copyright": "© Synix Solutions 2025 | All Rights Reserved",
+    "nav": [
+      { "name": "Terms & Conditions", "url": "/terms" },
+      { "name": "Privacy Policy", "url": "/privacy" },
+      { "name": "Contact Us", "url": "/contact-us" }
+    ]
+  }
+}

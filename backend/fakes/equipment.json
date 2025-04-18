@@ -1,0 +1,136 @@
+﻿[
+  {
+    "_id": "65dd3456a7b8c9d0e1f201",
+    "equipmentId": "SYNX-GBX-001",
+    "name": "Main Gearbox",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d1",
+    "type": "Gearbox",
+    "location": "Factory Floor 1",
+    "status": "active",
+    "sensors": [
+      { "sensorId": "65de4567b8c9d0e1f301", "role": "Temperature Monitor" },
+      { "sensorId": "65de4567b8c9d0e1f302", "role": "Vibration Sensor" }
+    ],
+    "metadata": {
+      "serialNumber": "GBX-2025-001",
+      "model": "GX-500",
+      "manufacturer": "SynixTech",
+      "installDate": "2024-12-01T00:00:00.000Z",
+      "lastMaintenanceDate": "2025-02-19T00:00:00.000Z",
+      "healthScore": 85,
+      "operationalHours": 1200
+    },
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-02-20T00:00:00.000Z"
+  },
+  {
+    "_id": "65dd3456a7b8c9d0e1f202",
+    "equipmentId": "SYNX-PMP-002",
+    "name": "Water Pump",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d2",
+    "type": "Pump",
+    "location": "Basement Level",
+    "status": "under-maintenance",
+    "sensors": [
+      { "sensorId": "65de4567b8c9d0e1f303", "role": "Pressure Sensor" }
+    ],
+    "metadata": {
+      "serialNumber": "PMP-2025-002",
+      "model": "WP-300",
+      "manufacturer": "SynixFlow",
+      "installDate": "2024-11-15T00:00:00.000Z",
+      "lastMaintenanceDate": "2025-02-20T00:00:00.000Z",
+      "healthScore": 60,
+      "operationalHours": 900
+    },
+    "createdAt": "2025-01-02T00:00:00.000Z",
+    "updatedAt": "2025-02-20T00:00:00.000Z"
+  },
+  {
+    "_id": "65dd3456a7b8c9d0e1f203",
+    "equipmentId": "SYNX-MTR-003",
+    "name": "Drive Motor",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d3",
+    "type": "Motor",
+    "location": "Production Line 2",
+    "status": "faulty",
+    "sensors": [{ "sensorId": "65de4567b8c9d0e1f304", "role": "RPM Monitor" }],
+    "metadata": {
+      "serialNumber": "MTR-2025-003",
+      "model": "DM-700",
+      "manufacturer": "SynixPower",
+      "installDate": "2024-10-01T00:00:00.000Z",
+      "healthScore": 45,
+      "operationalHours": 1500
+    },
+    "createdAt": "2025-01-03T00:00:00.000Z",
+    "updatedAt": "2025-02-19T00:00:00.000Z"
+  },
+  {
+    "_id": "65dd3456a7b8c9d0e1f204",
+    "equipmentId": "SYNX-CMP-004",
+    "name": "Air Compressor",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d4",
+    "type": "Compressor",
+    "location": "Warehouse A",
+    "status": "active",
+    "sensors": [
+      { "sensorId": "65de4567b8c9d0e1f305", "role": "Pressure Monitor" }
+    ],
+    "metadata": {
+      "serialNumber": "CMP-2025-004",
+      "model": "AC-200",
+      "manufacturer": "SynixAir",
+      "installDate": "2024-12-15T00:00:00.000Z",
+      "healthScore": 90,
+      "operationalHours": 600
+    },
+    "createdAt": "2025-01-04T00:00:00.000Z",
+    "updatedAt": "2025-02-18T00:00:00.000Z"
+  },
+  {
+    "_id": "65dd3456a7b8c9d0e1f205",
+    "equipmentId": "SYNX-TRB-005",
+    "name": "Wind Turbine",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d5",
+    "type": "Turbine",
+    "location": "Field Site 1",
+    "status": "inactive",
+    "sensors": [
+      { "sensorId": "65de4567b8c9d0e1f306", "role": "Wind Speed Sensor" }
+    ],
+    "metadata": {
+      "serialNumber": "TRB-2025-005",
+      "model": "WT-1000",
+      "manufacturer": "SynixEnergy",
+      "installDate": "2024-09-01T00:00:00.000Z",
+      "healthScore": 70,
+      "operationalHours": 2000
+    },
+    "createdAt": "2025-01-05T00:00:00.000Z",
+    "updatedAt": "2025-02-17T00:00:00.000Z"
+  },
+  {
+    "_id": "65dd3456a7b8c9d0e1f21e",
+    "equipmentId": "SYNX-CNV-030",
+    "name": "Belt Conveyor",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9df",
+    "type": "Conveyor",
+    "location": "Processing Plant 3",
+    "status": "active",
+    "sensors": [
+      { "sensorId": "65de4567b8c9d0e1f31e", "role": "Speed Monitor" }
+    ],
+    "metadata": {
+      "serialNumber": "CNV-2025-030",
+      "model": "BC-300",
+      "manufacturer": "SynixMove",
+      "installDate": "2024-11-01T00:00:00.000Z",
+      "lastMaintenanceDate": "2025-02-20T00:00:00.000Z",
+      "healthScore": 88,
+      "operationalHours": 1100
+    },
+    "createdAt": "2025-01-30T00:00:00.000Z",
+    "updatedAt": "2025-02-20T00:00:00.000Z"
+  }
+]

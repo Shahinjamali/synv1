@@ -1,0 +1,30 @@
+{
+  "tagline": "Meet Our Team",
+  "title": "The People Behind Synix Solutions",
+  "team": [
+    {
+      "name": "Shahin",
+      "role": "President",
+      "bio": "John is a software engineer with over 5 years of experience in web development.",
+      "image": "/images/john_doe.jpg"
+    },
+    {
+      "name": "Violet",
+      "role": "CEO",
+      "bio": "Jane is a product manager with a passion for user experience and design.",
+      "image": "/images/jane_smith.jpg"
+    },
+    {
+      "name": "Jamie",
+      "role": "Sales Manager",
+      "bio": "Jane is a product manager with a passion for user experience and design.",
+      "image": "/images/jane_smith.jpg"
+    },
+    {
+      "name": "Neda",
+      "role": "Business Developer",
+      "bio": "Jane is a product manager with a passion for user experience and design.",
+      "image": "/images/jane_smith.jpg"
+    }
+  ]
+}

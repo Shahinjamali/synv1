@@ -1,0 +1,178 @@
+﻿[
+  {
+    "_id": "65e6789ae1f601a2b3c601",
+    "page": "homepage",
+    "section": "hero",
+    "element": "headline",
+    "contentType": "text",
+    "content": "Welcome to Synix Solutions - Your Lubrication Experts",
+    "metadata": {
+      "title": "Synix Solutions Home",
+      "description": "Explore our advanced lubrication solutions.",
+      "keywords": ["lubricants", "maintenance", "synix"],
+      "author": "65d8f1a2b3c4d5e6f7a8b9c1",
+      "version": 1
+    },
+    "status": "published",
+    "visibility": "public",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-02-20T00:00:00.000Z"
+  },
+  {
+    "_id": "65e6789ae1f601a2b3c602",
+    "page": "homepage",
+    "section": "hero",
+    "element": "image",
+    "contentType": "image",
+    "content": "https://synixsolutions.com/images/hero-lubricants.jpg",
+    "metadata": {
+      "title": "Hero Image",
+      "description": "Showcasing Synix’s lubricant expertise.",
+      "keywords": ["hero", "lubricants"],
+      "author": "65d8f1a2b3c4d5e6f7a8b9c2",
+      "version": 1
+    },
+    "status": "published",
+    "visibility": "public",
+    "createdAt": "2025-01-02T00:00:00.000Z",
+    "updatedAt": "2025-02-19T00:00:00.000Z"
+  },
+  {
+    "_id": "65e6789ae1f601a2b3c603",
+    "page": "products",
+    "section": "featured",
+    "element": "description",
+    "contentType": "rich-text",
+    "content": "<p>Discover our cutting-edge <strong>lubricants</strong> designed for peak performance.</p>",
+    "metadata": {
+      "title": "Featured Products",
+      "description": "Highlighting top Synix lubricants.",
+      "keywords": ["products", "lubricants", "performance"],
+      "author": "65d8f1a2b3c4d5e6f7a8b9c3",
+      "version": 2
+    },
+    "status": "draft",
+    "visibility": "internal",
+    "createdAt": "2025-01-03T00:00:00.000Z",
+    "updatedAt": "2025-02-18T00:00:00.000Z"
+  },
+  {
+    "_id": "65e6789ae1f601a2b3c604",
+    "page": "about",
+    "section": "mission",
+    "element": "text",
+    "contentType": "text",
+    "content": "Empowering industries with sustainable solutions.",
+    "metadata": {
+      "title": "Our Mission",
+      "description": "Synix’s commitment to sustainability.",
+      "keywords": ["mission", "sustainability"],
+      "author": "65d8f1a2b3c4d5e6f7a8b9c4",
+      "version": 1
+    },
+    "status": "published",
+    "visibility": "public",
+    "createdAt": "2025-01-04T00:00:00.000Z",
+    "updatedAt": "2025-02-17T00:00:00.000Z"
+  },
+  {
+    "_id": "65e6789ae1f601a2b3c605",
+    "page": "contact",
+    "section": "form",
+    "element": "link",
+    "contentType": "link",
+    "content": "https://synixsolutions.com/contact-form",
+    "metadata": {
+      "title": "Contact Form",
+      "description": "Get in touch with Synix support.",
+      "keywords": ["contact", "support"],
+      "author": "65d8f1a2b3c4d5e6f7a8b9c5",
+      "version": 1
+    },
+    "status": "published",
+    "visibility": "public",
+    "createdAt": "2025-01-05T00:00:00.000Z",
+    "updatedAt": "2025-02-16T00:00:00.000Z"
+  },
+  {
+    "_id": "65e6789ae1f601a2b3c606",
+    "page": "products",
+    "section": "list",
+    "element": "items",
+    "contentType": "array",
+    "content": [
+      "Synix EcoCut 4000",
+      "Synix HydroFlow 68",
+      "Synix GearLube 320"
+    ],
+    "metadata": {
+      "title": "Product List",
+      "description": "Featured Synix products.",
+      "keywords": ["products", "list"],
+      "author": "65d8f1a2b3c4d5e6f7a8b9c6",
+      "version": 1
+    },
+    "status": "pending-review",
+    "visibility": "customer-only",
+    "createdAt": "2025-01-06T00:00:00.000Z",
+    "updatedAt": "2025-02-15T00:00:00.000Z"
+  },
+  {
+    "_id": "65e6789ae1f601a2b3c607",
+    "page": "dashboard",
+    "section": "widget",
+    "element": "data",
+    "contentType": "json",
+    "content": { "title": "Equipment Status", "metrics": ["uptime", "health"] },
+    "metadata": {
+      "title": "Dashboard Widget",
+      "description": "Custom widget for dashboard.",
+      "keywords": ["dashboard", "widget"],
+      "author": "65d8f1a2b3c4d5e6f7a8b9c7",
+      "version": 1
+    },
+    "status": "archived",
+    "visibility": "internal",
+    "createdAt": "2025-01-07T00:00:00.000Z",
+    "updatedAt": "2025-02-14T00:00:00.000Z"
+  },
+  {
+    "_id": "65e6789ae1f601a2b3c608",
+    "page": "promo",
+    "section": "banner",
+    "element": "video",
+    "contentType": "video",
+    "content": "https://synixsolutions.com/videos/promo-2025.mp4",
+    "metadata": {
+      "title": "Spring Promo Video",
+      "description": "Limited-time offer video.",
+      "keywords": ["promo", "video"],
+      "author": "65d8f1a2b3c4d5e6f7a8b9c8",
+      "version": 1
+    },
+    "status": "published",
+    "visibility": "public",
+    "expiresAt": "2025-03-31T00:00:00.000Z",
+    "createdAt": "2025-01-08T00:00:00.000Z",
+    "updatedAt": "2025-02-13T00:00:00.000Z"
+  },
+  {
+    "_id": "65e6789ae1f601a2b3c61e",
+    "page": "support",
+    "section": "faq",
+    "element": "questions",
+    "contentType": "array",
+    "content": ["How do I track my order?", "What is predictive maintenance?"],
+    "metadata": {
+      "title": "FAQ Section",
+      "description": "Common customer questions.",
+      "keywords": ["faq", "support"],
+      "author": "65d8f1a2b3c4d5e6f7a8b9de",
+      "version": 1
+    },
+    "status": "published",
+    "visibility": "public",
+    "createdAt": "2025-01-30T00:00:00.000Z",
+    "updatedAt": "2025-02-20T00:00:00.000Z"
+  }
+]

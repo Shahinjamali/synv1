@@ -1,0 +1,40 @@
+{
+  "tagline": "About Our Products",
+  "title": "Innovative Solutions",
+  "subtitle": "Leading the Way in Industrial Lubricants",
+  "description": "Discover our range of cutting-edge industrial lubricants and predictive maintenance solutions designed for reliability and performance.",
+  "features": [
+    {
+      "icon": "gear",
+      "text": "High Performance",
+      "text2": "Lubricants"
+    },
+    {
+      "icon": "leaf",
+      "text": "Sustainable",
+      "text2": "Solutions"
+    }
+  ],
+  "badge": {
+    "title": "Premium",
+    "title2": " Quality"
+  },
+  "points": [
+    {
+      "icon": "icon-blueprint-1",
+      "text": "Advanced Formulations"
+    },
+    {
+      "icon": "icon-renovate",
+      "text": "Sustainable Solutions"
+    }
+  ],
+  "image": [
+    {
+      "src": "/assets/images/products/banner-1.webp",
+      "width": 400,
+      "height": 400,
+      "alt": "Premium Quality Lubricants"
+    }
+  ]
+}

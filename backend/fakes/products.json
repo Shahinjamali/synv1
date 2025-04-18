@@ -1,0 +1,329 @@
+﻿[
+  {
+    "name": "AquaCool 100",
+    "categoryPath": ["metalworkingfluids", "water-miscible"],
+    "description": "A high-performance water-miscible coolant for precision machining.",
+    "features": [
+      { "name": "High lubricity", "details": "Reduces friction by 25%" },
+      {
+        "name": "Corrosion resistance",
+        "details": "Protects tools for up to 6 months"
+      }
+    ],
+    "applications": ["CNC machining", "Grinding"],
+    "industrySectors": ["Automotive", "Manufacturing"],
+    "technicalData": {
+      "viscosity": "10 cSt",
+      "density": "0.95 g/cm³",
+      "flashPoint": "180°C",
+      "pourPoint": "-20°C",
+      "frictionCoefficient": "0.12",
+      "otherProperties": { "pH": "8.5" }
+    },
+    "safetyData": {
+      "tds": "https://example.com/tds/aquacool100.pdf",
+      "msds": "https://example.com/msds/aquacool100.pdf"
+    },
+    "media": {
+      "images": ["https://example.com/images/aquacool100.jpg"],
+      "videos": ["https://example.com/videos/aquacool100.mp4"],
+      "documents": [
+        {
+          "fileName": "AquaCool 100 Specs",
+          "fileType": "pdf",
+          "url": "https://example.com/docs/aquacool100.pdf",
+          "authorizationRequired": false,
+          "uploadDate": "2025-02-27T10:00:00Z",
+          "description": "Product specification sheet"
+        }
+      ]
+    },
+    "sustainabilityData": {
+      "biodegradable": true,
+      "toxicityLevel": "low",
+      "lifespan": 24,
+      "recycledContent": 30,
+      "carbonFootprint": 50
+    },
+    "batchNumber": "AC100-2025-001",
+    "price": 75.99,
+    "stock": 150,
+    "availableRegions": ["NA", "EU"],
+    "tags": ["coolant", "water-miscible", "eco-friendly"],
+    "authorizationRequired": false,
+    "createdBy": null,
+    "status": "active",
+    "eCommerceData": {
+      "sku": "AC100",
+      "shippingWeight": 10.5
+    },
+    "createdAt": "2025-02-27T10:00:00Z",
+    "updatedAt": "2025-02-27T10:00:00Z"
+  },
+  {
+    "name": "SynthOil 200",
+    "categoryPath": ["metalworkingfluids", "neat(non-water-miscible)"],
+    "description": "Synthetic neat oil for heavy-duty cutting operations.",
+    "features": [
+      {
+        "name": "Extreme pressure",
+        "details": "Withstands loads up to 5000 psi"
+      },
+      { "name": "Long tool life", "details": "Extends tool life by 30%" }
+    ],
+    "applications": ["Heavy-duty cutting", "Milling"],
+    "industrySectors": ["Aerospace", "Manufacturing"],
+    "technicalData": {
+      "viscosity": "20 cSt",
+      "density": "0.92 g/cm³",
+      "flashPoint": "220°C",
+      "pourPoint": "-15°C",
+      "frictionCoefficient": "0.10",
+      "otherProperties": { "color": "amber" }
+    },
+    "safetyData": {
+      "tds": "https://example.com/tds/synthoil200.pdf",
+      "msds": "https://example.com/msds/synthoil200.pdf"
+    },
+    "media": {
+      "images": ["https://example.com/images/synthoil200.jpg"],
+      "videos": [],
+      "documents": [
+        {
+          "fileName": "SynthOil 200 Guide",
+          "fileType": "pdf",
+          "url": "https://example.com/docs/synthoil200.pdf",
+          "authorizationRequired": true,
+          "uploadDate": "2025-02-27T12:00:00Z",
+          "description": "User guide"
+        }
+      ]
+    },
+    "sustainabilityData": {
+      "biodegradable": false,
+      "toxicityLevel": "medium",
+      "lifespan": 36,
+      "recycledContent": 10,
+      "carbonFootprint": 80
+    },
+    "batchNumber": "SO200-2025-002",
+    "price": 120.5,
+    "stock": 75,
+    "availableRegions": ["NA", "ASIA"],
+    "tags": ["synthetic", "neat", "cutting"],
+    "authorizationRequired": true,
+    "createdBy": null,
+    "status": "active",
+    "eCommerceData": {
+      "sku": "SO200",
+      "shippingWeight": 15.0
+    },
+    "createdAt": "2025-02-27T12:00:00Z",
+    "updatedAt": "2025-02-27T12:00:00Z"
+  },
+  {
+    "name": "EcoLube 300",
+    "categoryPath": ["metalworkingfluids", "oil-free"],
+    "description": "Oil-free lubricant for environmentally sensitive applications.",
+    "features": [
+      { "name": "Non-toxic", "details": "Safe for operator handling" },
+      { "name": "High cooling", "details": "Reduces temperatures by 15°C" }
+    ],
+    "applications": ["Drilling", "Turning"],
+    "industrySectors": ["Automotive", "Electronics"],
+    "technicalData": {
+      "viscosity": "5 cSt",
+      "density": "1.00 g/cm³",
+      "flashPoint": "N/A",
+      "pourPoint": "-30°C",
+      "frictionCoefficient": "0.15",
+      "otherProperties": { "water-based": true }
+    },
+    "safetyData": {
+      "tds": "https://example.com/tds/ecolube300.pdf",
+      "msds": "https://example.com/msds/ecolube300.pdf"
+    },
+    "media": {
+      "images": ["https://example.com/images/ecolube300.jpg"],
+      "videos": ["https://example.com/videos/ecolube300.mp4"],
+      "documents": []
+    },
+    "sustainabilityData": {
+      "biodegradable": true,
+      "toxicityLevel": "none",
+      "lifespan": 18,
+      "recycledContent": 50,
+      "carbonFootprint": 20
+    },
+    "batchNumber": "EL300-2025-003",
+    "price": 45.0,
+    "stock": 200,
+    "availableRegions": ["EU", "LATAM"],
+    "tags": ["oil-free", "eco-friendly", "coolant"],
+    "authorizationRequired": false,
+    "createdBy": null,
+    "status": "active",
+    "eCommerceData": {
+      "sku": "EL300",
+      "shippingWeight": 8.0
+    },
+    "createdAt": "2025-02-27T14:00:00Z",
+    "updatedAt": "2025-02-27T14:00:00Z"
+  },
+  {
+    "name": "HydroMax 400",
+    "categoryPath": ["hydraulicoils", "mineral-based"],
+    "description": "Mineral-based hydraulic oil for industrial systems.",
+    "features": [
+      { "name": "Anti-wear", "details": "Reduces pump wear by 40%" },
+      { "name": "Thermal stability", "details": "Operates up to 100°C" }
+    ],
+    "applications": ["Hydraulic pumps", "Presses"],
+    "industrySectors": ["Manufacturing", "Construction"],
+    "technicalData": {
+      "viscosity": "32 cSt",
+      "density": "0.87 g/cm³",
+      "flashPoint": "210°C",
+      "pourPoint": "-25°C",
+      "frictionCoefficient": "0.11",
+      "otherProperties": { "ISO grade": "32" }
+    },
+    "safetyData": {
+      "tds": "https://example.com/tds/hydromax400.pdf",
+      "msds": "https://example.com/msds/hydromax400.pdf"
+    },
+    "media": {
+      "images": ["https://example.com/images/hydromax400.jpg"],
+      "videos": [],
+      "documents": [
+        {
+          "fileName": "HydroMax 400 Manual",
+          "fileType": "pdf",
+          "url": "https://example.com/docs/hydromax400.pdf",
+          "authorizationRequired": false,
+          "uploadDate": "2025-02-27T16:00:00Z",
+          "description": "Installation guide"
+        }
+      ]
+    },
+    "sustainabilityData": {
+      "biodegradable": false,
+      "toxicityLevel": "medium",
+      "lifespan": 48,
+      "recycledContent": 5,
+      "carbonFootprint": 90
+    },
+    "batchNumber": "HM400-2025-004",
+    "price": 85.75,
+    "stock": 0,
+    "availableRegions": ["NA", "MEA"],
+    "tags": ["hydraulic", "mineral", "anti-wear"],
+    "authorizationRequired": false,
+    "createdBy": null,
+    "status": "out-of-stock",
+    "eCommerceData": {
+      "sku": "HM400",
+      "shippingWeight": 12.0
+    },
+    "createdAt": "2025-02-27T16:00:00Z",
+    "updatedAt": "2025-02-27T16:00:00Z"
+  },
+  {
+    "name": "GearSync 500",
+    "categoryPath": ["gearoils", "synthetic"],
+    "description": "Synthetic gear oil for high-load transmissions.",
+    "features": [
+      { "name": "Extreme pressure", "details": "Handles 6000 psi" },
+      { "name": "Low noise", "details": "Reduces gear noise by 10dB" }
+    ],
+    "applications": ["Gearboxes", "Transmissions"],
+    "industrySectors": ["Automotive", "Heavy Machinery"],
+    "technicalData": {
+      "viscosity": "75 cSt",
+      "density": "0.89 g/cm³",
+      "flashPoint": "240°C",
+      "pourPoint": "-40°C",
+      "frictionCoefficient": "0.09",
+      "otherProperties": { "SAE grade": "75W-90" }
+    },
+    "safetyData": {
+      "tds": "https://example.com/tds/gearsync500.pdf",
+      "msds": "https://example.com/msds/gearsync500.pdf"
+    },
+    "media": {
+      "images": ["https://example.com/images/gearsync500.jpg"],
+      "videos": [],
+      "documents": []
+    },
+    "sustainabilityData": {
+      "biodegradable": false,
+      "toxicityLevel": "low",
+      "lifespan": 60,
+      "recycledContent": 15,
+      "carbonFootprint": 70
+    },
+    "batchNumber": "GS500-2025-005",
+    "price": 150.0,
+    "stock": 50,
+    "availableRegions": ["NA", "ASIA"],
+    "tags": ["gear", "synthetic", "high-load"],
+    "authorizationRequired": false,
+    "createdBy": null,
+    "status": "active",
+    "eCommerceData": {
+      "sku": "GS500",
+      "shippingWeight": 18.0
+    },
+    "createdAt": "2025-02-27T18:00:00Z",
+    "updatedAt": "2025-02-27T18:00:00Z"
+  },
+  {
+    "name": "FormFlex 600",
+    "categoryPath": ["metalformingfluids", "drawingandstampingfluids"],
+    "description": "Fluid for drawing and stamping operations.",
+    "features": [
+      { "name": "High film strength", "details": "Prevents metal tearing" },
+      { "name": "Easy cleanup", "details": "Water-soluble residue" }
+    ],
+    "applications": ["Stamping", "Drawing"],
+    "industrySectors": ["Automotive", "Manufacturing"],
+    "technicalData": {
+      "viscosity": "15 cSt",
+      "density": "0.96 g/cm³",
+      "flashPoint": "190°C",
+      "pourPoint": "-18°C",
+      "frictionCoefficient": "0.13",
+      "otherProperties": {}
+    },
+    "safetyData": {
+      "tds": "https://example.com/tds/formflex600.pdf",
+      "msds": "https://example.com/msds/formflex600.pdf"
+    },
+    "media": {
+      "images": ["https://example.com/images/formflex600.jpg"],
+      "videos": [],
+      "documents": []
+    },
+    "sustainabilityData": {
+      "biodegradable": true,
+      "toxicityLevel": "low",
+      "lifespan": 24,
+      "recycledContent": 20,
+      "carbonFootprint": 40
+    },
+    "batchNumber": "FF600-2025-006",
+    "price": 65.25,
+    "stock": 100,
+    "availableRegions": ["EU", "LATAM"],
+    "tags": ["forming", "stamping", "eco-friendly"],
+    "authorizationRequired": false,
+    "createdBy": null,
+    "status": "active",
+    "eCommerceData": {
+      "sku": "FF600",
+      "shippingWeight": 9.5
+    },
+    "createdAt": "2025-02-27T20:00:00Z",
+    "updatedAt": "2025-02-27T20:00:00Z"
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "tagline": "About Us",
+  "title": "Pioneering Lubrication & AI-Driven Maintenance",
+  "description": "At Synix Solutions, we combine cutting-edge lubricants with AI-powered predictive maintenance to enhance equipment reliability and sustainability.",
+  "image": {
+    "src": "/assets/images/pages/about/about-1.webp",
+    "alt": "Synix Solutions Team at Work",
+    "width": 600,
+    "height": 450
+  },
+  "features": [
+    {
+      "icon": "/assets/images/icon/gauge.png",
+      "title": "AI Predictive Maintenance",
+      "link": "/services/ai-maintenance",
+      "description": "Leverage AI to predict and prevent equipment failures, minimizing downtime."
+    },
+    {
+      "icon": "/assets/images/icon/oil-drop.png",
+      "title": "Innovative Lubricants",
+      "link": "/products",
+      "description": "Eco-friendly, high-performance lubricants designed for durability."
+    }
+  ]
+}

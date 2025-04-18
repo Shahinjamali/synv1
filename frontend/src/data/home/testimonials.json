@@ -1,0 +1,31 @@
+{
+  "tagline": "What Our Clients Say",
+  "title": "Innovating Maintenance",
+  "title2": "Lubricating Success",
+  "testimonial": [
+    {
+      "name": "Dr. Emily Carter",
+      "company": "LubriTech Industries",
+      "position": "Chief Innovation Officer",
+      "quote": "Synix Solutions transformed our maintenance strategy with their AI-driven predictive tools. Downtime reduced by 40%!",
+      "rating": 5,
+      "img": "/assets/images/testimonial/testimonial-emily.jpg"
+    },
+    {
+      "name": "Mark Reynolds",
+      "company": "GreenMech Corp",
+      "position": "Operations Manager",
+      "quote": "Their innovative lubricants extended our equipment lifespan significantly. A game-changer in the industry!",
+      "rating": 4.5,
+      "img": "/assets/images/testimonial/testimonial-mark.jpg"
+    },
+    {
+      "name": "Sophie Nguyen",
+      "company": "AIWorks Solutions",
+      "position": "Lead Engineer",
+      "quote": "The predictive maintenance system from Synix is seamless and precise—our efficiency soared!",
+      "rating": 5,
+      "img": "/assets/images/testimonial/testimonial-sophie.jpg"
+    }
+  ]
+}

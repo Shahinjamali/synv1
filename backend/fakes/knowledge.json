@@ -1,0 +1,166 @@
+﻿[
+  {
+    "_id": "65e789abe1f601a2b3c701",
+    "title": "Understanding Cutting Fluid Selection",
+    "slug": "understanding-cutting-fluid-selection",
+    "content": "<p>Choosing the right cutting fluid, like Synix EcoCut 4000, enhances machining efficiency...</p>",
+    "category": "Lubricant Guides",
+    "tags": ["cutting-fluids", "machining", "synix-ecocut"],
+    "author": "65d8f1a2b3c4d5e6f7a8b9c1",
+    "visibility": "public",
+    "status": "published",
+    "metadata": {
+      "version": 1,
+      "relatedEntities": [
+        { "entityType": "Product", "entityId": "65db1234e5f6a7b8c9d0e1f1" }
+      ],
+      "views": 150,
+      "lastReviewed": "2025-02-20T00:00:00.000Z"
+    },
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-02-20T00:00:00.000Z"
+  },
+  {
+    "_id": "65e789abe1f601a2b3c702",
+    "title": "Best Practices for Gearbox Maintenance",
+    "slug": "best-practices-for-gearbox-maintenance",
+    "content": "<p>Regular oil changes with Synix GearLube 320 can extend gearbox life...</p>",
+    "category": "Maintenance Tips",
+    "tags": ["gearbox", "maintenance", "synix-gearlube"],
+    "author": "65d8f1a2b3c4d5e6f7a8b9c2",
+    "visibility": "customer-only",
+    "status": "draft",
+    "metadata": {
+      "version": 1,
+      "relatedEntities": [
+        { "entityType": "Product", "entityId": "65db1234e5f6a7b8c9d0e1f3" }
+      ],
+      "views": 0
+    },
+    "createdAt": "2025-01-02T00:00:00.000Z",
+    "updatedAt": "2025-02-19T00:00:00.000Z"
+  },
+  {
+    "_id": "65e789abe1f601a2b3c703",
+    "title": "Introduction to Predictive Analytics",
+    "slug": "introduction-to-predictive-analytics",
+    "content": "<p>Leverage Synix Predictive Maintenance to foresee equipment failures...</p>",
+    "category": "Predictive Analytics",
+    "tags": ["predictive", "analytics", "maintenance"],
+    "author": "65d8f1a2b3c4d5e6f7a8b9c3",
+    "visibility": "public",
+    "status": "published",
+    "metadata": {
+      "version": 1,
+      "relatedEntities": [
+        { "entityType": "Service", "entityId": "65e01234f6a7b8c9d0e1f301" }
+      ],
+      "views": 200,
+      "lastReviewed": "2025-02-18T00:00:00.000Z"
+    },
+    "createdAt": "2025-01-03T00:00:00.000Z",
+    "updatedAt": "2025-02-18T00:00:00.000Z"
+  },
+  {
+    "_id": "65e789abe1f601a2b3c704",
+    "title": "Oil Analysis Techniques",
+    "slug": "oil-analysis-techniques",
+    "content": "<p>Learn how Synix Oil Analysis Pro detects wear early...</p>",
+    "category": "Oil Analysis",
+    "tags": ["oil-analysis", "wear", "synix-pro"],
+    "author": "65d8f1a2b3c4d5e6f7a8b9c4",
+    "visibility": "internal",
+    "status": "pending-review",
+    "metadata": {
+      "version": 1,
+      "relatedEntities": [
+        { "entityType": "Service", "entityId": "65e01234f6a7b8c9d0e1f308" }
+      ],
+      "views": 50
+    },
+    "createdAt": "2025-01-04T00:00:00.000Z",
+    "updatedAt": "2025-02-17T00:00:00.000Z"
+  },
+  {
+    "_id": "65e789abe1f601a2b3c705",
+    "title": "Sustainable Lubrication Practices",
+    "slug": "sustainable-lubrication-practices",
+    "content": "<p>Synix’s biodegradable oils reduce environmental impact...</p>",
+    "category": "Sustainability",
+    "tags": ["sustainability", "biodegradable", "lubricants"],
+    "author": "65d8f1a2b3c4d5e6f7a8b9c5",
+    "visibility": "public",
+    "status": "archived",
+    "metadata": {
+      "version": 1,
+      "relatedEntities": [
+        { "entityType": "Product", "entityId": "65db1234e5f6a7b8c9d0e1fa" }
+      ],
+      "views": 300,
+      "lastReviewed": "2025-01-05T00:00:00.000Z"
+    },
+    "createdAt": "2025-01-05T00:00:00.000Z",
+    "updatedAt": "2025-02-16T00:00:00.000Z"
+  },
+  {
+    "_id": "65e789abe1f601a2b3c706",
+    "title": "Troubleshooting Sensor Issues",
+    "slug": "troubleshooting-sensor-issues",
+    "content": "<p>Steps to diagnose faulty Synix sensors...</p>",
+    "category": "Technical Support",
+    "tags": ["sensors", "troubleshooting", "support"],
+    "author": "65d8f1a2b3c4d5e6f7a8b9c6",
+    "visibility": "customer-only",
+    "status": "published",
+    "metadata": {
+      "version": 1,
+      "relatedEntities": [],
+      "views": 80,
+      "lastReviewed": "2025-02-15T00:00:00.000Z"
+    },
+    "createdAt": "2025-01-06T00:00:00.000Z",
+    "updatedAt": "2025-02-15T00:00:00.000Z"
+  },
+  {
+    "_id": "65e789abe1f601a2b3c707",
+    "title": "Hydraulic Fluid Basics",
+    "slug": "hydraulic-fluid-basics",
+    "content": "<p>Overview of Synix HydroFlow 68 applications...</p>",
+    "category": "Lubricant Guides",
+    "tags": ["hydraulic", "synix-hydroflow", "guide"],
+    "author": "65d8f1a2b3c4d5e6f7a8b9c7",
+    "visibility": "public",
+    "status": "published",
+    "metadata": {
+      "version": 1,
+      "relatedEntities": [
+        { "entityType": "Product", "entityId": "65db1234e5f6a7b8c9d0e1f2" }
+      ],
+      "views": 120,
+      "lastReviewed": "2025-02-14T00:00:00.000Z"
+    },
+    "createdAt": "2025-01-07T00:00:00.000Z",
+    "updatedAt": "2025-02-14T00:00:00.000Z"
+  },
+  {
+    "_id": "65e789abe1f601a2b3c71e",
+    "title": "Maximizing Conveyor Efficiency",
+    "slug": "maximizing-conveyor-efficiency",
+    "content": "<p>Tips to optimize conveyor performance with Synix products...</p>",
+    "category": "Maintenance Tips",
+    "tags": ["conveyor", "efficiency", "maintenance"],
+    "author": "65d8f1a2b3c4d5e6f7a8b9de",
+    "visibility": "public",
+    "status": "published",
+    "metadata": {
+      "version": 1,
+      "relatedEntities": [
+        { "entityType": "Industry", "entityId": "65da1234e5f6a7b8c9d0e20e" }
+      ],
+      "views": 90,
+      "lastReviewed": "2025-02-20T00:00:00.000Z"
+    },
+    "createdAt": "2025-01-30T00:00:00.000Z",
+    "updatedAt": "2025-02-20T00:00:00.000Z"
+  }
+]

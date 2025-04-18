@@ -1,0 +1,34 @@
+[
+  {
+    "iconType": "OilBarrel",
+    "size": 40,
+    "defaultColor": "#faa319",
+    "hoverColor": "#FAFAFA",
+    "title": "Sustainable Lubricants",
+    "text": "Advanced, eco-friendly lubricants tailored for diverse industrial needs"
+  },
+  {
+    "iconType": "Rel",
+    "size": 40,
+    "defaultColor": "#faa319",
+    "hoverColor": "#FAFAFA",
+    "title": "Reliability Services",
+    "text": "Proactive maintenance strategies to optimize performance and prevent failures"
+  },
+  {
+    "iconType": "Trend1",
+    "size": 40,
+    "defaultColor": "#faa319",
+    "hoverColor": "#FAFAFA",
+    "title": "Data Platform",
+    "text": "Centralized, real-time view of equipment and lubricant conditions"
+  },
+  {
+    "iconType": "Drops",
+    "size": 40,
+    "defaultColor": "#faa319",
+    "hoverColor": "#FAFAFA",
+    "title": "Predictive Analytics",
+    "text": "AI predicts equipment failures and recommends proactive maintenance actions"
+  }
+]

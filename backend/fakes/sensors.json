@@ -1,0 +1,122 @@
+﻿[
+  {
+    "_id": "65de4567b8c9d0e1f301",
+    "sensorId": "SYNX-SEN-001",
+    "name": "Gearbox Temp Sensor",
+    "location": "Factory-Floor-1",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d1",
+    "equipmentId": "65dd3456a7b8c9d0e1f201",
+    "type": "temperature",
+    "manufacturer": "SynixSense",
+    "model": "TS-100",
+    "installationDate": "2024-12-01T00:00:00.000Z",
+    "status": "active",
+    "metadata": {
+      "serialNumber": "SEN-2025-001",
+      "calibrationDate": "2025-01-15T00:00:00.000Z",
+      "supportedUnits": ["°C", "°F"]
+    },
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-02-20T00:00:00.000Z"
+  },
+  {
+    "_id": "65de4567b8c9d0e1f302",
+    "sensorId": "SYNX-SEN-002",
+    "name": "Gearbox Vibration Sensor",
+    "location": "Factory-Floor-1",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d1",
+    "equipmentId": "65dd3456a7b8c9d0e1f201",
+    "type": "vibration",
+    "manufacturer": "SynixSense",
+    "model": "VS-200",
+    "installationDate": "2024-12-01T00:00:00.000Z",
+    "status": "active",
+    "metadata": {
+      "serialNumber": "SEN-2025-002",
+      "calibrationDate": "2025-01-15T00:00:00.000Z",
+      "supportedUnits": ["m/s²"]
+    },
+    "createdAt": "2025-01-02T00:00:00.000Z",
+    "updatedAt": "2025-02-19T00:00:00.000Z"
+  },
+  {
+    "_id": "65de4567b8c9d0e1f303",
+    "sensorId": "SYNX-SEN-003",
+    "name": "Pump Pressure Sensor",
+    "location": "Basement-Level",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d2",
+    "equipmentId": "65dd3456a7b8c9d0e1f202",
+    "type": "pressure",
+    "manufacturer": "SynixSense",
+    "model": "PS-300",
+    "installationDate": "2024-11-15T00:00:00.000Z",
+    "status": "maintenance",
+    "metadata": {
+      "serialNumber": "SEN-2025-003",
+      "calibrationDate": "2025-02-01T00:00:00.000Z",
+      "supportedUnits": ["psi"]
+    },
+    "createdAt": "2025-01-03T00:00:00.000Z",
+    "updatedAt": "2025-02-18T00:00:00.000Z"
+  },
+  {
+    "_id": "65de4567b8c9d0e1f304",
+    "sensorId": "SYNX-SEN-004",
+    "name": "Motor RPM Sensor",
+    "location": "Production-Line-2",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d3",
+    "equipmentId": "65dd3456a7b8c9d0e1f203",
+    "type": "vibration",
+    "manufacturer": "SynixSense",
+    "model": "RS-400",
+    "installationDate": "2024-10-01T00:00:00.000Z",
+    "status": "faulty",
+    "metadata": {
+      "serialNumber": "SEN-2025-004",
+      "calibrationDate": "2024-12-01T00:00:00.000Z",
+      "supportedUnits": ["Hz"]
+    },
+    "createdAt": "2025-01-04T00:00:00.000Z",
+    "updatedAt": "2025-02-17T00:00:00.000Z"
+  },
+  {
+    "_id": "65de4567b8c9d0e1f305",
+    "sensorId": "SYNX-SEN-005",
+    "name": "Compressor Pressure Sensor",
+    "location": "Warehouse-A",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d4",
+    "equipmentId": "65dd3456a7b8c9d0e1f204",
+    "type": "pressure",
+    "manufacturer": "SynixSense",
+    "model": "PS-300",
+    "installationDate": "2024-12-15T00:00:00.000Z",
+    "status": "active",
+    "metadata": {
+      "serialNumber": "SEN-2025-005",
+      "calibrationDate": "2025-01-10T00:00:00.000Z",
+      "supportedUnits": ["psi"]
+    },
+    "createdAt": "2025-01-05T00:00:00.000Z",
+    "updatedAt": "2025-02-16T00:00:00.000Z"
+  },
+  {
+    "_id": "65de4567b8c9d0e1f31e",
+    "sensorId": "SYNX-SEN-030",
+    "name": "Conveyor Speed Sensor",
+    "location": "Processing-Plant-3",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9df",
+    "equipmentId": "65dd3456a7b8c9d0e1f21e",
+    "type": "other",
+    "manufacturer": "SynixSense",
+    "model": "SS-600",
+    "installationDate": "2024-11-01T00:00:00.000Z",
+    "status": "active",
+    "metadata": {
+      "serialNumber": "SEN-2025-030",
+      "calibrationDate": "2025-02-15T00:00:00.000Z",
+      "supportedUnits": ["m/s"]
+    },
+    "createdAt": "2025-01-30T00:00:00.000Z",
+    "updatedAt": "2025-02-20T00:00:00.000Z"
+  }
+]

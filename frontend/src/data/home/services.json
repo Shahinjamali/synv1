@@ -1,0 +1,30 @@
+{
+  "tagline": "Our Services",
+  "title": "Ensuring Reliability Through Innovation",
+  "services": [
+    {
+      "id": 1,
+      "name": "Predictive Maintenance Analytics",
+      "slug": "predictive-maintenance",
+      "category": "reliability",
+      "featuredImage": "/assets/images/services/predictive-maintenance.jpg",
+      "description": "Leverage AI-driven insights to predict equipment failures, minimize downtime, and enhance operational reliability."
+    },
+    {
+      "id": 2,
+      "name": "Lubrication Management",
+      "slug": "lubrication-management",
+      "category": "reliability",
+      "featuredImage": "/assets/images/services/lubrication-management.jpg",
+      "description": "Optimize machinery performance with tailored lubrication strategies, ensuring longevity and efficiency."
+    },
+    {
+      "id": 3,
+      "name": "Vibration Monitoring",
+      "slug": "vibration-monitoring",
+      "category": "reliability",
+      "featuredImage": "/assets/images/services/vibration-monitoring.jpg",
+      "description": "Detect and address equipment issues early with advanced vibration analysis for unmatched reliability."
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "tagline": "Our Products",
+  "title": "Innovative Lubricant Solutions",
+  "products": [
+    {
+      "id": 1,
+      "title": "Synix UltraLube",
+      "slug": "synix-ultralube",
+      "image": "/assets/images/products/ultralube.jpg",
+      "description": {
+        "short": "Next-generation lubricant for extreme conditions, enhancing machinery life and efficiency.",
+        "full": "Synix UltraLube delivers unmatched protection and performance in high-stress industrial environments, reducing wear and optimizing energy use."
+      }
+    },
+    {
+      "id": 2,
+      "title": "MetalFlow Pro",
+      "slug": "metalflow-pro",
+      "image": "/assets/images/products/metalflow.jpg",
+      "description": {
+        "short": "Precision metalworking fluid for superior cutting and cooling performance.",
+        "full": "MetalFlow Pro ensures flawless machining with advanced cooling and lubrication, boosting productivity and tool longevity."
+      }
+    },
+    {
+      "id": 3,
+      "title": "EcoGuard Grease",
+      "slug": "ecoguard-grease",
+      "image": "/assets/images/products/ecoguard.jpg",
+      "description": {
+        "short": "Sustainable grease solution for heavy-duty applications with minimal environmental impact.",
+        "full": "EcoGuard Grease combines eco-friendly formulation with robust performance, ideal for sustainable industrial operations."
+      }
+    }
+  ]
+}

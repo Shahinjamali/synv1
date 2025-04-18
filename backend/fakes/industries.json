@@ -1,0 +1,667 @@
+﻿[
+  {
+    "_id": "65da1234e5f6a7b8c9d0e1f1",
+    "name": "Manufacturing",
+    "description": "Industrial production and assembly.",
+    "subIndustries": ["Automotive Manufacturing", "Electronics Assembly"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e1f1",
+        "applicability": "High-speed machining"
+      },
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e1f4",
+        "applicability": "Bearing lubrication"
+      }
+    ],
+    "tags": ["production", "automation"],
+    "metadata": {
+      "marketSize": 500000,
+      "keyChallenges": ["Equipment downtime", "Energy costs"],
+      "synixImpact": "Reduced downtime by 25%"
+    },
+    "status": "active",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-02-20T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e1f2",
+    "name": "Mining",
+    "description": "Extraction and processing of minerals.",
+    "subIndustries": ["Coal Mining", "Metal Ore Extraction"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e1f3",
+        "applicability": "Gearbox protection"
+      }
+    ],
+    "tags": ["heavy-duty", "dust-resistant"],
+    "metadata": {
+      "marketSize": 300000,
+      "keyChallenges": ["Harsh environments", "Wear and tear"],
+      "synixImpact": "Extended gear life by 30%"
+    },
+    "status": "active",
+    "createdAt": "2025-01-02T00:00:00.000Z",
+    "updatedAt": "2025-02-19T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e1f3",
+    "name": "Agriculture",
+    "description": "Farming and agricultural machinery.",
+    "subIndustries": ["Crop Production", "Livestock Management"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e1f5",
+        "applicability": "Tractor maintenance"
+      }
+    ],
+    "tags": ["eco-friendly", "machinery"],
+    "metadata": {
+      "marketSize": 200000,
+      "keyChallenges": ["Soil impact", "Equipment longevity"],
+      "synixImpact": "Improved sustainability by 15%"
+    },
+    "status": "pending",
+    "createdAt": "2025-01-03T00:00:00.000Z",
+    "updatedAt": "2025-01-03T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e1f4",
+    "name": "Automotive",
+    "description": "Vehicle manufacturing and maintenance.",
+    "subIndustries": ["Car Production", "Truck Assembly"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e1f7",
+        "applicability": "Hydraulic systems"
+      }
+    ],
+    "tags": ["precision", "lubrication"],
+    "metadata": {
+      "marketSize": 400000,
+      "keyChallenges": ["Production speed", "Component wear"],
+      "synixImpact": "Enhanced efficiency by 20%"
+    },
+    "status": "active",
+    "createdAt": "2025-01-04T00:00:00.000Z",
+    "updatedAt": "2025-02-18T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e1f5",
+    "name": "Petrochemical",
+    "description": "Oil and gas processing industries.",
+    "subIndustries": ["Refining", "Chemical Production"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e1f2",
+        "applicability": "Pump lubrication"
+      }
+    ],
+    "tags": ["chemical-resistant", "high-temp"],
+    "metadata": {
+      "marketSize": 600000,
+      "keyChallenges": ["Corrosion", "High temperatures"],
+      "synixImpact": "Reduced corrosion by 18%"
+    },
+    "status": "inactive",
+    "createdAt": "2025-01-05T00:00:00.000Z",
+    "updatedAt": "2025-01-05T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e1f6",
+    "name": "Heavy Industry",
+    "description": "Large-scale industrial operations.",
+    "subIndustries": ["Steel Production", "Shipbuilding"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e1f8",
+        "applicability": "Heavy machinery lubrication"
+      }
+    ],
+    "tags": ["durability", "heavy-duty"],
+    "metadata": {
+      "marketSize": 700000,
+      "keyChallenges": ["Equipment stress", "Maintenance costs"],
+      "synixImpact": "Lowered costs by 22%"
+    },
+    "status": "active",
+    "createdAt": "2025-01-06T00:00:00.000Z",
+    "updatedAt": "2025-02-17T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e1f7",
+    "name": "Marine",
+    "description": "Maritime transport and operations.",
+    "subIndustries": ["Shipping", "Offshore Platforms"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e1f9",
+        "applicability": "Engine lubrication"
+      }
+    ],
+    "tags": ["water-resistant", "marine"],
+    "metadata": {
+      "marketSize": 250000,
+      "keyChallenges": ["Salt corrosion", "Vibration"],
+      "synixImpact": "Improved engine life by 15%"
+    },
+    "status": "active",
+    "createdAt": "2025-01-07T00:00:00.000Z",
+    "updatedAt": "2025-02-16T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e1f8",
+    "name": "Construction",
+    "description": "Building and infrastructure development.",
+    "subIndustries": ["Residential", "Commercial"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e1fa",
+        "applicability": "Construction equipment"
+      }
+    ],
+    "tags": ["durability", "construction"],
+    "metadata": {
+      "marketSize": 450000,
+      "keyChallenges": ["Dust exposure", "Load stress"],
+      "synixImpact": "Reduced wear by 20%"
+    },
+    "status": "active",
+    "createdAt": "2025-01-08T00:00:00.000Z",
+    "updatedAt": "2025-02-15T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e1f9",
+    "name": "Aerospace",
+    "description": "Aircraft and space vehicle manufacturing.",
+    "subIndustries": ["Aviation", "Space Exploration"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e1fb",
+        "applicability": "Precision components"
+      }
+    ],
+    "tags": ["precision", "aerospace"],
+    "metadata": {
+      "marketSize": 350000,
+      "keyChallenges": ["Extreme conditions", "Precision maintenance"],
+      "synixImpact": "Enhanced reliability by 25%"
+    },
+    "status": "pending",
+    "createdAt": "2025-01-09T00:00:00.000Z",
+    "updatedAt": "2025-01-09T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e1fa",
+    "name": "Energy",
+    "description": "Power generation and distribution.",
+    "subIndustries": ["Renewable Energy", "Fossil Fuels"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e1fc",
+        "applicability": "Turbine lubrication"
+      }
+    ],
+    "tags": ["energy-efficient", "power"],
+    "metadata": {
+      "marketSize": 800000,
+      "keyChallenges": ["Efficiency", "Heat management"],
+      "synixImpact": "Improved efficiency by 18%"
+    },
+    "status": "active",
+    "createdAt": "2025-01-10T00:00:00.000Z",
+    "updatedAt": "2025-02-14T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e1fb",
+    "name": "Transportation",
+    "description": "Logistics and vehicle operations.",
+    "subIndustries": ["Freight", "Public Transit"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e1fd",
+        "applicability": "Fleet maintenance"
+      }
+    ],
+    "tags": ["logistics", "maintenance"],
+    "metadata": {
+      "marketSize": 300000,
+      "keyChallenges": ["Fuel efficiency", "Uptime"],
+      "synixImpact": "Increased uptime by 20%"
+    },
+    "status": "active",
+    "createdAt": "2025-01-11T00:00:00.000Z",
+    "updatedAt": "2025-02-13T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e1fc",
+    "name": "Electronics",
+    "description": "Electronic device production.",
+    "subIndustries": ["Consumer Electronics", "Semiconductors"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e1fe",
+        "applicability": "Precision lubrication"
+      }
+    ],
+    "tags": ["precision", "electronics"],
+    "metadata": {
+      "marketSize": 400000,
+      "keyChallenges": ["Miniaturization", "Heat dissipation"],
+      "synixImpact": "Reduced heat issues by 15%"
+    },
+    "status": "inactive",
+    "createdAt": "2025-01-12T00:00:00.000Z",
+    "updatedAt": "2025-01-12T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e1fd",
+    "name": "Food Processing",
+    "description": "Food and beverage production.",
+    "subIndustries": ["Beverage Production", "Packaged Foods"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e1ff",
+        "applicability": "Food-safe machinery"
+      }
+    ],
+    "tags": ["food-safe", "processing"],
+    "metadata": {
+      "marketSize": 250000,
+      "keyChallenges": ["Hygiene", "Equipment corrosion"],
+      "synixImpact": "Improved hygiene standards by 20%"
+    },
+    "status": "active",
+    "createdAt": "2025-01-13T00:00:00.000Z",
+    "updatedAt": "2025-02-12T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e1fe",
+    "name": "Pharmaceuticals",
+    "description": "Drug manufacturing and research.",
+    "subIndustries": ["Drug Production", "R&D Labs"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e200",
+        "applicability": "Cleanroom equipment"
+      }
+    ],
+    "tags": ["cleanroom", "pharma"],
+    "metadata": {
+      "marketSize": 500000,
+      "keyChallenges": ["Contamination", "Precision"],
+      "synixImpact": "Reduced contamination by 25%"
+    },
+    "status": "active",
+    "createdAt": "2025-01-14T00:00:00.000Z",
+    "updatedAt": "2025-02-11T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e1ff",
+    "name": "Textiles",
+    "description": "Fabric and clothing production.",
+    "subIndustries": ["Apparel", "Industrial Fabrics"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e201",
+        "applicability": "Textile machinery"
+      }
+    ],
+    "tags": ["textile", "machinery"],
+    "metadata": {
+      "marketSize": 150000,
+      "keyChallenges": ["Wear", "Production speed"],
+      "synixImpact": "Increased speed by 10%"
+    },
+    "status": "active",
+    "createdAt": "2025-01-15T00:00:00.000Z",
+    "updatedAt": "2025-02-10T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e200",
+    "name": "Pulp and Paper",
+    "description": "Paper production and processing.",
+    "subIndustries": ["Pulp Mills", "Paper Manufacturing"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e202",
+        "applicability": "Roller lubrication"
+      }
+    ],
+    "tags": ["paper", "processing"],
+    "metadata": {
+      "marketSize": 200000,
+      "keyChallenges": ["Moisture", "Equipment wear"],
+      "synixImpact": "Reduced wear by 15%"
+    },
+    "status": "pending",
+    "createdAt": "2025-01-16T00:00:00.000Z",
+    "updatedAt": "2025-01-16T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e201",
+    "name": "Railways",
+    "description": "Rail transport and infrastructure.",
+    "subIndustries": ["Freight Rail", "Passenger Rail"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e203",
+        "applicability": "Railcar maintenance"
+      }
+    ],
+    "tags": ["rail", "durability"],
+    "metadata": {
+      "marketSize": 300000,
+      "keyChallenges": ["Vibration", "Track wear"],
+      "synixImpact": "Enhanced durability by 20%"
+    },
+    "status": "active",
+    "createdAt": "2025-01-17T00:00:00.000Z",
+    "updatedAt": "2025-02-09T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e202",
+    "name": "Utilities",
+    "description": "Public utility services.",
+    "subIndustries": ["Water Supply", "Electricity Distribution"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e204",
+        "applicability": "Pump lubrication"
+      }
+    ],
+    "tags": ["utilities", "reliability"],
+    "metadata": {
+      "marketSize": 350000,
+      "keyChallenges": ["Reliability", "Aging infrastructure"],
+      "synixImpact": "Improved reliability by 18%"
+    },
+    "status": "active",
+    "createdAt": "2025-01-18T00:00:00.000Z",
+    "updatedAt": "2025-02-08T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e203",
+    "name": "Chemicals",
+    "description": "Chemical manufacturing and processing.",
+    "subIndustries": ["Specialty Chemicals", "Bulk Chemicals"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e205",
+        "applicability": "Chemical plant machinery"
+      }
+    ],
+    "tags": ["chemical", "corrosion-resistant"],
+    "metadata": {
+      "marketSize": 450000,
+      "keyChallenges": ["Corrosion", "Safety"],
+      "synixImpact": "Reduced corrosion by 20%"
+    },
+    "status": "active",
+    "createdAt": "2025-01-19T00:00:00.000Z",
+    "updatedAt": "2025-02-07T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e204",
+    "name": "Plastics",
+    "description": "Plastic production and molding.",
+    "subIndustries": ["Injection Molding", "Extrusion"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e206",
+        "applicability": "Molding equipment"
+      }
+    ],
+    "tags": ["plastics", "precision"],
+    "metadata": {
+      "marketSize": 200000,
+      "keyChallenges": ["Heat management", "Wear"],
+      "synixImpact": "Reduced wear by 15%"
+    },
+    "status": "inactive",
+    "createdAt": "2025-01-20T00:00:00.000Z",
+    "updatedAt": "2025-01-20T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e205",
+    "name": "Forestry",
+    "description": "Timber and wood product industries.",
+    "subIndustries": ["Logging", "Wood Processing"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e207",
+        "applicability": "Sawmill equipment"
+      }
+    ],
+    "tags": ["forestry", "durability"],
+    "metadata": {
+      "marketSize": 150000,
+      "keyChallenges": ["Dust", "Equipment stress"],
+      "synixImpact": "Increased lifespan by 10%"
+    },
+    "status": "active",
+    "createdAt": "2025-01-21T00:00:00.000Z",
+    "updatedAt": "2025-02-06T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e206",
+    "name": "Water Treatment",
+    "description": "Water purification and treatment.",
+    "subIndustries": ["Municipal Water", "Industrial Water"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e208",
+        "applicability": "Pump and valve maintenance"
+      }
+    ],
+    "tags": ["water", "reliability"],
+    "metadata": {
+      "marketSize": 300000,
+      "keyChallenges": ["Corrosion", "Efficiency"],
+      "synixImpact": "Improved efficiency by 15%"
+    },
+    "status": "active",
+    "createdAt": "2025-01-22T00:00:00.000Z",
+    "updatedAt": "2025-02-05T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e207",
+    "name": "Defense",
+    "description": "Military and defense equipment.",
+    "subIndustries": ["Vehicles", "Weapons Systems"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e209",
+        "applicability": "Heavy-duty components"
+      }
+    ],
+    "tags": ["defense", "durability"],
+    "metadata": {
+      "marketSize": 600000,
+      "keyChallenges": ["Extreme conditions", "Reliability"],
+      "synixImpact": "Enhanced reliability by 20%"
+    },
+    "status": "active",
+    "createdAt": "2025-01-23T00:00:00.000Z",
+    "updatedAt": "2025-02-04T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e208",
+    "name": "Packaging",
+    "description": "Packaging material production.",
+    "subIndustries": ["Food Packaging", "Industrial Packaging"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e20a",
+        "applicability": "Packaging machinery"
+      }
+    ],
+    "tags": ["packaging", "efficiency"],
+    "metadata": {
+      "marketSize": 250000,
+      "keyChallenges": ["Speed", "Wear"],
+      "synixImpact": "Increased speed by 12%"
+    },
+    "status": "pending",
+    "createdAt": "2025-01-24T00:00:00.000Z",
+    "updatedAt": "2025-01-24T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e209",
+    "name": "HVAC",
+    "description": "Heating, ventilation, and air conditioning.",
+    "subIndustries": ["Residential HVAC", "Commercial HVAC"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e20b",
+        "applicability": "Compressor lubrication"
+      }
+    ],
+    "tags": ["hvac", "efficiency"],
+    "metadata": {
+      "marketSize": 200000,
+      "keyChallenges": ["Energy use", "Maintenance"],
+      "synixImpact": "Reduced energy use by 15%"
+    },
+    "status": "active",
+    "createdAt": "2025-01-25T00:00:00.000Z",
+    "updatedAt": "2025-02-03T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e20a",
+    "name": "Renewable Energy",
+    "description": "Sustainable energy production.",
+    "subIndustries": ["Solar Power", "Wind Energy"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e20c",
+        "applicability": "Turbine maintenance"
+      }
+    ],
+    "tags": ["renewable", "sustainability"],
+    "metadata": {
+      "marketSize": 400000,
+      "keyChallenges": ["Durability", "Efficiency"],
+      "synixImpact": "Improved durability by 20%"
+    },
+    "status": "active",
+    "createdAt": "2025-01-26T00:00:00.000Z",
+    "updatedAt": "2025-02-02T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e20b",
+    "name": "Beverage",
+    "description": "Beverage production and bottling.",
+    "subIndustries": ["Soft Drinks", "Breweries"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e20d",
+        "applicability": "Bottling equipment"
+      }
+    ],
+    "tags": ["beverage", "food-safe"],
+    "metadata": {
+      "marketSize": 300000,
+      "keyChallenges": ["Hygiene", "Speed"],
+      "synixImpact": "Increased speed by 15%"
+    },
+    "status": "active",
+    "createdAt": "2025-01-27T00:00:00.000Z",
+    "updatedAt": "2025-02-01T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e20c",
+    "name": "Cement",
+    "description": "Cement production and processing.",
+    "subIndustries": ["Cement Mills", "Concrete Mixing"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e20e",
+        "applicability": "Mill lubrication"
+      }
+    ],
+    "tags": ["cement", "dust-resistant"],
+    "metadata": {
+      "marketSize": 350000,
+      "keyChallenges": ["Dust", "Wear"],
+      "synixImpact": "Reduced wear by 18%"
+    },
+    "status": "active",
+    "createdAt": "2025-01-28T00:00:00.000Z",
+    "updatedAt": "2025-01-31T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e20d",
+    "name": "Glass",
+    "description": "Glass manufacturing and processing.",
+    "subIndustries": ["Flat Glass", "Container Glass"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e20f",
+        "applicability": "Glass cutting machinery"
+      }
+    ],
+    "tags": ["glass", "precision"],
+    "metadata": {
+      "marketSize": 200000,
+      "keyChallenges": ["Heat", "Precision"],
+      "synixImpact": "Improved precision by 15%"
+    },
+    "status": "inactive",
+    "createdAt": "2025-01-29T00:00:00.000Z",
+    "updatedAt": "2025-01-29T00:00:00.000Z"
+  },
+  {
+    "_id": "65da1234e5f6a7b8c9d0e20e",
+    "name": "Recycling",
+    "description": "Material recycling and waste management.",
+    "subIndustries": ["Plastic Recycling", "Metal Recycling"],
+    "solutions": [
+      {
+        "solutionType": "Product",
+        "solutionId": "65db1234e5f6a7b8c9d0e20e",
+        "applicability": "Recycling equipment"
+      }
+    ],
+    "tags": ["recycling", "sustainability"],
+    "metadata": {
+      "marketSize": 250000,
+      "keyChallenges": ["Efficiency", "Contamination"],
+      "synixImpact": "Increased efficiency by 20%"
+    },
+    "status": "active",
+    "createdAt": "2025-01-30T00:00:00.000Z",
+    "updatedAt": "2025-01-30T00:00:00.000Z"
+  }
+]

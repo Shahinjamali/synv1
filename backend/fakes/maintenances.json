@@ -1,0 +1,986 @@
+﻿[
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f001",
+    "equipmentId": "65dd3456a7b8c9d0e1f201",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d1",
+    "issue": "Gearbox overheating",
+    "description": "Temperature exceeds safe limits during operation.",
+    "status": "in-progress",
+    "predictiveAlerts": [
+      {
+        "alertType": "threshold-exceeded",
+        "threshold": 80,
+        "valueAtTrigger": 85,
+        "triggeredAt": "2025-02-20T10:00:00.000Z",
+        "sensorId": "65de4567b8c9d0e1f301"
+      }
+    ],
+    "maintenanceTasks": [
+      {
+        "taskType": "inspection",
+        "description": "Check cooling system",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9c2",
+        "scheduledDate": "2025-02-21T09:00:00.000Z",
+        "status": "in-progress"
+      }
+    ],
+    "oilAnalysisResults": [
+      {
+        "sampleId": "SYNX-OA-2025-001",
+        "sampleDate": "2025-02-19T14:00:00.000Z",
+        "results": { "viscosity": "42 cSt", "wearMetals": "low" },
+        "analyzedBy": "65d8f1a2b3c4d5e6f7a8b9c4"
+      }
+    ],
+    "sensorData": ["65df5678c9d0e1f401"],
+    "priority": "high",
+    "resolution": {},
+    "createdAt": "2025-02-19T00:00:00.000Z",
+    "updatedAt": "2025-02-20T10:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f002",
+    "equipmentId": "65dd3456a7b8c9d0e1f202",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d2",
+    "issue": "Pump vibration anomaly",
+    "description": "Unusual vibration detected in pump system.",
+    "status": "open",
+    "predictiveAlerts": [
+      {
+        "alertType": "anomaly-detected",
+        "valueAtTrigger": 5.2,
+        "triggeredAt": "2025-02-21T08:30:00.000Z",
+        "sensorId": "65de4567b8c9d0e1f303"
+      }
+    ],
+    "maintenanceTasks": [
+      {
+        "taskType": "inspection",
+        "description": "Inspect pump bearings",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9c6",
+        "scheduledDate": "2025-02-22T10:00:00.000Z",
+        "status": "pending"
+      }
+    ],
+    "oilAnalysisResults": [],
+    "sensorData": ["65df5678c9d0e1f403"],
+    "priority": "medium",
+    "resolution": {},
+    "createdAt": "2025-02-20T00:00:00.000Z",
+    "updatedAt": "2025-02-21T08:30:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f003",
+    "equipmentId": "65dd3456a7b8c9d0e1f203",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d3",
+    "issue": "Motor lubrication failure",
+    "description": "Oil degradation causing motor issues.",
+    "status": "resolved",
+    "predictiveAlerts": [],
+    "maintenanceTasks": [
+      {
+        "taskType": "oil-change",
+        "description": "Replace degraded oil",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9c5",
+        "scheduledDate": "2025-02-18T13:00:00.000Z",
+        "completedDate": "2025-02-19T15:00:00.000Z",
+        "status": "completed"
+      }
+    ],
+    "oilAnalysisResults": [
+      {
+        "sampleId": "SYNX-OA-2025-002",
+        "sampleDate": "2025-02-18T10:00:00.000Z",
+        "results": { "viscosity": "38 cSt", "contamination": "high" },
+        "analyzedBy": "65d8f1a2b3c4d5e6f7a8b9c4"
+      }
+    ],
+    "sensorData": ["65df5678c9d0e1f404"],
+    "priority": "critical",
+    "resolution": {
+      "resolutionDate": "2025-02-19T15:00:00.000Z",
+      "resolvedBy": "65d8f1a2b3c4d5e6f7a8b9c5",
+      "notes": "Oil replaced, motor stabilized."
+    },
+    "createdAt": "2025-02-18T00:00:00.000Z",
+    "updatedAt": "2025-02-19T15:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f004",
+    "equipmentId": "65dd3456a7b8c9d0e1f204",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d4",
+    "issue": "Compressor pressure drop",
+    "description": "Unexpected pressure loss detected.",
+    "status": "open",
+    "predictiveAlerts": [
+      {
+        "alertType": "threshold-exceeded",
+        "threshold": 100,
+        "valueAtTrigger": 85,
+        "triggeredAt": "2025-02-20T13:00:00.000Z",
+        "sensorId": "65de4567b8c9d0e1f305"
+      }
+    ],
+    "maintenanceTasks": [
+      {
+        "taskType": "repair",
+        "description": "Fix pressure valve",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9c4",
+        "scheduledDate": "2025-02-21T14:00:00.000Z",
+        "status": "pending"
+      }
+    ],
+    "oilAnalysisResults": [],
+    "sensorData": ["65df5678c9d0e1f405"],
+    "priority": "medium",
+    "resolution": {},
+    "createdAt": "2025-02-20T00:00:00.000Z",
+    "updatedAt": "2025-02-20T13:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f005",
+    "equipmentId": "65dd3456a7b8c9d0e1f205",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d5",
+    "issue": "Turbine blade wear",
+    "description": "Detected wear on turbine blades.",
+    "status": "in-progress",
+    "predictiveAlerts": [],
+    "maintenanceTasks": [
+      {
+        "taskType": "replacement",
+        "description": "Replace worn blades",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9c6",
+        "scheduledDate": "2025-02-22T10:00:00.000Z",
+        "status": "in-progress"
+      }
+    ],
+    "oilAnalysisResults": [
+      {
+        "sampleId": "SYNX-OA-2025-003",
+        "sampleDate": "2025-02-19T09:00:00.000Z",
+        "results": { "viscosity": "40 cSt", "wearMetals": "high" },
+        "analyzedBy": "65d8f1a2b3c4d5e6f7a8b9c5"
+      }
+    ],
+    "sensorData": [],
+    "priority": "high",
+    "resolution": {},
+    "createdAt": "2025-02-19T00:00:00.000Z",
+    "updatedAt": "2025-02-21T00:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f006",
+    "equipmentId": "65dd3456a7b8c9d0e1f206",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d6",
+    "issue": "Conveyor belt misalignment",
+    "description": "Belt shifting off track.",
+    "status": "open",
+    "predictiveAlerts": [
+      {
+        "alertType": "anomaly-detected",
+        "valueAtTrigger": 3.5,
+        "triggeredAt": "2025-02-20T15:00:00.000Z",
+        "sensorId": "65de4567b8c9d0e1f306"
+      }
+    ],
+    "maintenanceTasks": [
+      {
+        "taskType": "repair",
+        "description": "Realign belt",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9c7",
+        "scheduledDate": "2025-02-23T11:00:00.000Z",
+        "status": "pending"
+      }
+    ],
+    "oilAnalysisResults": [],
+    "sensorData": [],
+    "priority": "medium",
+    "resolution": {},
+    "createdAt": "2025-02-20T00:00:00.000Z",
+    "updatedAt": "2025-02-20T15:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f007",
+    "equipmentId": "65dd3456a7b8c9d0e1f207",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d7",
+    "issue": "Motor overheating",
+    "description": "Excessive heat detected in motor.",
+    "status": "resolved",
+    "predictiveAlerts": [
+      {
+        "alertType": "threshold-exceeded",
+        "threshold": 90,
+        "valueAtTrigger": 95,
+        "triggeredAt": "2025-02-19T12:00:00.000Z",
+        "sensorId": "65de4567b8c9d0e1f307"
+      }
+    ],
+    "maintenanceTasks": [
+      {
+        "taskType": "repair",
+        "description": "Replace cooling fan",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9c8",
+        "scheduledDate": "2025-02-20T09:00:00.000Z",
+        "completedDate": "2025-02-20T11:00:00.000Z",
+        "status": "completed"
+      }
+    ],
+    "oilAnalysisResults": [],
+    "sensorData": [],
+    "priority": "critical",
+    "resolution": {
+      "resolutionDate": "2025-02-20T11:00:00.000Z",
+      "resolvedBy": "65d8f1a2b3c4d5e6f7a8b9c8",
+      "notes": "Cooling fan replaced, temperature normalized."
+    },
+    "createdAt": "2025-02-19T00:00:00.000Z",
+    "updatedAt": "2025-02-20T11:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f008",
+    "equipmentId": "65dd3456a7b8c9d0e1f208",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d8",
+    "issue": "Pump seal leakage",
+    "description": "Minor leakage detected at pump seal.",
+    "status": "on-hold",
+    "predictiveAlerts": [],
+    "maintenanceTasks": [
+      {
+        "taskType": "repair",
+        "description": "Replace pump seal",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9c9",
+        "scheduledDate": "2025-02-24T13:00:00.000Z",
+        "status": "pending"
+      }
+    ],
+    "oilAnalysisResults": [
+      {
+        "sampleId": "SYNX-OA-2025-004",
+        "sampleDate": "2025-02-20T10:00:00.000Z",
+        "results": { "viscosity": "45 cSt", "contamination": "low" },
+        "analyzedBy": "65d8f1a2b3c4d5e6f7a8b9ca"
+      }
+    ],
+    "sensorData": [],
+    "priority": "low",
+    "resolution": {},
+    "createdAt": "2025-02-20T00:00:00.000Z",
+    "updatedAt": "2025-02-20T10:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f009",
+    "equipmentId": "65dd3456a7b8c9d0e1f209",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d9",
+    "issue": "Compressor noise increase",
+    "description": "Unusual noise levels detected.",
+    "status": "open",
+    "predictiveAlerts": [
+      {
+        "alertType": "anomaly-detected",
+        "valueAtTrigger": 70,
+        "triggeredAt": "2025-02-21T09:00:00.000Z",
+        "sensorId": "65de4567b8c9d0e1f309"
+      }
+    ],
+    "maintenanceTasks": [
+      {
+        "taskType": "inspection",
+        "description": "Check compressor bearings",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9cb",
+        "scheduledDate": "2025-02-22T14:00:00.000Z",
+        "status": "pending"
+      }
+    ],
+    "oilAnalysisResults": [],
+    "sensorData": [],
+    "priority": "medium",
+    "resolution": {},
+    "createdAt": "2025-02-21T00:00:00.000Z",
+    "updatedAt": "2025-02-21T09:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f00a",
+    "equipmentId": "65dd3456a7b8c9d0e1f20a",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9da",
+    "issue": "Turbine vibration increase",
+    "description": "Elevated vibration levels detected.",
+    "status": "in-progress",
+    "predictiveAlerts": [
+      {
+        "alertType": "threshold-exceeded",
+        "threshold": 4,
+        "valueAtTrigger": 4.5,
+        "triggeredAt": "2025-02-21T10:00:00.000Z",
+        "sensorId": "65de4567b8c9d0e1f30a"
+      }
+    ],
+    "maintenanceTasks": [
+      {
+        "taskType": "inspection",
+        "description": "Inspect turbine bearings",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9cc",
+        "scheduledDate": "2025-02-22T15:00:00.000Z",
+        "status": "in-progress"
+      }
+    ],
+    "oilAnalysisResults": [],
+    "sensorData": [],
+    "priority": "high",
+    "resolution": {},
+    "createdAt": "2025-02-21T00:00:00.000Z",
+    "updatedAt": "2025-02-21T10:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f00b",
+    "equipmentId": "65dd3456a7b8c9d0e1f20b",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9db",
+    "issue": "Gearbox oil leak",
+    "description": "Minor oil leakage detected.",
+    "status": "open",
+    "predictiveAlerts": [],
+    "maintenanceTasks": [
+      {
+        "taskType": "repair",
+        "description": "Seal oil leak",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9cd",
+        "scheduledDate": "2025-02-23T09:00:00.000Z",
+        "status": "pending"
+      }
+    ],
+    "oilAnalysisResults": [
+      {
+        "sampleId": "SYNX-OA-2025-005",
+        "sampleDate": "2025-02-20T11:00:00.000Z",
+        "results": { "viscosity": "43 cSt", "contamination": "low" },
+        "analyzedBy": "65d8f1a2b3c4d5e6f7a8b9ce"
+      }
+    ],
+    "sensorData": [],
+    "priority": "low",
+    "resolution": {},
+    "createdAt": "2025-02-20T00:00:00.000Z",
+    "updatedAt": "2025-02-20T11:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f00c",
+    "equipmentId": "65dd3456a7b8c9d0e1f20c",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9dc",
+    "issue": "Pump motor failure",
+    "description": "Motor stopped functioning.",
+    "status": "resolved",
+    "predictiveAlerts": [
+      {
+        "alertType": "failure-predicted",
+        "valueAtTrigger": 0,
+        "triggeredAt": "2025-02-19T14:00:00.000Z",
+        "sensorId": "65de4567b8c9d0e1f30c"
+      }
+    ],
+    "maintenanceTasks": [
+      {
+        "taskType": "replacement",
+        "description": "Replace motor",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9cf",
+        "scheduledDate": "2025-02-20T10:00:00.000Z",
+        "completedDate": "2025-02-20T12:00:00.000Z",
+        "status": "completed"
+      }
+    ],
+    "oilAnalysisResults": [],
+    "sensorData": [],
+    "priority": "critical",
+    "resolution": {
+      "resolutionDate": "2025-02-20T12:00:00.000Z",
+      "resolvedBy": "65d8f1a2b3c4d5e6f7a8b9cf",
+      "notes": "Motor replaced, operational."
+    },
+    "createdAt": "2025-02-19T00:00:00.000Z",
+    "updatedAt": "2025-02-20T12:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f00d",
+    "equipmentId": "65dd3456a7b8c9d0e1f20d",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9dd",
+    "issue": "Compressor overheating",
+    "description": "Temperature spike in compressor.",
+    "status": "in-progress",
+    "predictiveAlerts": [
+      {
+        "alertType": "threshold-exceeded",
+        "threshold": 85,
+        "valueAtTrigger": 90,
+        "triggeredAt": "2025-02-21T11:00:00.000Z",
+        "sensorId": "65de4567b8c9d0e1f30d"
+      }
+    ],
+    "maintenanceTasks": [
+      {
+        "taskType": "inspection",
+        "description": "Check cooling system",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9d0",
+        "scheduledDate": "2025-02-22T13:00:00.000Z",
+        "status": "in-progress"
+      }
+    ],
+    "oilAnalysisResults": [],
+    "sensorData": [],
+    "priority": "high",
+    "resolution": {},
+    "createdAt": "2025-02-21T00:00:00.000Z",
+    "updatedAt": "2025-02-21T11:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f00e",
+    "equipmentId": "65dd3456a7b8c9d0e1f20e",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9de",
+    "issue": "Turbine oil contamination",
+    "description": "Oil sample shows high contamination.",
+    "status": "open",
+    "predictiveAlerts": [],
+    "maintenanceTasks": [
+      {
+        "taskType": "oil-change",
+        "description": "Flush and replace oil",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9d1",
+        "scheduledDate": "2025-02-23T10:00:00.000Z",
+        "status": "pending"
+      }
+    ],
+    "oilAnalysisResults": [
+      {
+        "sampleId": "SYNX-OA-2025-006",
+        "sampleDate": "2025-02-20T12:00:00.000Z",
+        "results": { "viscosity": "39 cSt", "contamination": "high" },
+        "analyzedBy": "65d8f1a2b3c4d5e6f7a8b9d2"
+      }
+    ],
+    "sensorData": [],
+    "priority": "medium",
+    "resolution": {},
+    "createdAt": "2025-02-20T00:00:00.000Z",
+    "updatedAt": "2025-02-20T12:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f00f",
+    "equipmentId": "65dd3456a7b8c9d0e1f20f",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9df",
+    "issue": "Conveyor motor overload",
+    "description": "Motor drawing excessive current.",
+    "status": " Resolved",
+    "predictiveAlerts": [
+      {
+        "alertType": "threshold-exceeded",
+        "threshold": 50,
+        "valueAtTrigger": 55,
+        "triggeredAt": "2025-02-21T13:00:00.000Z",
+        "sensorId": "65de4567b8c9d0e1f30f"
+      }
+    ],
+    "maintenanceTasks": [
+      {
+        "taskType": "repair",
+        "description": "Adjust motor load",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9d3",
+        "scheduledDate": "2025-02-22T11:00:00.000Z",
+        "completedDate": "2025-02-22T13:00:00.000Z",
+        "status": "completed"
+      }
+    ],
+    "oilAnalysisResults": [],
+    "sensorData": [],
+    "priority": "high",
+    "resolution": {
+      "resolutionDate": "2025-02-22T13:00:00.000Z",
+      "resolvedBy": "65d8f1a2b3c4d5e6f7a8b9d3",
+      "notes": "Load adjusted, motor functioning normally."
+    },
+    "createdAt": "2025-02-21T00:00:00.000Z",
+    "updatedAt": "2025-02-22T13:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f010",
+    "equipmentId": "65dd3456a7b8c9d0e1f210",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d1",
+    "issue": "Gearbox bearing wear",
+    "description": "Increased wear detected in bearings.",
+    "status": "open",
+    "predictiveAlerts": [
+      {
+        "alertType": "anomaly-detected",
+        "valueAtTrigger": 6.0,
+        "triggeredAt": "2025-02-21T14:00:00.000Z",
+        "sensorId": "65de4567b8c9d0e1f310"
+      }
+    ],
+    "maintenanceTasks": [
+      {
+        "taskType": "replacement",
+        "description": "Replace bearings",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9d4",
+        "scheduledDate": "2025-02-23T12:00:00.000Z",
+        "status": "pending"
+      }
+    ],
+    "oilAnalysisResults": [],
+    "sensorData": [],
+    "priority": "medium",
+    "resolution": {},
+    "createdAt": "2025-02-21T00:00:00.000Z",
+    "updatedAt": "2025-02-21T14:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f011",
+    "equipmentId": "65dd3456a7b8c9d0e1f211",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d2",
+    "issue": "Pump cavitation",
+    "description": "Signs of cavitation detected.",
+    "status": "in-progress",
+    "predictiveAlerts": [],
+    "maintenanceTasks": [
+      {
+        "taskType": "inspection",
+        "description": "Inspect pump impeller",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9d5",
+        "scheduledDate": "2025-02-22T09:00:00.000Z",
+        "status": "in-progress"
+      }
+    ],
+    "oilAnalysisResults": [
+      {
+        "sampleId": "SYNX-OA-2025-007",
+        "sampleDate": "2025-02-20T13:00:00.000Z",
+        "results": { "viscosity": "41 cSt", "contamination": "moderate" },
+        "analyzedBy": "65d8f1a2b3c4d5e6f7a8b9d6"
+      }
+    ],
+    "sensorData": [],
+    "priority": "high",
+    "resolution": {},
+    "createdAt": "2025-02-20T00:00:00.000Z",
+    "updatedAt": "2025-02-21T00:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f012",
+    "equipmentId": "65dd3456a7b8c9d0e1f212",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d3",
+    "issue": "Motor electrical fault",
+    "description": "Intermittent power issues.",
+    "status": "open",
+    "predictiveAlerts": [
+      {
+        "alertType": "failure-predicted",
+        "valueAtTrigger": 0,
+        "triggeredAt": "2025-02-21T15:00:00.000Z",
+        "sensorId": "65de4567b8c9d0e1f312"
+      }
+    ],
+    "maintenanceTasks": [
+      {
+        "taskType": "repair",
+        "description": "Check wiring",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9d7",
+        "scheduledDate": "2025-02-23T14:00:00.000Z",
+        "status": "pending"
+      }
+    ],
+    "oilAnalysisResults": [],
+    "sensorData": [],
+    "priority": "critical",
+    "resolution": {},
+    "createdAt": "2025-02-21T00:00:00.000Z",
+    "updatedAt": "2025-02-21T15:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f013",
+    "equipmentId": "65dd3456a7b8c9d0e1f213",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d4",
+    "issue": "Compressor air leak",
+    "description": "Air leakage detected at joints.",
+    "status": "resolved",
+    "predictiveAlerts": [],
+    "maintenanceTasks": [
+      {
+        "taskType": "repair",
+        "description": "Seal air leaks",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9d8",
+        "scheduledDate": "2025-02-20T14:00:00.000Z",
+        "completedDate": "2025-02-20T16:00:00.000Z",
+        "status": "completed"
+      }
+    ],
+    "oilAnalysisResults": [
+      {
+        "sampleId": "SYNX-OA-2025-008",
+        "sampleDate": "2025-02-19T15:00:00.000Z",
+        "results": { "viscosity": "44 cSt", "contamination": "low" },
+        "analyzedBy": "65d8f1a2b3c4d5e6f7a8b9d9"
+      }
+    ],
+    "sensorData": [],
+    "priority": "medium",
+    "resolution": {
+      "resolutionDate": "2025-02-20T16:00:00.000Z",
+      "resolvedBy": "65d8f1a2b3c4d5e6f7a8b9d8",
+      "notes": "Leaks sealed, pressure restored."
+    },
+    "createdAt": "2025-02-19T00:00:00.000Z",
+    "updatedAt": "2025-02-20T16:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f014",
+    "equipmentId": "65dd3456a7b8c9d0e1f214",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d5",
+    "issue": "Turbine efficiency drop",
+    "description": "Reduced efficiency detected.",
+    "status": "open",
+    "predictiveAlerts": [
+      {
+        "alertType": "threshold-exceeded",
+        "threshold": 90,
+        "valueAtTrigger": 85,
+        "triggeredAt": "2025-02-21T16:00:00.000Z",
+        "sensorId": "65de4567b8c9d0e1f314"
+      }
+    ],
+    "maintenanceTasks": [
+      {
+        "taskType": "inspection",
+        "description": "Check turbine blades",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9da",
+        "scheduledDate": "2025-02-23T15:00:00.000Z",
+        "status": "pending"
+      }
+    ],
+    "oilAnalysisResults": [],
+    "sensorData": [],
+    "priority": "medium",
+    "resolution": {},
+    "createdAt": "2025-02-21T00:00:00.000Z",
+    "updatedAt": "2025-02-21T16:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f015",
+    "equipmentId": "65dd3456a7b8c9d0e1f215",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d6",
+    "issue": "Gearbox noise anomaly",
+    "description": "Unusual noise levels detected.",
+    "status": "in-progress",
+    "predictiveAlerts": [
+      {
+        "alertType": "anomaly-detected",
+        "valueAtTrigger": 65,
+        "triggeredAt": "2025-02-21T17:00:00.000Z",
+        "sensorId": "65de4567b8c9d0e1f315"
+      }
+    ],
+    "maintenanceTasks": [
+      {
+        "taskType": "inspection",
+        "description": "Check gearbox alignment",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9db",
+        "scheduledDate": "2025-02-22T16:00:00.000Z",
+        "status": "in-progress"
+      }
+    ],
+    "oilAnalysisResults": [],
+    "sensorData": [],
+    "priority": "high",
+    "resolution": {},
+    "createdAt": "2025-02-21T00:00:00.000Z",
+    "updatedAt": "2025-02-21T17:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f016",
+    "equipmentId": "65dd3456a7b8c9d0e1f216",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d7",
+    "issue": "Pump pressure fluctuation",
+    "description": "Inconsistent pressure readings.",
+    "status": "open",
+    "predictiveAlerts": [
+      {
+        "alertType": "threshold-exceeded",
+        "threshold": 120,
+        "valueAtTrigger": 115,
+        "triggeredAt": "2025-02-21T18:00:00.000Z",
+        "sensorId": "65de4567b8c9d0e1f316"
+      }
+    ],
+    "maintenanceTasks": [
+      {
+        "taskType": "inspection",
+        "description": "Check pump valves",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9dc",
+        "scheduledDate": "2025-02-23T16:00:00.000Z",
+        "status": "pending"
+      }
+    ],
+    "oilAnalysisResults": [],
+    "sensorData": [],
+    "priority": "medium",
+    "resolution": {},
+    "createdAt": "2025-02-21T00:00:00.000Z",
+    "updatedAt": "2025-02-21T18:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f017",
+    "equipmentId": "65dd3456a7b8c9d0e1f217",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d8",
+    "issue": "Compressor oil degradation",
+    "description": "Oil sample indicates degradation.",
+    "status": " Resolved",
+    "predictiveAlerts": [],
+    "maintenanceTasks": [
+      {
+        "taskType": "oil-change",
+        "description": "Replace degraded oil",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9dd",
+        "scheduledDate": "2025-02-20T15:00:00.000Z",
+        "completedDate": "2025-02-20T17:00:00.000Z",
+        "status": "completed"
+      }
+    ],
+    "oilAnalysisResults": [
+      {
+        "sampleId": "SYNX-OA-2025-009",
+        "sampleDate": "2025-02-19T16:00:00.000Z",
+        "results": { "viscosity": "37 cSt", "contamination": "high" },
+        "analyzedBy": "65d8f1a2b3c4d5e6f7a8b9de"
+      }
+    ],
+    "sensorData": [],
+    "priority": "high",
+    "resolution": {
+      "resolutionDate": "2025-02-20T17:00:00.000Z",
+      "resolvedBy": "65d8f1a2b3c4d5e6f7a8b9dd",
+      "notes": "Oil replaced, performance restored."
+    },
+    "createdAt": "2025-02-19T00:00:00.000Z",
+    "updatedAt": "2025-02-20T17:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f018",
+    "equipmentId": "65dd3456a7b8c9d0e1f218",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9d9",
+    "issue": "Turbine power drop",
+    "description": "Reduced power output detected.",
+    "status": "open",
+    "predictiveAlerts": [
+      {
+        "alertType": "threshold-exceeded",
+        "threshold": 95,
+        "valueAtTrigger": 90,
+        "triggeredAt": "2025-02-21T19:00:00.000Z",
+        "sensorId": "65de4567b8c9d0e1f318"
+      }
+    ],
+    "maintenanceTasks": [
+      {
+        "taskType": "inspection",
+        "description": "Check turbine efficiency",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9c1",
+        "scheduledDate": "2025-02-23T17:00:00.000Z",
+        "status": "pending"
+      }
+    ],
+    "oilAnalysisResults": [],
+    "sensorData": [],
+    "priority": "medium",
+    "resolution": {},
+    "createdAt": "2025-02-21T00:00:00.000Z",
+    "updatedAt": "2025-02-21T19:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f019",
+    "equipmentId": "65dd3456a7b8c9d0e1f219",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9da",
+    "issue": "Gearbox vibration spike",
+    "description": "Sudden increase in vibration levels.",
+    "status": "in-progress",
+    "predictiveAlerts": [
+      {
+        "alertType": "threshold-exceeded",
+        "threshold": 5,
+        "valueAtTrigger": 5.5,
+        "triggeredAt": "2025-02-21T20:00:00.000Z",
+        "sensorId": "65de4567b8c9d0e1f319"
+      }
+    ],
+    "maintenanceTasks": [
+      {
+        "taskType": "inspection",
+        "description": "Check gearbox bearings",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9c2",
+        "scheduledDate": "2025-02-22T17:00:00.000Z",
+        "status": "in-progress"
+      }
+    ],
+    "oilAnalysisResults": [],
+    "sensorData": [],
+    "priority": "high",
+    "resolution": {},
+    "createdAt": "2025-02-21T00:00:00.000Z",
+    "updatedAt": "2025-02-21T20:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f01a",
+    "equipmentId": "65dd3456a7b8c9d0e1f21a",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9db",
+    "issue": "Pump flow reduction",
+    "description": "Reduced flow rate detected.",
+    "status": "open",
+    "predictiveAlerts": [
+      {
+        "alertType": "threshold-exceeded",
+        "threshold": 100,
+        "valueAtTrigger": 95,
+        "triggeredAt": "2025-02-21T21:00:00.000Z",
+        "sensorId": "65de4567b8c9d0e1f31a"
+      }
+    ],
+    "maintenanceTasks": [
+      {
+        "taskType": "inspection",
+        "description": "Check pump impeller",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9c3",
+        "scheduledDate": "2025-02-23T18:00:00.000Z",
+        "status": "pending"
+      }
+    ],
+    "oilAnalysisResults": [],
+    "sensorData": [],
+    "priority": "medium",
+    "resolution": {},
+    "createdAt": "2025-02-21T00:00:00.000Z",
+    "updatedAt": "2025-02-21T21:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f01b",
+    "equipmentId": "65dd3456a7b8c9d0e1f21b",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9dc",
+    "issue": "Compressor bearing wear",
+    "description": "Wear detected in compressor bearings.",
+    "status": " Resolved",
+    "predictiveAlerts": [],
+    "maintenanceTasks": [
+      {
+        "taskType": "replacement",
+        "description": "Replace bearings",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9c4",
+        "scheduledDate": "2025-02-20T16:00:00.000Z",
+        "completedDate": "2025-02-20T18:00:00.000Z",
+        "status": "completed"
+      }
+    ],
+    "oilAnalysisResults": [
+      {
+        "sampleId": "SYNX-OA-2025-010",
+        "sampleDate": "2025-02-19T17:00:00.000Z",
+        "results": { "viscosity": "42 cSt", "wearMetals": "high" },
+        "analyzedBy": "65d8f1a2b3c4d5e6f7a8b9c5"
+      }
+    ],
+    "sensorData": [],
+    "priority": "high",
+    "resolution": {
+      "resolutionDate": "2025-02-20T18:00:00.000Z",
+      "resolvedBy": "65d8f1a2b3c4d5e6f7a8b9c4",
+      "notes": "Bearings replaced, normal operation resumed."
+    },
+    "createdAt": "2025-02-19T00:00:00.000Z",
+    "updatedAt": "2025-02-20T18:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f01c",
+    "equipmentId": "65dd3456a7b8c9d0e1f21c",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9dd",
+    "issue": "Turbine oil leak",
+    "description": "Minor oil leakage detected.",
+    "status": "open",
+    "predictiveAlerts": [],
+    "maintenanceTasks": [
+      {
+        "taskType": "repair",
+        "description": "Seal oil leak",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9c6",
+        "scheduledDate": "2025-02-23T19:00:00.000Z",
+        "status": "pending"
+      }
+    ],
+    "oilAnalysisResults": [
+      {
+        "sampleId": "SYNX-OA-2025-011",
+        "sampleDate": "2025-02-20T14:00:00.000Z",
+        "results": { "viscosity": "40 cSt", "contamination": "low" },
+        "analyzedBy": "65d8f1a2b3c4d5e6f7a8b9c7"
+      }
+    ],
+    "sensorData": [],
+    "priority": "low",
+    "resolution": {},
+    "createdAt": "2025-02-20T00:00:00.000Z",
+    "updatedAt": "2025-02-20T14:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f01d",
+    "equipmentId": "65dd3456a7b8c9d0e1f21d",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9de",
+    "issue": "Gearbox alignment issue",
+    "description": "Misalignment detected in gearbox.",
+    "status": "in-progress",
+    "predictiveAlerts": [
+      {
+        "alertType": "anomaly-detected",
+        "valueAtTrigger": 4.8,
+        "triggeredAt": "2025-02-21T22:00:00.000Z",
+        "sensorId": "65de4567b8c9d0e1f31d"
+      }
+    ],
+    "maintenanceTasks": [
+      {
+        "taskType": "repair",
+        "description": "Realign gearbox",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9c8",
+        "scheduledDate": "2025-02-22T18:00:00.000Z",
+        "status": "in-progress"
+      }
+    ],
+    "oilAnalysisResults": [],
+    "sensorData": [],
+    "priority": "high",
+    "resolution": {},
+    "createdAt": "2025-02-21T00:00:00.000Z",
+    "updatedAt": "2025-02-21T22:00:00.000Z"
+  },
+  {
+    "_id": "65dc2345f6a7b8c9d0e1f01e",
+    "equipmentId": "65dd3456a7b8c9d0e1f21e",
+    "companyId": "65d9a1b2c3d4e5f6a7b8c9df",
+    "issue": "Conveyor pressure drop",
+    "description": "Unexpected pressure loss detected.",
+    "status": "on-hold",
+    "predictiveAlerts": [
+      {
+        "alertType": "threshold-exceeded",
+        "threshold": 100,
+        "valueAtTrigger": 85,
+        "triggeredAt": "2025-02-22T11:00:00.000Z",
+        "sensorId": "65de4567b8c9d0e1f31e"
+      }
+    ],
+    "maintenanceTasks": [
+      {
+        "taskType": "repair",
+        "description": "Fix pressure valve",
+        "assignedTo": "65d8f1a2b3c4d5e6f7a8b9de",
+        "scheduledDate": "2025-02-23T14:00:00.000Z",
+        "status": "pending"
+      }
+    ],
+    "oilAnalysisResults": [],
+    "sensorData": ["65df5678c9d0e1f41e"],
+    "priority": "medium",
+    "resolution": {},
+    "createdAt": "2025-02-21T00:00:00.000Z",
+    "updatedAt": "2025-02-22T11:00:00.000Z"
+  }
+]
