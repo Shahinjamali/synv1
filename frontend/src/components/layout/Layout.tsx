@@ -2,11 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import DataBg from '@/components/elements/DataBg';
 import Header from './Header';
-import Sidebar from './Sidebar';
+
 import Breadcrumb from './Breadcrumb';
 import Footer from './Footer';
 import BackToTop from '@/components/elements/BackToTop';
-import 'animate.css';
+// import 'animate.css';
 
 interface LayoutProps {
   breadcrumbTitle?: string;
@@ -79,7 +79,6 @@ const Layout: React.FC<LayoutProps> = ({
           isSidebar={isSidebar}
           handleSidebar={handleSidebar}
         />
-        <Sidebar isSidebar={isSidebar} handleSidebar={handleSidebar} />
 
         {breadcrumbTitle && <Breadcrumb breadcrumbTitle={breadcrumbTitle} />}
         {children}

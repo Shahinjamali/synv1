@@ -1,8 +1,8 @@
 // app/page.tsx
 import { Suspense } from 'react';
 import Layout from '@/components/layout/Layout';
-// import Banner from '@/components/sections/home/Banner';
-// import About from '@/components/sections/home/About';
+import Banner from '@/components/sections/home/Banner';
+import About from '@/components/sections/home/About';
 import GlobalLoader from '@/components/common/GlobalLoader';
 
 import {
@@ -11,7 +11,7 @@ import {
   getTestimonials,
   getThreeBlogs,
 } from '@/utils/api';
-// import ClientHome from '@/components/sections/home/ClientHome';
+import ClientHome from '@/components/sections/home/ClientHome';
 import { Product } from '@/types/products';
 import { Service } from '@/types/services';
 import { TestimonialData, Blogs } from '@/types/content';
@@ -40,8 +40,8 @@ export default async function Home() {
 
     return (
       <Layout>
-        {/* <Banner /> */}
-        {/* <About /> */}
+        <Banner />
+        <About />
         <Suspense
           fallback={
             <div className="flex justify-center items-center min-h-[200px]">
@@ -49,12 +49,12 @@ export default async function Home() {
             </div>
           }
         >
-          {/* <ClientHome
+          <ClientHome
             products={products}
             services={services}
             testimonials={testimonials}
             blogs={blogs}
-          /> */}
+          />
         </Suspense>
       </Layout>
     );
