@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import ModalVideo from 'react-modal-video';
 import React from 'react';
+import Image from 'next/image';
 
 interface VideoPopupProps {
   style?: number;
@@ -58,7 +59,12 @@ const VideoPopup: React.FC<VideoPopupProps> = ({ style, text }) => {
       {style === 4 && (
         <div className="video-btn">
           <a onClick={() => setOpen(true)} className="lightbox-image">
-            <img src="/assets/images-4/icons/video-btn-1.png" alt="" />
+            <Image
+              src="/assets/images-4/icons/video-btn-1.png"
+              alt=""
+              width={100}
+              height={100}
+            />
           </a>
         </div>
       )}
@@ -73,7 +79,6 @@ const VideoPopup: React.FC<VideoPopupProps> = ({ style, text }) => {
 
       <ModalVideo
         channel="youtube"
-        autoplay
         isOpen={isOpen}
         videoId="vfhzo499OeA"
         onClose={() => setOpen(false)}
