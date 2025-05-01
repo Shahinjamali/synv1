@@ -36,7 +36,7 @@ export default function MediaAssetsPage() {
             <div key={asset._id} className="border p-2 rounded bg-white shadow">
               {asset.type.startsWith('image') && (
                 <Image
-                  src={asset.url}
+                  src=""
                   alt={asset.altText || ''}
                   className="w-full h-32 object-cover rounded"
                 />
