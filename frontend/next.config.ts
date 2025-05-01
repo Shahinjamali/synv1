@@ -1,3 +1,4 @@
+import path from 'path';
 import type { NextConfig } from 'next';
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -17,10 +18,14 @@ const nextConfig: NextConfig = {
       {
         source: '/api/:path*',
         destination: isProd
-          ? 'https://synix.ca/api/:path*' // 🟢 Use public domain in prod
-          : 'http://localhost:5000/api/:path*', // ✅ Local in dev
+          ? 'https://synix.ca/api/:path*'
+          : 'http://localhost:5000/api/:path*',
       },
     ];
+  },
+  webpack(config) {
+    config.resolve.alias['@'] = path.resolve(__dirname, 'src');
+    return config;
   },
 };
 
