@@ -20,7 +20,6 @@ export default function VideoModal() {
       </div>
       <ModalVideo
         channel="youtube"
-        autoplay
         isOpen={isOpen}
         videoId="Get7rqXYrbQ" // Replace with a relevant video ID
         onClose={() => setOpen(false)}
