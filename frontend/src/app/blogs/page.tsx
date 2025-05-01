@@ -4,11 +4,7 @@ import Layout from '@/components/layout/Layout';
 import Link from 'next/link';
 import Image from 'next/image'; // Import the Next.js Image component
 
-interface BlogProps {
-  // Add any props your component expects here, if any.
-}
-
-const Blogs: React.FC<BlogProps> = () => {
+const Blogs: React.FC = () => {
   return (
     <>
       <Layout breadcrumbTitle="Blog">
