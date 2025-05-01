@@ -1,11 +1,13 @@
 import type { NextConfig } from 'next';
 
+const isProd = process.env.NODE_ENV === 'production';
+
 const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
         source: '/dashboard',
-        destination: '/dashboard/user', // default fallback
+        destination: '/dashboard/user',
         permanent: false,
       },
     ];
@@ -14,7 +16,9 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:5000/api/:path*', // proxy API calls to backend
+        destination: isProd
+          ? 'https://synix.ca/api/:path*' // 🟢 Use public domain in prod
+          : 'http://localhost:5000/api/:path*', // ✅ Local in dev
       },
     ];
   },
