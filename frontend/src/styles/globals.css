@@ -6,17 +6,8 @@
 @import 'swiper/css/pagination';
 @import 'swiper/css/free-mode';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --font-primary: var(--elitecons-font), sans-serif;
-  --color-blue-900: #12203c;
-  --color-orange-500: #faa31a;
-  --icon-default-color: #12203c;
-  --icon-hover-color: #faa31a;
-}
+/* src/styles/global.css */
+@import 'tailwindcss';
 
 /* :root {
   --background: #ffffff;
