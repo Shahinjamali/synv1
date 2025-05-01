@@ -1,60 +1,41 @@
+'use client';
+
 import Link from 'next/link';
 import React from 'react';
+import backgroundMap from '@/data/images/backgrounds.json';
 
 interface BreadcrumbProps {
   breadcrumbTitle?: string;
 }
 
 const Breadcrumb: React.FC<BreadcrumbProps> = ({ breadcrumbTitle }) => {
+  const bgUrl =
+    backgroundMap[breadcrumbTitle as keyof typeof backgroundMap] ??
+    '/assets/images/backgrounds/default.webp';
+
   return (
-    <>
-      {/*Page Header Start*/}
-      <section className="page-header">
-        {breadcrumbTitle === 'About Us' && (
-          <div
-            className="page-header__bg"
-            style={{
-              backgroundImage: 'url(assets/images/backgrounds/About-us.webp)',
-            }}
-          ></div>
-        )}
-        {breadcrumbTitle === 'Services' && (
-          <div
-            className="page-header__bg"
-            style={{
-              backgroundImage:
-                'url(assets/images/backgrounds/services-banner.webp)',
-            }}
-          ></div>
-        )}
-        {breadcrumbTitle === 'Products' && (
-          <div
-            className="page-header__bg"
-            style={{
-              backgroundImage:
-                'url(assets/images/backgrounds/products-banner.webp)',
-            }}
-          ></div>
-        )}
-        <div className="container">
-          <div className="page-header__inner">
-            <h2>{breadcrumbTitle}</h2>
-            <div className="thm-breadcrumb__box">
-              <ul className="thm-breadcrumb list-unstyled">
-                <li>
-                  <Link href="/">Home</Link>
-                </li>
-                <li>
-                  <span className="icon-angle-left"></span>
-                </li>
-                <li>{breadcrumbTitle}</li>
-              </ul>
-            </div>
-          </div>
+    <section className="page-header">
+      <div
+        className="page-header__bg"
+        style={{ backgroundImage: `url(${bgUrl})` }}
+      />
+      <div className="container">
+        <div className="page-header__inner">
+          <h2>{breadcrumbTitle}</h2>
+          <nav aria-label="breadcrumb">
+            <ul className="thm-breadcrumb list-unstyled">
+              <li>
+                <Link href="/">Home</Link>
+              </li>
+              <li>
+                <span className="icon-angle-left" aria-hidden="true" />
+              </li>
+              <li aria-current="page">{breadcrumbTitle}</li>
+            </ul>
+          </nav>
         </div>
-      </section>
-      {/*Page Header End*/}
-    </>
+      </div>
+    </section>
   );
 };
 

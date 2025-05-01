@@ -3158,6 +3158,11 @@ ul {
 .services-four__text {
   margin-top: 6px;
   margin-bottom: 33px;
+  min-height: 4.5em; /* depends on line-height and font-size */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* truncate after 3 lines */
+  -webkit-box-orient: vertical;
 }
 
 .services-four__btn-box {
@@ -3404,6 +3409,11 @@ ul {
 .services-six__text {
   margin-top: 1px;
   margin-bottom: 33px;
+  min-height: 4em; /* depends on line-height and font-size */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* truncate after 3 lines */
+  -webkit-box-orient: vertical;
 }
 
 .services-six__read-more {
@@ -4435,6 +4445,11 @@ ul {
 .services-nine__text {
   margin-top: 16px;
   margin-bottom: 52px;
+  min-height: 4.5em; /* depends on line-height and font-size */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* truncate after 3 lines */
+  -webkit-box-orient: vertical;
 }
 
 .services-nine__read-more {
@@ -4809,7 +4824,7 @@ ul {
 .cta-three__left {
   position: relative;
   display: block;
-  margin-right: 257px;
+  /* margin-right: 257px; */
   margin-left: -37px;
 }
 

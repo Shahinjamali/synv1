@@ -1,19 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import Preloading from '@/components/common/Preloading';
 import Loading from '@/components/common/Loading';
 
-type LoaderStage =
-  | 'hydration'
-  | 'auth'
-  | 'data'
-  | 'about'
-  | 'team'
-  | 'faq'
-  | 'testimonials';
-
-const stageTextMap: Record<LoaderStage, string> = {
+const stageTextMap = {
   hydration: 'Synix Solutions...',
   auth: 'Authenticating...',
   data: 'Loading Synix Solutions...',
@@ -21,9 +12,11 @@ const stageTextMap: Record<LoaderStage, string> = {
   team: 'Loading Team Section...',
   faq: 'Loading FAQs...',
   testimonials: 'Loading Testimonials...',
-};
+} as const;
 
-const GlobalLoader = ({ stage }: { stage: LoaderStage }) => {
+type LoaderStage = keyof typeof stageTextMap;
+
+const GlobalLoader: React.FC<{ stage: LoaderStage }> = memo(({ stage }) => {
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
@@ -31,17 +24,21 @@ const GlobalLoader = ({ stage }: { stage: LoaderStage }) => {
     return () => clearTimeout(timer);
   }, []);
 
-  const loadingText = stageTextMap[stage] || 'Loading...';
+  const loadingText = stageTextMap[stage] ?? 'Loading...';
 
   if (!hydrated || stage === 'hydration') {
     return <Preloading text={loadingText} color="#f97316" />;
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
+    <div
+      className="flex justify-center items-center min-h-screen"
+      data-testid="global-loader"
+    >
       <Loading text={loadingText} size="large" color="#1e3a8a" />
     </div>
   );
-};
+});
 
+GlobalLoader.displayName = 'GlobalLoader';
 export default GlobalLoader;

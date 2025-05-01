@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Layout from '@/components/layout/Layout';
 import Image from 'next/image';
 import contactData from '@/data/contact/contact.json';
-import { sendContactMessage, subscribeToNewsletter } from '@/utils/api';
+import { sendContactMessage } from '@/utils/api';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -24,8 +24,6 @@ const ContactUs: React.FC = () => {
     message: '',
   });
 
-  const [newsletterEmail, setNewsletterEmail] = useState('');
-
   const handleContactChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -44,28 +42,8 @@ const ContactUs: React.FC = () => {
         toast.error('Failed to send message.');
       }
     } catch (err) {
-      console.error(err);
+      console.error('Contact form submission error:', err);
       toast.error('Something went wrong. Please try again.');
-    }
-  };
-
-  const handleNewsletterSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newsletterEmail) {
-      toast.warn('Please enter your email');
-      return;
-    }
-    try {
-      const res = await subscribeToNewsletter(newsletterEmail);
-      if (res.success === true) {
-        toast.success('Subscribed successfully!');
-        setNewsletterEmail('');
-      } else {
-        toast.error(res.message || 'Subscription failed.');
-      }
-    } catch (err) {
-      console.error(err);
-      toast.error('An error occurred. Please try again.');
     }
   };
 
@@ -79,8 +57,8 @@ const ContactUs: React.FC = () => {
                 <div className="contact-page__left">
                   <div className="contact-page__img">
                     <Image
-                      src="/assets/images/resources/contact-page-img-1.jpg"
-                      alt=""
+                      src="/assets/images/resources/cta-1.webp"
+                      alt="Contact Synix"
                       width={500}
                       height={400}
                     />
@@ -110,6 +88,7 @@ const ContactUs: React.FC = () => {
                     ))}
                   </ul>
                   <div className="contact-page__social">
+                    {/* TODO: Replace with real social links */}
                     <a href="#">
                       <i className="icon-facebook"></i>
                     </a>
@@ -133,6 +112,9 @@ const ContactUs: React.FC = () => {
           <iframe
             src="https://www.google.com/maps/embed?pb=..."
             className="google-map__one"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
           ></iframe>
         </section>
 
@@ -150,52 +132,39 @@ const ContactUs: React.FC = () => {
                 className="contact-three__form"
               >
                 <div className="row">
-                  <div className="col-xl-3 col-lg-6">
-                    <div className="contact-three__input-box">
-                      <input
-                        type="text"
-                        placeholder="Your Name"
-                        name="name"
-                        value={form.name}
-                        onChange={handleContactChange}
-                        required
-                      />
+                  {[
+                    { name: 'name', placeholder: 'Your Name', required: true },
+                    {
+                      name: 'email',
+                      placeholder: 'Your Email',
+                      required: true,
+                      type: 'email',
+                    },
+                    {
+                      name: 'phone',
+                      placeholder: 'Phone Number',
+                      required: false,
+                    },
+                    {
+                      name: 'subject',
+                      placeholder: 'Your Subject',
+                      required: false,
+                    },
+                  ].map((field, idx) => (
+                    <div className="col-xl-3 col-lg-6" key={idx}>
+                      <div className="contact-three__input-box">
+                        <input
+                          type={field.type || 'text'}
+                          placeholder={field.placeholder}
+                          name={field.name}
+                          value={form[field.name as keyof ContactFormData]}
+                          onChange={handleContactChange}
+                          required={field.required}
+                          autoComplete={field.name}
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-xl-3 col-lg-6">
-                    <div className="contact-three__input-box">
-                      <input
-                        type="email"
-                        placeholder="Your Email"
-                        name="email"
-                        value={form.email}
-                        onChange={handleContactChange}
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="col-xl-3 col-lg-6">
-                    <div className="contact-three__input-box">
-                      <input
-                        type="text"
-                        placeholder="Phone Number"
-                        name="phone"
-                        value={form.phone}
-                        onChange={handleContactChange}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-xl-3 col-lg-6">
-                    <div className="contact-three__input-box">
-                      <input
-                        type="text"
-                        placeholder="Your Subject"
-                        name="subject"
-                        value={form.subject}
-                        onChange={handleContactChange}
-                      />
-                    </div>
-                  </div>
+                  ))}
                 </div>
                 <div className="row">
                   <div className="col-xl-12 col-lg-12">
@@ -222,52 +191,6 @@ const ContactUs: React.FC = () => {
                   </div>
                 </div>
               </form>
-            </div>
-          </div>
-        </section>
-
-        <section className="cta-one">
-          <div className="container">
-            <div className="cta-one__inner">
-              <div className="cta-one__shape-1">
-                <Image
-                  src="/assets/images/shapes/cta-one-shape-1.png"
-                  alt=""
-                  width={100}
-                  height={100}
-                />
-              </div>
-              <div className="cta-one__img">
-                <Image
-                  src="/assets/images/resources/cta-one-img.png"
-                  alt=""
-                  width={500}
-                  height={400}
-                />
-              </div>
-              <h3 className="cta-one__title">
-                Crafting digital experiences
-                <br /> that inspire
-              </h3>
-              <div className="cta-one__from-box">
-                <form
-                  onSubmit={handleNewsletterSubmit}
-                  className="cta-one__form"
-                >
-                  <div className="cta-one__input-box">
-                    <input
-                      type="email"
-                      placeholder="Your E-mail"
-                      name="newsletter"
-                      value={newsletterEmail}
-                      onChange={(e) => setNewsletterEmail(e.target.value)}
-                    />
-                  </div>
-                  <button type="submit" className="cta-one__btn thm-btn">
-                    Subscribe Us
-                  </button>
-                </form>
-              </div>
             </div>
           </div>
         </section>

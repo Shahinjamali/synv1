@@ -15,14 +15,16 @@ interface TestimonialProps {
   testimonials?: TestimonialData[];
 }
 
+const STATIC_IMAGE = '/assets/images/resources/testi-2.webp';
+
 const swiperOptions: SwiperOptions = {
   modules: [Autoplay, Pagination, Navigation],
   slidesPerView: 1,
   spaceBetween: 0,
   loop: true,
   navigation: {
-    nextEl: '.h1n',
-    prevEl: '.h1p',
+    nextEl: '.swiper-button-next1',
+    prevEl: '.swiper-button-prev1',
   },
   pagination: {
     el: '.swiper-pagination',
@@ -54,46 +56,59 @@ const AboutTestimonial: React.FC<TestimonialProps> = ({ testimonials }) => {
             {...swiperOptions}
             className="thm-swiper__slider swiper-container"
             aria-roledescription="carousel"
+            aria-label="Client Testimonials"
           >
-            {testimonialsList.map((item, index) => (
-              <SwiperSlide key={item.name + index}>
-                <div className="testimonial-one__single">
-                  <div className="row">
-                    <div className="col-xl-6 col-lg-6">
-                      <div className="testimonial-one__content">
-                        <div className="testimonial-one__quote">
-                          <Image
-                            src={item.img}
-                            alt={item.name}
-                            width={50}
-                            height={50}
-                          />
+            {testimonialsList.length > 0 ? (
+              testimonialsList.map((item, index) => {
+                return (
+                  <SwiperSlide key={`${item.name}-${index}`}>
+                    <div className="testimonial-one__single">
+                      <div className="row">
+                        <div className="col-xl-6 col-lg-6">
+                          <div className="testimonial-one__content">
+                            <div className="testimonial-one__quote">
+                              <Image
+                                src="/assets/images/placeholders/avatar.png"
+                                alt={item.name || 'Anonymous'}
+                                width={50}
+                                height={50}
+                                className="rounded-full"
+                              />
+                            </div>
+                            <div className="testimonial-one__client-info">
+                              <h3 className="testimonial-one__title">
+                                {item.name || 'Anonymous'}
+                              </h3>
+                              <p className="testimonial-one__sub-title">
+                                {item.position || 'Contributor'}
+                              </p>
+                            </div>
+                            <p className="testimonial-one__text">
+                              {item.quote || 'No testimonial provided.'}
+                            </p>
+                          </div>
                         </div>
-                        <div className="testimonial-one__client-info">
-                          <h3 className="testimonial-one__title">
-                            {item.name}
-                          </h3>
-                          <p className="testimonial-one__sub-title">
-                            {item.position}
-                          </p>
+                        <div className="col-xl-6 col-lg-6">
+                          <div className="testimonial-one__img">
+                            <Image
+                              src={STATIC_IMAGE}
+                              alt="Synix Testimonial Showcase"
+                              width={300}
+                              height={400}
+                              className="rounded"
+                            />
+                          </div>
                         </div>
-                        <p className="testimonial-one__text">{item.quote}</p>
                       </div>
                     </div>
-                    <div className="col-xl-6 col-lg-6">
-                      <div className="testimonial-one__img">
-                        <Image
-                          src="/assets/images/testimonial/testimonial-1-1.jpg"
-                          alt="Synix Testimonial"
-                          width={300}
-                          height={400}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
+                  </SwiperSlide>
+                );
+              })
+            ) : (
+              <p className="text-center text-muted py-10">
+                No testimonials available at this time.
+              </p>
+            )}
           </Swiper>
 
           {/* Navigation Controls */}
@@ -102,18 +117,18 @@ const AboutTestimonial: React.FC<TestimonialProps> = ({ testimonials }) => {
             aria-label="testimonial navigation"
           >
             <div
-              className="swiper-button-prev1 h1p"
+              className="swiper-button-prev1"
               role="button"
               aria-label="Previous testimonial"
             >
-              <i className="icon-arrow-left"></i>
+              <i className="icon-arrow-left" />
             </div>
             <div
-              className="swiper-button-next1 h1n"
+              className="swiper-button-next1"
               role="button"
               aria-label="Next testimonial"
             >
-              <i className="icon-arrow-right"></i>
+              <i className="icon-arrow-right" />
             </div>
           </div>
         </div>

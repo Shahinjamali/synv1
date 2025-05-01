@@ -79,7 +79,7 @@ router.post(
         { $push: { "oilHistory.$.labReports": labReport._id } }
       );
 
-      res.locals.entityId = labReport._id; // Set before middleware
+      res.locals.entityId = labReport._id;
 
       // Middleware to log the action
       await auditLog("Lab", "sample_created", (req) => ({

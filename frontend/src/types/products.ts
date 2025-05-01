@@ -1,3 +1,5 @@
+import { MediaAsset } from './mediaAsset';
+
 export interface Specification {
   key: string;
   value: string;
@@ -18,13 +20,6 @@ export interface Approval {
   status?: 'active' | 'pending' | 'expired';
   documentId?: string;
   access?: 'public' | 'authenticated' | 'subscriber';
-}
-
-export interface Application {
-  industry: string;
-  useCase: string;
-  materials?: string[];
-  notes?: string;
 }
 
 export interface Packaging {
@@ -108,71 +103,107 @@ export interface Metadata {
 }
 
 export interface Product {
+  id?: string;
   _id: string;
   title: string;
   subtitle?: string;
   tagline?: string;
   slug: string;
+  category: string;
+  subcategory: string;
+  categorySlug?: string;
+  subcategorySlug?: string;
   overview?: string;
-  description: {
+  mediaAssets: MediaAsset[];
+  description?: {
     short: string;
     detailed?: string;
   };
-  category: string;
-  subcategory: string;
-  categorySlug: string;
-  subcategorySlug: string;
   keyFeatures?: string[];
-  specifications?: Specification[];
-  approvals?: Approval[];
-  applications?: Application[];
-  packaging?: Packaging[];
-  compatibility?: Compatibility[];
-  properties?: {
-    baseOil?:
-      | 'mineral'
-      | 'synthetic_pao'
-      | 'synthetic_ester'
-      | 'synthetic_pag'
-      | 'semi-synthetic'
-      | 'bio-based'
-      | 'silicone';
-    viscosityGrade?: string;
-    viscosityIndex?: number;
-    flashPoint?: {
-      value: number;
-      unit: string;
-      testMethod?: string;
-    };
-    pourPoint?: {
-      value: number;
-      unit: string;
-      testMethod?: string;
-    };
-    density?: {
-      value: number;
-      unit: string;
-      temp?: number;
-      testMethod?: string;
-    };
-    foodGrade?: boolean;
-    nsfRegistration?: {
-      number?: string;
-      categoryCode?: string;
-    };
-    biodegradable?: boolean;
-    operatingTempRange?: {
-      min?: number;
-      max?: number;
+  applications?: string[];
+  specifications?: Array<{
+    key: string;
+    value: string | number;
+    unit?: string;
+    testMethod?: string;
+    standard?: string;
+  }>;
+  approvals?: Array<{
+    name: string;
+    issuer: string;
+    status: 'active' | 'pending' | 'expired';
+    certificateNumber?: string;
+    validUntil?: string;
+    documentId?: string;
+  }>;
+  packaging?: Array<{
+    type: string;
+    size: number;
+    unit: string;
+    sku?: string;
+    partNumber?: string;
+    availability?: 'in_stock' | 'out_of_stock' | 'on_request';
+  }>;
+  compatibility?: Array<{
+    type: 'material' | 'seal' | 'coolant' | 'paint';
+    name: string;
+    rating:
+      | 'excellent'
+      | 'good'
+      | 'fair'
+      | 'poor'
+      | 'not_recommended'
+      | 'test_required';
+    notes?: string;
+  }>;
+  compliance?: {
+    reachCompliant?: boolean;
+    reachStatus?: string;
+    rohsCompliant?: boolean;
+    vocContent?: {
+      value?: number;
       unit?: string;
+      testMethod?: string;
     };
-    color?: string;
+    ghs?: {
+      classification?: string;
+      signalWord?: string;
+      pictograms?: string[];
+    };
+    halalCertified: boolean; // Match schema's default
+    kosherCertified: boolean; // Match schema's default
   };
-  compliance?: Compliance;
-  relatedProducts?: RelatedProduct[];
-  mediaAssets?: string[];
-  visibility?: Visibility;
-  metadata?: Metadata;
+  relatedProducts?: Array<{
+    productId: string;
+    relationshipType:
+      | 'alternative'
+      | 'complementary'
+      | 'upgrade'
+      | 'downgrade'
+      | 'required_accessory'
+      | 'previous_version'
+      | 'next_version';
+  }>;
+  // mediaAssets?: string[]; // Match schema
+  visibility?: {
+    isPublic: boolean;
+    requiresAuth: boolean;
+    requiresSubscription: boolean;
+    restrictedRoles?: string[];
+  };
+  metadata?: {
+    status: 'active' | 'draft' | 'archived' | 'discontinued';
+    version: string;
+    internalCode?: string;
+    replacesProduct?: string;
+    replacedByProduct?: string;
+    seo?: {
+      title?: string;
+      description?: string;
+      keywords?: string[];
+    };
+    tags?: string[];
+  };
 }
 
 export interface ProductListResponse {

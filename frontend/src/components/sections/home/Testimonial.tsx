@@ -6,6 +6,7 @@ import React from 'react';
 import Image from 'next/image';
 import { TestimonialData } from '@/types/content';
 import testimonialData from '@/data/home/testimonials.json';
+import { truncateWords } from '@/utils/string';
 
 interface TestimonialProps {
   testimonials?: TestimonialData[];
@@ -32,9 +33,13 @@ const swiperOptions = {
 
 const Testimonial: React.FC<TestimonialProps> = ({ testimonials }) => {
   const testimonialsList = testimonials || [];
+  const staticImg = '/assets/images/placeholders/testimonialsection.webp';
 
   return (
-    <section className="testimonial-four">
+    <section
+      className="testimonial-four"
+      aria-labelledby="testimonial-section-title"
+    >
       <div className="container">
         <div className="section-title text-center">
           <div className="section-title__tagline-box">
@@ -42,7 +47,7 @@ const Testimonial: React.FC<TestimonialProps> = ({ testimonials }) => {
               {testimonialData.tagline}
             </span>
           </div>
-          <h2 className="section-title__title">
+          <h2 className="section-title__title" id="testimonial-section-title">
             {testimonialData.title} <br /> {testimonialData.title2}
           </h2>
         </div>
@@ -51,8 +56,8 @@ const Testimonial: React.FC<TestimonialProps> = ({ testimonials }) => {
             <div className="testimonial-four__left">
               <div className="testimonial-four__img">
                 <Image
-                  src="/assets/images/testimonial/testimonial-four-img-1.jpg"
-                  alt="Testimonial Image"
+                  src={staticImg}
+                  alt="Synix Clients"
                   width={600}
                   height={400}
                   style={{ width: '100%', height: 'auto' }}
@@ -62,53 +67,66 @@ const Testimonial: React.FC<TestimonialProps> = ({ testimonials }) => {
           </div>
           <div className="col-xl-5">
             <div className="testimonial-four__right">
-              <Swiper {...swiperOptions} className="thm-swiper__slider">
-                {testimonialsList.map((testimonial, index) => (
-                  <SwiperSlide key={index}>
-                    <div className="testimonial-four__single">
-                      <div className="testimonial-four__quote-and-rating">
-                        <div className="testimonial-four__quote">
-                          <span className="icon-quote-2"></span>
+              <Swiper
+                {...swiperOptions}
+                className="thm-swiper__slider"
+                aria-roledescription="carousel"
+                aria-label="Client Testimonials"
+              >
+                {testimonialsList.map((testimonial, index) => {
+                  const avatarSrc =
+                    testimonial.img?.trim() ||
+                    '/assets/images/placeholders/avatar.png';
+
+                  return (
+                    <SwiperSlide
+                      key={testimonial.name ?? index}
+                      role="group"
+                      aria-label={`Testimonial from ${testimonial.name}`}
+                    >
+                      <div className="testimonial-four__single">
+                        <div className="testimonial-four__quote-and-rating">
+                          <div className="testimonial-four__quote">
+                            <span className="icon-quote-2" />
+                          </div>
+                          <div className="testimonial-four__rating">
+                            {Array.from(
+                              { length: Math.floor(testimonial.rating) },
+                              (_, i) => (
+                                <span
+                                  key={i}
+                                  className="icon-star text-yellow-400"
+                                ></span>
+                              )
+                            )}
+                          </div>
                         </div>
-                        <div className="testimonial-four__rating">
-                          {Array.from(
-                            { length: Math.floor(testimonial.rating) },
-                            (_, i) => (
-                              <span
-                                key={i}
-                                className="icon-star text-yellow-400"
-                              >
-                                ★
-                              </span>
-                            )
-                          )}
+                        <p className="testimonial-four__text">
+                          {truncateWords(testimonial.quote, 30)}
+                        </p>
+                        <div className="testimonial-four__client-info">
+                          <div className="testimonial-four__client-img">
+                            <Image
+                              src={avatarSrc}
+                              alt={testimonial.name}
+                              width={80}
+                              height={80}
+                              style={{ borderRadius: '50%' }}
+                            />
+                          </div>
+                          <div className="testimonial-four__client-content">
+                            <h5 className="testimonial-four__client-name">
+                              {testimonial.name}
+                            </h5>
+                            <p className="testimonial-four__client-sub-title">
+                              {testimonial.position}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                      <p className="testimonial-four__text">
-                        {testimonial.quote}
-                      </p>
-                      <div className="testimonial-four__client-info">
-                        <div className="testimonial-four__client-img">
-                          <Image
-                            src={testimonial.img}
-                            alt={testimonial.name}
-                            width={80}
-                            height={80}
-                            style={{ borderRadius: '50%' }}
-                          />
-                        </div>
-                        <div className="testimonial-four__client-content">
-                          <h5 className="testimonial-four__client-name">
-                            {testimonial.name}
-                          </h5>
-                          <p className="testimonial-four__client-sub-title">
-                            {testimonial.position}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
+                    </SwiperSlide>
+                  );
+                })}
               </Swiper>
             </div>
           </div>

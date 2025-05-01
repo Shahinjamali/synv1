@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const SpecificationSchema = require("./specificationModel");
 const ApprovalSchema = require("./approvalModel");
-
 const ProductSchema = new Schema(
   {
     title: { type: String, required: true, trim: true },
@@ -30,15 +29,7 @@ const ProductSchema = new Schema(
       detailed: { type: String, trim: true },
     },
     keyFeatures: [{ type: String, trim: true }],
-    applications: [
-      // Consider making industry/useCase references if they become complex taxonomies
-      {
-        industry: { type: String, required: true }, // e.g., "Automotive Manufacturing"
-        useCase: { type: String, required: true }, // e.g., "Heavy Duty Machining", "Gear Lubrication"
-        materials: [String], // e.g., ["Steel", "Cast Iron", "Aluminum Alloys"]
-        notes: { type: String },
-      },
-    ],
+    applications: [{ type: String, trim: true }],
     specifications: [SpecificationSchema],
     approvals: [ApprovalSchema],
     packaging: [
@@ -77,65 +68,7 @@ const ProductSchema = new Schema(
         notes: { type: String },
       },
     ],
-    properties: {
-      // Key technical properties, potentially indexed if heavily filtered
-      baseOil: {
-        type: String,
-        enum: [
-          "mineral",
-          "synthetic_pao",
-          "synthetic_ester",
-          "synthetic_pag",
-          "semi-synthetic",
-          "bio-based",
-          "silicone",
-        ],
-      },
-      viscosityGrade: { type: String }, // e.g., "ISO VG 68", "SAE 5W-30"
-      viscosityIndex: { type: Number },
-      // Optional: Add specific viscosity values if needed for direct queries/sorting
-      // viscosity_40c_cst: { value: Number, unit: {type: String, default: 'cSt'} },
-      // viscosity_100c_cst: { value: Number, unit: {type: String, default: 'cSt'} },
-      flashPoint: {
-        value: Number,
-        unit: { type: String, default: "°C" },
-        testMethod: String,
-      },
-      pourPoint: {
-        value: Number,
-        unit: { type: String, default: "°C" },
-        testMethod: String,
-      },
-      density: {
-        value: Number,
-        unit: { type: String, default: "kg/m³" },
-        temp: Number,
-        testMethod: String,
-      },
-      foodGrade: { type: Boolean, default: false },
-      nsfRegistration: { number: String, categoryCode: String }, // e.g., H1, H2, 3H
-      biodegradable: { type: Boolean, default: false },
-      operatingTempRange: {
-        min: { type: Number },
-        max: { type: Number },
-        unit: { type: String, default: "°C" },
-      },
-      color: { type: String },
-      // Add other relevant properties: Copper Corrosion, Demulsibility, Foam Characteristics, etc.
-    },
     compliance: {
-      // NEW Section
-      sds: {
-        available: { type: Boolean, default: false },
-        documentId: { type: Schema.Types.ObjectId, ref: "MediaAsset" }, // Link to SDS in MediaAssets
-        version: { type: String },
-        lastChecked: { type: Date },
-        access: {
-          type: String,
-          enum: ["public", "authenticated", "subscriber", "restricted"],
-          default: "public",
-        },
-      },
       reachCompliant: { type: Boolean },
       reachStatus: { type: String }, // e.g., 'Registered', 'Pre-registered', 'Exempt', 'SVHC free'
       rohsCompliant: { type: Boolean },
@@ -172,7 +105,7 @@ const ProductSchema = new Schema(
         },
       },
     ],
-    mediaAssets: [{ type: Schema.Types.ObjectId, ref: "Media" }], // References Media collection
+    mediaAssets: [{ type: Schema.Types.ObjectId, ref: "MediaAsset" }],
     visibility: {
       // Fine-grained access control
       isPublic: { type: Boolean, default: true }, // Visible to anonymous users
@@ -257,8 +190,6 @@ ProductSchema.index({
 ProductSchema.index({ "metadata.tags": 1 });
 ProductSchema.index({ "approvals.name": 1, "approvals.status": 1 });
 ProductSchema.index({ "applications.industry": 1 });
-ProductSchema.index({ "properties.baseOil": 1 });
-ProductSchema.index({ "properties.viscosityGrade": 1 });
 ProductSchema.index({ "properties.foodGrade": 1 });
 ProductSchema.index({ "compliance.reachCompliant": 1 });
 ProductSchema.index({ "compliance.rohsCompliant": 1 });

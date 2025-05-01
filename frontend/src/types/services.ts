@@ -1,3 +1,5 @@
+import { MediaAsset } from './mediaAsset';
+
 export interface Deliverable {
   item: string;
   format?: string;
@@ -29,7 +31,8 @@ export interface Visibility {
 }
 
 export interface Service {
-  _id: string;
+  id?: string;
+  _id?: string;
   title: string;
   subtitle?: string;
   tagline?: string;
@@ -53,7 +56,7 @@ export interface Service {
   applicableIndustries?: string[];
   applicableEquipment?: string[];
   prerequisites?: string[];
-  mediaAssets?: string[];
+  mediaAssets?: MediaAsset[];
   visibility?: Visibility;
   metadata: {
     status: 'active' | 'draft' | 'archived';

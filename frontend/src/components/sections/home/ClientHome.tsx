@@ -5,8 +5,9 @@ import { Product } from '@/types/products';
 import { Service } from '@/types/services';
 import { TestimonialData, Blogs } from '@/types/content';
 import GlobalLoader from '@/components/common/GlobalLoader';
+import ErrorBoundary from '@/components/common/ErrorBoundary';
 
-// Lazy-loaded sections
+// Lazy-loaded homepage sections
 const Products = lazy(() => import('@/components/sections/home/Products'));
 const Services = lazy(() => import('@/components/sections/home/Services'));
 const Testimonial = lazy(
@@ -22,6 +23,23 @@ interface ClientHomeProps {
   blogs: Blogs[];
 }
 
+// Helper to reduce Suspense/ErrorBoundary duplication
+const LazySection = ({
+  fallback,
+  sectionName,
+  children,
+}: {
+  fallback?: React.ReactNode;
+  sectionName: string;
+  children: React.ReactNode;
+}) => (
+  <ErrorBoundary sectionName={sectionName}>
+    <Suspense fallback={fallback ?? <GlobalLoader stage="data" />}>
+      {children}
+    </Suspense>
+  </ErrorBoundary>
+);
+
 const ClientHome: React.FC<ClientHomeProps> = ({
   products,
   services,
@@ -30,25 +48,25 @@ const ClientHome: React.FC<ClientHomeProps> = ({
 }) => {
   return (
     <>
-      <Suspense fallback={<GlobalLoader stage="data" />}>
+      <LazySection sectionName="Products">
         <Products products={products} />
-      </Suspense>
+      </LazySection>
 
-      <Suspense fallback={<GlobalLoader stage="data" />}>
+      <LazySection sectionName="Services">
         <Services services={services} />
-      </Suspense>
+      </LazySection>
 
-      <Suspense fallback={<GlobalLoader stage="data" />}>
+      <LazySection sectionName="Testimonials">
         <Testimonial testimonials={testimonials} />
-      </Suspense>
+      </LazySection>
 
-      <Suspense fallback={<GlobalLoader stage="data" />}>
+      <LazySection sectionName="Blogs">
         <Blog blogs={blogs} />
-      </Suspense>
+      </LazySection>
 
-      <Suspense fallback={<GlobalLoader stage="data" />}>
+      <LazySection sectionName="Newsletter">
         <Newsletter />
-      </Suspense>
+      </LazySection>
     </>
   );
 };

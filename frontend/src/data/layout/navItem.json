@@ -3,6 +3,6 @@
   { "label": "About", "href": "/about-us" },
   { "label": "Services", "href": "/services" },
   { "label": "Products", "href": "/products" },
-  { "label": "Blog", "href": "/blogs" },
+
   { "label": "Contact", "href": "/contact-us" }
 ]

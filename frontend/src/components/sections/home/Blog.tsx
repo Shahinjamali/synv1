@@ -15,13 +15,13 @@ const Blog: React.FC<BlogProps> = ({ blogs }) => {
   }
 
   return (
-    <section className="blog-four">
+    <section className="blog-four" aria-labelledby="homepage-blogs">
       <div className="container">
         <div className="section-title text-center">
           <div className="section-title__tagline-box">
             <span className="section-title__tagline">{blogData.tagline}</span>
           </div>
-          <h2 className="section-title__title">
+          <h2 className="section-title__title" id="homepage-blogs">
             {blogData.title} <br />
             {blogData.title2}
           </h2>
@@ -29,7 +29,7 @@ const Blog: React.FC<BlogProps> = ({ blogs }) => {
         <div className="row">
           {blogs.map((blog, index) => (
             <BlogCard
-              key={blog.slug || blog.title || index}
+              key={blog.slug || blog.id || index}
               blog={blog}
               delay={`${100 + index * 100}ms`}
             />

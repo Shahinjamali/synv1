@@ -4,6 +4,7 @@ import React, { memo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import footerData from '@/data/layout/footer.json';
+import socials from '@/data/common/socials.json';
 
 // Type definitions
 interface FooterLink {
@@ -63,7 +64,7 @@ const Footer: React.FC = () => {
       {/* Background Shape */}
       <div className="site-footer__shape-1">
         <Image
-          src="/assets/images/shapes/contact-and-team-bg-shape.png"
+          src="/assets/images/resources/footer-background.png"
           alt="Decorative Shape"
           width={1000}
           height={100}
@@ -83,7 +84,7 @@ const Footer: React.FC = () => {
               <div className="footer-widget__logo mb-6">
                 <Link href="/">
                   <Image
-                    src={about.logo}
+                    src="/assets/images/resources/synixLogoWhite.png"
                     alt="Synix Solutions Logo"
                     width={200}
                     height={50}
@@ -101,7 +102,7 @@ const Footer: React.FC = () => {
                   {about.socialTitle}
                 </h3>
                 <div className="site-footer__social flex gap-4">
-                  {about.socialLinks.map((link, index) => (
+                  {socials.map((link, index) => (
                     <Link
                       key={index}
                       href={link.url}

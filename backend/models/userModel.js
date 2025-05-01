@@ -18,9 +18,21 @@ const userSchema = new mongoose.Schema(
     phone: { type: String, required: true, trim: true },
     position: { type: String, required: true, trim: true },
     roles: [
-      { type: String, enum: Object.keys(roleHierarchy), default: "user" },
+      {
+        type: String,
+        enum: [
+          ...Object.keys(roleHierarchy.owner),
+          ...Object.keys(roleHierarchy.customer),
+        ],
+        default: "user",
+      },
     ],
     roleLevel: { type: Number, default: 1 },
+    roleType: {
+      type: String,
+      enum: ["owner", "customer"],
+      required: true,
+    },
     companyId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Company",
@@ -45,7 +57,6 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Hash Password Before Save
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   try {
@@ -53,16 +64,15 @@ userSchema.pre("save", async function (next) {
     console.log("[userModel] Password hashed:", this.password);
   } catch (err) {
     console.error("[userModel] Hashing error:", err);
-    return next(err); // Pass error to Mongoose
+    return next(err);
   }
   next();
 });
 
-// Set Role Level and Log Changes
 userSchema.pre("save", async function (next) {
-  this.roleLevel = Math.max(
-    ...this.roles.map((role) => roleHierarchy[role] || 1)
-  );
+  const hierarchy =
+    this.roleType === "owner" ? roleHierarchy.owner : roleHierarchy.customer;
+  this.roleLevel = Math.max(...this.roles.map((role) => hierarchy[role] || 1));
   if (this.isModified("roles") || this.isModified("permissions")) {
     const AuditLog = mongoose.model("AuditLog");
     const auditEntry = new AuditLog({
@@ -82,7 +92,6 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-// Compare Password for Login
 userSchema.methods.matchPassword = async function (enteredPassword) {
   const isMatch = await bcrypt.compare(enteredPassword, this.password);
   return isMatch;

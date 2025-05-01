@@ -41,7 +41,7 @@ export const mediaAssetSchema = z.object({
     })
     .optional(),
   owner: z.object({
-    type: z.enum(['product', 'category']),
+    type: z.enum(['product', 'category', 'service', 'orphaned']),
     id: z.string(),
   }),
   tags: z.array(z.string()).optional(),

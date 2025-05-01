@@ -6,15 +6,20 @@ import Image from 'next/image';
 import heroData from '@/data/about/hero.json';
 import { Drops, DashboardGauge } from '@/components/common/Icons';
 
+const iconMap = [DashboardGauge, Drops];
+const PLACEHOLDER_IMAGE = '/assets/images/resources/about-banner.webp';
+
 const AboutBanner: React.FC = () => {
-  const feature1 = heroData.features?.[0];
-  const feature2 = heroData.features?.[1];
+  const { image, tagline, title, description, features } = heroData;
 
   return (
-    <section className="about-one about-seven" aria-label="About Synix Banner">
+    <section
+      className="about-one about-seven"
+      aria-labelledby="about-banner-title"
+    >
       <div className="container">
         <div className="row">
-          {/* Left Image Section */}
+          {/* Image Section */}
           <div className="col-xl-6">
             <div className="about-one__left">
               <div
@@ -23,64 +28,55 @@ const AboutBanner: React.FC = () => {
                 data-wow-duration="2500ms"
               >
                 <Image
-                  src={heroData.image.src}
-                  alt={heroData.image.alt || 'About Synix'}
+                  src={PLACEHOLDER_IMAGE}
+                  alt={image?.alt || 'About Synix Solutions'}
                   width={500}
-                  height={400}
+                  height={600}
                   priority
                 />
               </div>
             </div>
           </div>
 
-          {/* Right Text Section */}
+          {/* Text Section */}
           <div className="col-xl-6">
             <div className="about-one__right">
               <div className="section-title text-left">
                 <div className="section-title__tagline-box">
-                  <span className="section-title__tagline">
-                    {heroData.tagline}
-                  </span>
+                  <span className="section-title__tagline">{tagline}</span>
                 </div>
-                <h2 className="section-title__title">{heroData.title}</h2>
+                <h2 className="section-title__title" id="about-banner-title">
+                  {title}
+                </h2>
               </div>
-              <p className="about-one__text">{heroData.description}</p>
 
+              <p className="about-one__text">{description}</p>
+
+              {/* Feature List */}
               <ul className="about-one__points-list list-unstyled">
-                {feature1 && (
-                  <li>
-                    <div className="icon">
-                      <DashboardGauge
-                        size={40}
-                        defaultColor="#faa319"
-                        hoverColor="#FAFAFA"
-                      />
-                    </div>
-                    <div className="content">
-                      <h3>
-                        <Link href={feature1.link}>{feature1.title}</Link>
-                      </h3>
-                      <p>{feature1.description}</p>
-                    </div>
-                  </li>
-                )}
-                {feature2 && (
-                  <li>
-                    <div className="icon">
-                      <Drops
-                        size={40}
-                        defaultColor="#faa319"
-                        hoverColor="#FAFAFA"
-                      />
-                    </div>
-                    <div className="content">
-                      <h3>
-                        <Link href={feature2.link}>{feature2.title}</Link>
-                      </h3>
-                      <p>{feature2.description}</p>
-                    </div>
-                  </li>
-                )}
+                {Array.isArray(features) &&
+                  features.slice(0, 2).map((feature, index) => {
+                    const Icon =
+                      iconMap[index % iconMap.length] || DashboardGauge;
+                    return (
+                      <li key={feature.title + index}>
+                        <div className="icon">
+                          <Icon
+                            size={40}
+                            defaultColor="#faa319"
+                            hoverColor="#FAFAFA"
+                            aria-hidden="true"
+                          />
+                        </div>
+                        <div className="content">
+                          <h3>
+                            <Link href={feature.link}>{feature.title}</Link>
+                          </h3>
+                          <p>{feature.description}</p>
+                        </div>
+                      </li>
+                    );
+                  })}
               </ul>
             </div>
           </div>

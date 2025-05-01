@@ -88,12 +88,11 @@ const ServiceSchema = new Schema(
         type: String,
         enum: ["active", "draft", "archived"],
         default: "active",
-        index: true,
       },
       version: { type: String, default: "1.0.0" },
-      internalCode: { type: String },
+      internalCode: String,
       tags: [String],
-      relatedCaseStudies: [{ type: Schema.Types.ObjectId, ref: "MediaAsset" }],
+      relatedCaseStudies: [{ type: Schema.Types.ObjectId }], // No ref, as CaseStudy doesn't exist
       relatedProducts: [{ type: Schema.Types.ObjectId, ref: "Product" }],
     },
   },
@@ -127,7 +126,7 @@ ServiceSchema.pre("save", async function (next) {
   next();
 });
 
-ServiceSchema.index({ slug: 1 });
+// ServiceSchema.index({ slug: 1 });
 ServiceSchema.index({ category: 1, "metadata.status": 1 });
 ServiceSchema.index({ categorySlug: 1, "metadata.status": 1 });
 ServiceSchema.index({ "metadata.tags": 1 });

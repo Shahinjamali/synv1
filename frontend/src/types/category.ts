@@ -1,4 +1,7 @@
+import { MediaAsset } from './mediaAsset';
+
 export interface Category {
+  id?: string;
   _id: string;
   title: string;
   subtitle?: string;
@@ -12,7 +15,7 @@ export interface Category {
     short: string;
     detailed?: string;
   };
-  mediaAssets?: string[];
+  mediaAssets?: MediaAsset[];
   metadata: {
     status: 'active' | 'draft' | 'archived';
     seo?: {

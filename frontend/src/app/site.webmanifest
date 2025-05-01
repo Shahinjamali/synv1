@@ -1,0 +1,22 @@
+{
+  "name": "Synix Solutions",
+  "short_name": "Synix",
+  "description": "Synix Solutions provides sustainable lubricants and reliability services, ensuring high performance and eco-friendly solutions for industries worldwide.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#2C2E47",
+  "background_color": "#F3F3F3",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

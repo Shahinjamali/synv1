@@ -4,7 +4,6 @@ import Layout from '@/components/layout/Layout';
 import Banner from '@/components/sections/home/Banner';
 import About from '@/components/sections/home/About';
 import GlobalLoader from '@/components/common/GlobalLoader';
-
 import {
   getProducts,
   getServices,
@@ -15,6 +14,8 @@ import ClientHome from '@/components/sections/home/ClientHome';
 import { Product } from '@/types/products';
 import { Service } from '@/types/services';
 import { TestimonialData, Blogs } from '@/types/content';
+import { HOMEPAGE_LIMIT } from '@/data/constants/homepage';
+// import * as Sentry from '@sentry/nextjs'; // Uncomment when ready
 
 export const metadata = {
   title: 'Synix Solutions - Home',
@@ -24,11 +25,10 @@ export const metadata = {
 
 export default async function Home() {
   try {
-    // Fetch all critical data in parallel
     const [productsRes, servicesRes, testimonialsRes, blogsRes] =
       await Promise.all([
-        getProducts({ limit: 6 }),
-        getServices({ limit: 6 }),
+        getProducts({ limit: HOMEPAGE_LIMIT }),
+        getServices({ limit: HOMEPAGE_LIMIT }),
         getTestimonials(),
         getThreeBlogs(),
       ]);
@@ -45,7 +45,7 @@ export default async function Home() {
         <Suspense
           fallback={
             <div className="flex justify-center items-center min-h-[200px]">
-              fallback={<GlobalLoader stage="data" />}
+              <GlobalLoader stage="data" />
             </div>
           }
         >
@@ -59,6 +59,9 @@ export default async function Home() {
       </Layout>
     );
   } catch (error) {
+    if (process.env.NODE_ENV === 'production') {
+      // Sentry.captureException(error);
+    }
     console.error('[Home Page] Data fetch failed:', error);
     return (
       <Layout>

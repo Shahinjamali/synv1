@@ -40,43 +40,30 @@ export const inputConfig: Record<
         },
       ],
       categorization: [],
+      media: [],
       details: [
         {
           name: 'keyFeatures',
           label: 'Key Features',
           type: 'array',
-          subFields: [{ name: 'feature', label: 'Feature', type: 'text' }],
+          subFields: [{ name: '', label: 'Feature', type: 'text' }],
         },
         {
           name: 'applications',
           label: 'Applications',
           type: 'array',
-          subFields: [
-            { name: 'industry', label: 'Industry', type: 'text' },
-            { name: 'useCase', label: 'Use Case', type: 'text' },
-            {
-              name: 'materials',
-              label: 'Materials',
-              type: 'array',
-              subFields: [
-                { name: 'material', label: 'Material', type: 'text' },
-              ],
-            },
-            { name: 'notes', label: 'Notes', type: 'text' },
-          ],
+          subFields: [{ name: '', label: 'Application', type: 'text' }],
         },
         {
           name: 'specifications',
           label: 'Specifications',
           type: 'array',
           subFields: [
-            { name: 'key', label: 'Key', type: 'text' },
-            { name: 'value', label: 'Value', type: 'text' },
+            { name: 'key', label: 'Key', type: 'text', required: true }, // Changed from name to key
+            { name: 'value', label: 'Value', type: 'text', required: true },
             { name: 'unit', label: 'Unit', type: 'text' },
             { name: 'testMethod', label: 'Test Method', type: 'text' },
-            { name: 'dataType', label: 'Data Type', type: 'text' },
-            { name: 'isVisible', label: 'Visible', type: 'checkbox' },
-            { name: 'group', label: 'Group', type: 'text' },
+            { name: 'standard', label: 'Standard', type: 'text' },
           ],
         },
         {
@@ -84,15 +71,25 @@ export const inputConfig: Record<
           label: 'Approvals',
           type: 'array',
           subFields: [
-            { name: 'name', label: 'Name', type: 'text' },
-            { name: 'authority', label: 'Authority', type: 'text' },
-            { name: 'certificateId', label: 'Certificate ID', type: 'text' },
-            { name: 'url', label: 'URL', type: 'text' },
-            { name: 'region', label: 'Region', type: 'text' },
-            { name: 'status', label: 'Status', type: 'text' },
-            { name: 'access', label: 'Access', type: 'text' },
-            { name: 'expiryDate', label: 'Expiry Date', type: 'text' },
-            { name: 'documentId', label: 'Document ID', type: 'text' },
+            { name: 'name', label: 'Name', type: 'text', required: true },
+            { name: 'issuer', label: 'Issuer', type: 'text', required: true },
+            {
+              name: 'status',
+              label: 'Status',
+              type: 'dropdown',
+              required: true,
+              options: [
+                { value: 'active', label: 'Active' },
+                { value: 'pending', label: 'Pending' },
+                { value: 'expired', label: 'Expired' },
+              ],
+            },
+            {
+              name: 'certificateNumber',
+              label: 'Certificate Number',
+              type: 'text',
+            },
+            { name: 'validUntil', label: 'Valid Until', type: 'text' },
           ],
         },
         {
@@ -100,9 +97,9 @@ export const inputConfig: Record<
           label: 'Packaging',
           type: 'array',
           subFields: [
-            { name: 'type', label: 'Type', type: 'text' },
-            { name: 'size', label: 'Size', type: 'number' },
-            { name: 'unit', label: 'Unit', type: 'text' },
+            { name: 'type', label: 'Type', type: 'text', required: true },
+            { name: 'size', label: 'Size', type: 'number', required: true },
+            { name: 'unit', label: 'Unit', type: 'text', required: true },
             { name: 'sku', label: 'SKU', type: 'text' },
             { name: 'partNumber', label: 'Part Number', type: 'text' },
             {
@@ -126,6 +123,7 @@ export const inputConfig: Record<
               name: 'type',
               label: 'Type',
               type: 'dropdown',
+              required: true,
               options: [
                 { value: 'material', label: 'Material' },
                 { value: 'seal', label: 'Seal' },
@@ -133,11 +131,12 @@ export const inputConfig: Record<
                 { value: 'paint', label: 'Paint' },
               ],
             },
-            { name: 'name', label: 'Name', type: 'text' },
+            { name: 'name', label: 'Name', type: 'text', required: true },
             {
               name: 'rating',
               label: 'Rating',
               type: 'dropdown',
+              required: true,
               options: [
                 { value: 'excellent', label: 'Excellent' },
                 { value: 'good', label: 'Good' },
@@ -147,29 +146,9 @@ export const inputConfig: Record<
                 { value: 'test_required', label: 'Test Required' },
               ],
             },
-            { name: 'notes', label: 'Notes', type: 'text' },
+            { name: 'notes', label: 'Notes', type: 'textarea' },
           ],
         },
-      ],
-      properties: [
-        { name: 'properties.baseOil', label: 'Base Oil', type: 'text' },
-        {
-          name: 'properties.viscosityGrade',
-          label: 'Viscosity Grade',
-          type: 'text',
-        },
-        {
-          name: 'properties.viscosityIndex',
-          label: 'Viscosity Index',
-          type: 'number',
-        },
-        { name: 'properties.foodGrade', label: 'Food Grade', type: 'checkbox' },
-        {
-          name: 'properties.biodegradable',
-          label: 'Biodegradable',
-          type: 'checkbox',
-        },
-        { name: 'properties.color', label: 'Color', type: 'text' },
       ],
       compliance: [
         {
@@ -199,11 +178,26 @@ export const inputConfig: Record<
           label: 'Related Products',
           type: 'array',
           subFields: [
-            { name: 'productId', label: 'Product ID', type: 'text' },
+            {
+              name: 'productId',
+              label: 'Product ID',
+              type: 'text',
+              required: true,
+            },
             {
               name: 'relationshipType',
               label: 'Relationship Type',
-              type: 'text',
+              type: 'dropdown',
+              required: true,
+              options: [
+                { value: 'alternative', label: 'Alternative' },
+                { value: 'complementary', label: 'Complementary' },
+                { value: 'upgrade', label: 'Upgrade' },
+                { value: 'downgrade', label: 'Downgrade' },
+                { value: 'required_accessory', label: 'Required Accessory' },
+                { value: 'previous_version', label: 'Previous Version' },
+                { value: 'next_version', label: 'Next Version' },
+              ],
             },
           ],
         },
@@ -225,7 +219,6 @@ export const inputConfig: Record<
           type: 'checkbox',
         },
       ],
-      media: [],
       metadata: [
         {
           name: 'metadata.status',
@@ -242,7 +235,7 @@ export const inputConfig: Record<
           name: 'metadata.tags',
           label: 'Tags',
           type: 'array',
-          subFields: [{ name: 'tag', label: 'Tag', type: 'text' }],
+          subFields: [{ name: '', label: 'Tag', type: 'text' }], // Empty name for string array
         },
       ],
     },
@@ -266,22 +259,34 @@ export const inputConfig: Record<
           label: 'Detailed Description',
           type: 'textarea',
         },
-        { name: 'targetAudience', label: 'Target Audience', type: 'text' },
       ],
-      categorization: [],
+      categorization: [], // Handled by CategorySelector
+      media: [], // Handled by MediaUploader and MediaForm
       details: [
         {
           name: 'keyBenefits',
           label: 'Key Benefits',
           type: 'array',
-          subFields: [{ name: 'benefit', label: 'Benefit', type: 'text' }],
+          subFields: [
+            { name: '', label: 'Benefit', type: 'text' }, // Empty name for string array
+          ],
+        },
+        {
+          name: 'targetAudience',
+          label: 'Target Audience',
+          type: 'textarea',
+        },
+        {
+          name: 'methodology',
+          label: 'Methodology',
+          type: 'textarea',
         },
         {
           name: 'deliverables',
           label: 'Deliverables',
           type: 'array',
           subFields: [
-            { name: 'item', label: 'Item', type: 'text' },
+            { name: 'item', label: 'Item', type: 'text', required: true },
             { name: 'format', label: 'Format', type: 'text' },
             { name: 'frequency', label: 'Frequency', type: 'text' },
           ],
@@ -291,13 +296,15 @@ export const inputConfig: Record<
           label: 'Service Levels',
           type: 'array',
           subFields: [
-            { name: 'name', label: 'Name', type: 'text' },
-            { name: 'description', label: 'Description', type: 'text' },
+            { name: 'name', label: 'Name', type: 'text', required: true },
+            { name: 'description', label: 'Description', type: 'textarea' },
             {
               name: 'featuresIncluded',
               label: 'Features Included',
               type: 'array',
-              subFields: [{ name: 'feature', label: 'Feature', type: 'text' }],
+              subFields: [
+                { name: '', label: 'Feature', type: 'text' }, // Empty name for string array
+              ],
             },
           ],
         },
@@ -306,7 +313,12 @@ export const inputConfig: Record<
           label: 'Parameters Monitored',
           type: 'array',
           subFields: [
-            { name: 'parameter', label: 'Parameter', type: 'text' },
+            {
+              name: 'parameter',
+              label: 'Parameter',
+              type: 'text',
+              required: true,
+            },
             { name: 'technology', label: 'Technology', type: 'text' },
             { name: 'unit', label: 'Unit', type: 'text' },
           ],
@@ -316,10 +328,14 @@ export const inputConfig: Record<
           label: 'Technology Used',
           type: 'array',
           subFields: [
-            { name: 'technology', label: 'Technology', type: 'text' },
+            { name: '', label: 'Technology', type: 'text' }, // Empty name for string array
           ],
         },
-        { name: 'duration', label: 'Duration', type: 'text' },
+        {
+          name: 'duration',
+          label: 'Duration',
+          type: 'text',
+        },
         {
           name: 'reportingDetails.dashboardAccess',
           label: 'Dashboard Access',
@@ -329,7 +345,9 @@ export const inputConfig: Record<
           name: 'reportingDetails.standardReports',
           label: 'Standard Reports',
           type: 'array',
-          subFields: [{ name: 'report', label: 'Report', type: 'text' }],
+          subFields: [
+            { name: '', label: 'Report', type: 'text' }, // Empty name for string array
+          ],
         },
         {
           name: 'reportingDetails.customReportingAvailable',
@@ -340,24 +358,47 @@ export const inputConfig: Record<
           name: 'applicableIndustries',
           label: 'Applicable Industries',
           type: 'array',
-          subFields: [{ name: 'industry', label: 'Industry', type: 'text' }],
+          subFields: [
+            { name: '', label: 'Industry', type: 'text' }, // Empty name for string array
+          ],
         },
         {
           name: 'applicableEquipment',
           label: 'Applicable Equipment',
           type: 'array',
-          subFields: [{ name: 'equipment', label: 'Equipment', type: 'text' }],
+          subFields: [
+            { name: '', label: 'Equipment', type: 'text' }, // Empty name for string array
+          ],
         },
         {
           name: 'prerequisites',
           label: 'Prerequisites',
           type: 'array',
           subFields: [
-            { name: 'requirement', label: 'Requirement', type: 'text' },
+            { name: '', label: 'Prerequisite', type: 'text' }, // Empty name for string array
           ],
         },
       ],
-      media: [],
+      visibility: [
+        {
+          name: 'visibility.isPublic',
+          label: 'Publicly Visible',
+          type: 'checkbox',
+        },
+        {
+          name: 'visibility.requiresAuth',
+          label: 'Requires Authentication',
+          type: 'checkbox',
+        },
+        {
+          name: 'visibility.restrictedRoles',
+          label: 'Restricted Roles',
+          type: 'array',
+          subFields: [
+            { name: '', label: 'Role', type: 'text' }, // Empty name for string array
+          ],
+        },
+      ],
       metadata: [
         {
           name: 'metadata.status',
@@ -370,24 +411,52 @@ export const inputConfig: Record<
           ],
         },
         {
+          name: 'metadata.version',
+          label: 'Version',
+          type: 'text',
+        },
+        {
+          name: 'metadata.internalCode',
+          label: 'Internal Code',
+          type: 'text',
+        },
+        {
           name: 'metadata.tags',
           label: 'Tags',
           type: 'array',
-          subFields: [{ name: 'tag', label: 'Tag', type: 'text' }],
-        },
-        {
-          name: 'metadata.relatedProducts',
-          label: 'Related Products',
-          type: 'array',
-          subFields: [{ name: 'productId', label: 'Product ID', type: 'text' }],
+          subFields: [{ name: '', label: 'Tag', type: 'text' }],
         },
         {
           name: 'metadata.relatedCaseStudies',
-          label: 'Related Case Studies',
+          label: 'Related Case Studies (ObjectIds)',
           type: 'array',
           subFields: [
-            { name: 'caseStudyId', label: 'Case Study ID', type: 'text' },
+            { name: '', label: 'Case Study ID', type: 'text' }, // Expecting ObjectId
           ],
+        },
+        {
+          name: 'metadata.relatedProducts',
+          label: 'Related Products (ObjectIds)',
+          type: 'array',
+          subFields: [
+            { name: '', label: 'Product ID', type: 'text' }, // Expecting ObjectId
+          ],
+        },
+        {
+          name: 'metadata.seo.title',
+          label: 'SEO Title',
+          type: 'text',
+        },
+        {
+          name: 'metadata.seo.description',
+          label: 'SEO Description',
+          type: 'textarea',
+        },
+        {
+          name: 'metadata.seo.keywords',
+          label: 'SEO Keywords',
+          type: 'array',
+          subFields: [{ name: '', label: 'Keyword', type: 'text' }],
         },
       ],
     },
@@ -421,12 +490,9 @@ export const inputConfig: Record<
           label: 'Detailed Description',
           type: 'textarea',
         },
-        { name: 'isSubcategory', label: 'Is Subcategory', type: 'checkbox' },
-        { name: 'parent', label: 'Parent Category', type: 'text' },
       ],
-      categorization: [],
-      details: [],
-      media: [],
+      categorization: [], // Handled by CategorySelector
+      media: [], // Handled by MediaUploader and MediaForm
       metadata: [
         {
           name: 'metadata.status',
@@ -442,12 +508,33 @@ export const inputConfig: Record<
           name: 'metadata.industryFocus',
           label: 'Industry Focus',
           type: 'array',
-          subFields: [{ name: 'focus', label: 'Focus Area', type: 'text' }],
+          subFields: [
+            { name: '', label: 'Industry', type: 'text' }, // Empty name to submit as string
+          ],
+        },
+        {
+          name: 'metadata.seo.title',
+          label: 'SEO Title',
+          type: 'text',
+        },
+        {
+          name: 'metadata.seo.description',
+          label: 'SEO Description',
+          type: 'textarea',
+        },
+        {
+          name: 'metadata.seo.keywords',
+          label: 'SEO Keywords',
+          type: 'array',
+          subFields: [
+            { name: '', label: 'Keyword', type: 'text' }, // Empty name for string array
+          ],
         },
         {
           name: 'metadata.displayOrder',
           label: 'Display Order',
           type: 'number',
+          required: true,
         },
       ],
     },

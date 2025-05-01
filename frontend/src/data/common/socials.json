@@ -1,0 +1,22 @@
+[
+  {
+    "platform": "Facebook",
+    "url": "https://facebook.com/synix",
+    "icon": "icon-facebook"
+  },
+  {
+    "platform": "Instagram",
+    "url": "https://instagram.com/synix",
+    "icon": "icon-instagram"
+  },
+  {
+    "platform": "Twitter",
+    "url": "https://twitter.com/synix",
+    "icon": "icon-Frame"
+  },
+  {
+    "platform": "LinkedIn",
+    "url": "https://linkedin.com/company/synix",
+    "icon": "icon-link-in"
+  }
+]

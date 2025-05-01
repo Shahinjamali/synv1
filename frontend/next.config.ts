@@ -5,8 +5,16 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/dashboard',
-        destination: '/dashboard/user', // Default role; ideally dynamic
+        destination: '/dashboard/user', // default fallback
         permanent: false,
+      },
+    ];
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'http://localhost:5000/api/:path*', // proxy API calls to backend
       },
     ];
   },

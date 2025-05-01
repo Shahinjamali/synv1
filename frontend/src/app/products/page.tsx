@@ -9,7 +9,6 @@ import { Category } from '@/types/category';
 
 export default async function ProductsPage() {
   const categoriesResponse = await getProductCategories();
-  console.log('categoriesResponse', categoriesResponse);
 
   const categories: Category[] = categoriesResponse?.data?.items ?? [];
 

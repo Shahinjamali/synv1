@@ -5,7 +5,7 @@ const AuditLogSchema = new mongoose.Schema(
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: false, // Allow system logs
+      required: false,
       index: true,
     },
     action: {
@@ -20,13 +20,14 @@ const AuditLogSchema = new mongoose.Schema(
         "system",
         "access",
         "other",
-        "sample_created", // Added for POST /sample
-        "sample_submitted", // Added for PATCH /submit
-        "results_received", // Added for PATCH /results
+        "sample_created",
+        "sample_submitted",
+        "results_received",
         "lab-report-added",
         "lab_report_created",
-        "create_user", // Added
-        "update_user", // Added
+        "create_user",
+        "update_user",
+        "update_equipment",
       ],
       index: true,
     },
@@ -48,7 +49,8 @@ const AuditLogSchema = new mongoose.Schema(
           "Content",
           "AuditLog",
           "Other",
-          "Lab", // Added for lab reports
+          "Lab",
+          "Equipment",
         ],
         required: true,
       },
@@ -59,7 +61,7 @@ const AuditLogSchema = new mongoose.Schema(
     },
     details: {
       type: mongoose.Schema.Types.Mixed,
-      required: false, // Made optional for flexibility
+      required: false,
       default: {},
     },
     metadata: {
@@ -77,7 +79,6 @@ const AuditLogSchema = new mongoose.Schema(
   }
 );
 
-// Virtuals
 AuditLogSchema.virtual("user", {
   ref: "User",
   localField: "userId",
@@ -92,15 +93,12 @@ AuditLogSchema.virtual("affectedEntity", {
   justOne: true,
 });
 
-// Indexes
 AuditLogSchema.index(
   { userId: 1, action: 1, loggedAt: -1 },
   { background: true }
 );
-// Optional TTL (1 year)
 AuditLogSchema.index({ loggedAt: 1 }, { expireAfterSeconds: 31536000 });
 
-// Pre-save hook adjustment
 AuditLogSchema.pre("save", function (next) {
   if (
     this.action === "update" &&

@@ -1,38 +1,59 @@
+// schemas/categorySchema.ts (partial update)
 import { z } from 'zod';
 
-export const categorySchema = z.object({
-  // Basic Info
-  title: z.string().min(1, 'Title is required'),
-  subtitle: z.string().optional(),
-  slug: z.string().min(1, 'Slug is required'),
-  scope: z.enum(['product', 'service']),
-  isSubcategory: z.boolean().default(false),
+const isValidObjectId = (val: string) => /^[0-9a-fA-F]{24}$/.test(val);
 
-  // Hierarchical Relations
-  parent: z.string().nullable().optional(),
-  parentSlug: z.string().nullable().optional(),
-
-  // Descriptions
-  overview: z.string().optional(),
-  description: z.object({
-    short: z.string().min(1, 'Short description is required'),
-    detailed: z.string().optional(),
-  }),
-
-  // Media Assets
-  mediaAssets: z.array(z.string()).optional(),
-
-  // Metadata
-  metadata: z.object({
-    status: z.enum(['active', 'draft', 'archived']).default('active'),
-    seo: z
+export const categorySchema = z
+  .object({
+    title: z.string().min(1, 'Title is required'),
+    subtitle: z.string().optional(),
+    slug: z.string().min(1, 'Slug is required'),
+    scope: z.enum(['product', 'service']),
+    isSubcategory: z.boolean().default(false),
+    parent: z
+      .string()
+      .optional()
+      .refine((val) => !val || isValidObjectId(val), {
+        message: 'Parent must be a valid 24-character hex string or empty',
+      }),
+    parentSlug: z.string().optional(),
+    overview: z.string().optional(),
+    description: z
       .object({
-        title: z.string().optional(),
-        description: z.string().optional(),
-        keywords: z.array(z.string()).optional(),
+        short: z.string().min(1, 'Short description is required'),
+        detailed: z.string().optional(),
       })
       .optional(),
-    industryFocus: z.array(z.string()).optional(),
-    displayOrder: z.number().optional(),
-  }),
-});
+    mediaAssets: z.array(z.string()).optional(),
+    metadata: z
+      .object({
+        status: z.enum(['active', 'draft', 'archived']).default('active'),
+        seo: z
+          .object({
+            title: z.string().optional(),
+            description: z.string().optional(),
+            keywords: z.array(z.string()).optional(),
+          })
+          .optional(),
+        industryFocus: z.array(z.string()).optional(),
+        displayOrder: z.number().default(0),
+      })
+      .optional(),
+  })
+  .superRefine((data, ctx) => {
+    // Ensure parent is required for subcategories and not present for top-level categories
+    if (data.isSubcategory && !data.parent) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ['parent'],
+        message: 'Parent category is required for subcategories',
+      });
+    }
+    if (!data.isSubcategory && data.parent) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ['parent'],
+        message: 'Parent category should not be set for top-level categories',
+      });
+    }
+  });

@@ -1,4 +1,3 @@
-// src/types/auth.ts
 export type UserRole =
   | 'superadmin'
   | 'admin'
@@ -15,6 +14,7 @@ export interface User {
   companyId: string;
   email: string;
   roles: string[];
+  roleType: 'owner' | 'customer';
   hasCompletedWelcome: boolean;
 }
 
@@ -29,8 +29,10 @@ export interface AuthContextType {
   loading: boolean;
   login: (
     email: string,
-    password: string
+    password: string,
+    isAdminLogin?: boolean
   ) => Promise<{ success: boolean; message?: string }>;
   logout: () => Promise<void>;
   refreshAuth: () => Promise<void>;
+  // hasRole: (roleType: 'owner' | 'customer', role: string) => boolean;
 }

@@ -9,16 +9,19 @@ interface ProductCardProps {
   category: Category;
 }
 
+const PLACEHOLDER_IMAGE = '/assets/images/placeholders/product.webp';
+
 const ProductCard: React.FC<ProductCardProps> = ({ category }) => {
-  // Determine the parent category slug for top-level categories
-  const parentSlug = category.isSubcategory ? 'metalworkingfluids' : ''; // Adjust based on parent logic
+  const imageUrl =
+    Array.isArray(category.mediaAssets) && category.mediaAssets.length > 0
+      ? (category.mediaAssets.find((asset) => asset.type === 'productCard')
+          ?.url ?? PLACEHOLDER_IMAGE)
+      : PLACEHOLDER_IMAGE;
+
+  const parentSlug = category.isSubcategory ? 'metalworkingfluids' : '';
   const basePath = category.isSubcategory
     ? `/products/${parentSlug}`
     : '/products';
-
-  const imageUrl =
-    category?.mediaAssets?.[0]?.url ||
-    '/assets/images/services/services-6-1.jpg';
 
   return (
     <div className="services-four__single">

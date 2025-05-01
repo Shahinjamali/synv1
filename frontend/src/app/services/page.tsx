@@ -11,16 +11,15 @@ import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-// import { Category } from '@/types/products';
 
 const swiperOptions = {
   modules: [Autoplay, Pagination, Navigation],
   slidesPerView: 2,
-  spaceBetween: 0,
+  spaceBetween: 30,
   loop: true,
   navigation: {
-    nextEl: '.h1n',
-    prevEl: '.h1p',
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
   },
   pagination: {
     el: '.swiper-pagination',
@@ -28,12 +27,13 @@ const swiperOptions = {
   },
   breakpoints: {
     320: { slidesPerView: 1, spaceBetween: 30 },
-    575: { slidesPerView: 1, spaceBetween: 30 },
-    767: { slidesPerView: 1, spaceBetween: 30 },
     991: { slidesPerView: 2, spaceBetween: 30 },
-    1199: { slidesPerView: 2, spaceBetween: 30 },
-    1350: { slidesPerView: 2, spaceBetween: 30 },
   },
+};
+
+const truncateWords = (text: string, limit: number): string => {
+  const words = text.trim().split(/\s+/);
+  return words.length <= limit ? text : words.slice(0, limit).join(' ') + '...';
 };
 
 export default function ServicesPage() {
@@ -48,12 +48,13 @@ export default function ServicesPage() {
           status: 'active',
           scope: 'service',
         });
-
         const servicesItems = response?.data?.items || [];
         setServices(servicesItems);
       } catch (err) {
         setError('Failed to load services');
-        console.error(err);
+        if (process.env.NODE_ENV === 'development') {
+          console.error(err);
+        }
       } finally {
         setLoading(false);
       }
@@ -74,82 +75,81 @@ export default function ServicesPage() {
               Predictive Maintenance <br /> Powered by AI
             </h2>
           </div>
+
           <div className="services-eight__carousel-box">
             {loading ? (
               <p>Loading services...</p>
             ) : error ? (
-              <p>{error}</p>
-            ) : !services || services.length === 0 ? (
-              <p>No services available</p>
+              <p className="text-danger">{error}</p>
+            ) : services.length === 0 ? (
+              <p>No services available at this time.</p>
             ) : (
-              <Swiper
-                {...swiperOptions}
-                className="thm-swiper__slider swiper-container"
-              >
-                {services.map((service) => (
-                  <SwiperSlide key={service._id}>
-                    <div className="services-eight__single">
-                      <div className="services-eight__img-box">
-                        <div className="services-eight__img">
-                          <Image
-                            src={
-                              service.mediaAssets?.[0]?.url ||
-                              '/assets/images/services/services-6-1.jpg'
-                            }
-                            alt={service.title}
-                            width={400}
-                            height={300}
-                            priority
-                          />
-                        </div>
-                      </div>
-                      <div className="services-eight__content">
-                        <div className="services-eight__title-box">
-                          <div className="services-eight__icon">
-                            {/* <span
-                              className={`icon-${
-                                service.category === 'Predictive Maintenance'
-                                  ? 'predictive'
-                                  : service.category ===
-                                      'Preventive Maintenance'
-                                    ? 'preventive'
-                                    : 'default'
-                              }`}
-                            ></span> */}
+              <>
+                <Swiper
+                  {...swiperOptions}
+                  className="thm-swiper__slider swiper-container"
+                  aria-roledescription="carousel"
+                  aria-label="Service Highlights Carousel"
+                >
+                  {services.map((service) => {
+                    const imageUrl =
+                      service.mediaAssets?.find(
+                        (asset) => asset.type === 'serviceCard'
+                      )?.url || '/assets/images/placeholders/servicecat.webp';
+
+                    const categoryPath = service.categorySlug
+                      ? service.categorySlug.toLowerCase().replace(/\s+/g, '-')
+                      : 'uncategorized';
+
+                    const detailHref = `/services/${categoryPath}/${service.slug}`;
+
+                    return (
+                      <SwiperSlide key={service._id}>
+                        <div className="services-eight__single">
+                          <div className="services-eight__img-box">
+                            <div className="services-eight__img">
+                              <Image
+                                src={imageUrl}
+                                alt={service.title}
+                                width={400}
+                                height={300}
+                                loading="lazy"
+                              />
+                            </div>
                           </div>
-                          <h4 className="services-eight__title">
-                            <Link
-                              href={`/services/${service.categorySlug.toLowerCase().replace(/\s+/g, '-')}/${service.slug}`}
-                            >
-                              {service.title}
-                            </Link>
-                          </h4>
+                          <div className="services-eight__content">
+                            <div className="services-eight__title-box">
+                              <h4 className="services-eight__title">
+                                <Link href={detailHref}>{service.title}</Link>
+                              </h4>
+                            </div>
+                            <p className="services-eight__text">
+                              {service.subtitle ||
+                                truncateWords(
+                                  service.description?.short || '',
+                                  20
+                                )}
+                            </p>
+                            <div className="services-eight__btn-box">
+                              <Link
+                                href={detailHref}
+                                className="services-eight__btn thm-btn"
+                              >
+                                Read More
+                                <span className="icon-dabble-arrow-right" />
+                              </Link>
+                            </div>
+                          </div>
                         </div>
-                        <p className="services-eight__text">
-                          {service.subtitle ||
-                            (service.description?.short
-                              ? service.description.short.substring(0, 100) +
-                                '...'
-                              : '')}
-                        </p>
-                        <div className="services-eight__btn-box">
-                          <Link
-                            href={`/services/${service.categorySlug.toLowerCase().replace(/\s+/g, '-')}/${service.slug}`}
-                            className="services-eight__btn thm-btn"
-                          >
-                            Read More
-                            <span className="icon-dabble-arrow-right"></span>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
+                      </SwiperSlide>
+                    );
+                  })}
+                </Swiper>
+                <div className="services-eight__dot-style">
+                  <div className="swiper-pagination" />
+                </div>
+              </>
             )}
-            <div className="services-eight__dot-style">
-              <div className="swiper-pagination"></div>
-            </div>
           </div>
         </div>
       </section>

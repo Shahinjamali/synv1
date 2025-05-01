@@ -1,15 +1,28 @@
 export interface MediaAsset {
   _id?: string;
-  type: 'image' | 'thumbnail' | 'icon' | 'document' | 'video';
-  url: string;
+  type:
+    | 'image'
+    | 'thumbnail'
+    | 'icon'
+    | 'document'
+    | 'video'
+    | 'banner'
+    | 'productCard'
+    | 'featureBlock'
+    | 'verticalFeature'
+    | 'heroHalf'
+    | 'serviceCard'
+    | 'wideBanner'
+    | 'miniBanner'; // ✅ Add these
+  url?: string;
   altText?: string;
   title: string;
   description?: string;
   format?: string;
   size?: number;
-  language: string;
-  isPrimary: boolean;
-  access: 'public' | 'authenticated' | 'subscriber' | 'restricted';
+  language?: string;
+  isPrimary?: boolean;
+  access?: 'public' | 'authenticated' | 'subscriber' | 'restricted';
   restrictedRoles?: string[];
   metadata?: {
     documentType?:
@@ -30,8 +43,20 @@ export interface MediaAsset {
     };
     duration?: number;
   };
-  owner: {
-    type: 'product' | 'category' | 'service';
-    id: string;
+  owner?: {
+    type: 'product' | 'category' | 'service' | 'orphaned';
+    id: string | null; // Allow null when orphaned
   };
+  tags?: string[];
+  status?: 'orphaned' | 'assigned';
+  createdAt?: string;
+  updatedAt?: string;
+  file?: File; // Frontend only
+}
+export interface CropData {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  aspect?: number;
 }

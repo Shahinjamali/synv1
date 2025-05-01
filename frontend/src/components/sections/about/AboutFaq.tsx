@@ -38,43 +38,49 @@ const AboutFaq: React.FC = () => {
                 role="tablist"
                 aria-multiselectable="true"
               >
-                {questions.map((item, index) => {
-                  const isActive = activeIndex === index;
-                  return (
-                    <div
-                      key={item.question}
-                      className={`accrodion${isActive ? ' active' : ''}`}
-                    >
+                {Array.isArray(questions) && questions.length > 0 ? (
+                  questions.map((item, index) => {
+                    const isActive = activeIndex === index;
+                    return (
                       <div
-                        className="accrodion-title"
-                        role="button"
-                        tabIndex={0}
-                        onClick={() => handleToggle(index)}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' || e.key === ' ') {
-                            handleToggle(index);
-                          }
-                        }}
-                        aria-expanded={isActive}
-                        aria-controls={`faq-panel-${index}`}
-                        id={`faq-header-${index}`}
+                        key={`faq-${index}-${item.question.slice(0, 20)}`}
+                        className={`accrodion${isActive ? ' active' : ''}`}
                       >
-                        <h4>{item.question}</h4>
-                      </div>
-                      <div
-                        className="accrodion-content"
-                        id={`faq-panel-${index}`}
-                        role="region"
-                        aria-labelledby={`faq-header-${index}`}
-                        hidden={!isActive}
-                      >
-                        <div className="inner">
-                          <p>{item.answer}</p>
+                        <div
+                          className="accrodion-title"
+                          role="button"
+                          tabIndex={0}
+                          onClick={() => handleToggle(index)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              handleToggle(index);
+                            }
+                          }}
+                          aria-expanded={isActive}
+                          aria-controls={`faq-panel-${index}`}
+                          id={`faq-header-${index}`}
+                        >
+                          <h4>{item.question}</h4>
+                        </div>
+                        <div
+                          className="accrodion-content"
+                          id={`faq-panel-${index}`}
+                          role="region"
+                          aria-labelledby={`faq-header-${index}`}
+                          hidden={!isActive}
+                        >
+                          <div className="inner">
+                            <p>{item.answer}</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })
+                ) : (
+                  <p className="text-muted text-center">
+                    We’re updating our FAQs — please check back soon.
+                  </p>
+                )}
               </div>
             </div>
           </div>

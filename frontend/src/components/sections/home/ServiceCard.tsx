@@ -4,6 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Service } from '@/types/services';
 
+const PLACEHOLDER_IMAGE = '/assets/images/placeholders/service.webp';
+
 interface ServiceCardProps {
   service: Service;
   delay?: string;
@@ -13,16 +15,23 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   service,
   delay = '100ms',
 }) => {
-  const imageUrl =
-    service.mediaAssets?.[0]?.url || '/assets/images/services/services-6-1.jpg';
+  const imageAsset = Array.isArray(service.mediaAssets)
+    ? service.mediaAssets.find((asset) => asset.type === 'serviceCard')
+    : undefined;
 
-  const description = service.description?.short || 'No description available.';
+  const imageUrl = imageAsset?.url || PLACEHOLDER_IMAGE;
 
-  const href = `/services/${service.categorySlug}/${service.slug}`;
+  const isValidLink = service.slug && service.categorySlug;
+  const hrefUrl = isValidLink
+    ? `/services/${service.categorySlug}/${service.slug}`
+    : '/services';
 
   return (
     <div className="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay={delay}>
-      <div className="services-six__single">
+      <article
+        className="services-six__single"
+        aria-label={`Service: ${service.title}`}
+      >
         <div className="services-six__img-box">
           <div className="services-six__img">
             <Image
@@ -31,25 +40,25 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
               width={400}
               height={300}
               loading="lazy"
+              style={{ width: '100%', height: 'auto' }}
             />
           </div>
         </div>
         <div className="services-six__content">
           <h3 className="services-six__title">
-            <Link href={href}>{service.title}</Link>
+            <Link href={hrefUrl}>{service.title}</Link>
           </h3>
-          <p className="services-six__text">{description}</p>
+          <p className="services-six__text">
+            {service.description?.short || 'No description available.'}
+          </p>
           <div className="services-six__read-more">
-            <Link href={href}>
+            <Link href={hrefUrl}>
               Read More
-              <span
-                className="icon-dabble-arrow-right"
-                aria-hidden="true"
-              ></span>
+              <span className="icon-dabble-arrow-right" aria-hidden="true" />
             </Link>
           </div>
         </div>
-      </div>
+      </article>
     </div>
   );
 };

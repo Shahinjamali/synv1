@@ -7,17 +7,18 @@ const helmet = require("helmet");
 const compression = require("compression");
 const path = require("path");
 const http = require("http");
-const { protect, authorize } = require("./middlewares/authMiddleware");
+const cookieParser = require("cookie-parser");
+const { protect } = require("./middlewares/authMiddleware");
 const errorHandler = require("./middlewares/error");
 const { initializeSocket } = require("./sockets/socket");
-const cookieParser = require("cookie-parser");
 
 // Import routes
+const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const companyRoutes = require("./routes/companyRoutes");
 const productRoutes = require("./routes/productRoutes");
-console.log("🔵 Imported productRoutes:", typeof productRoutes);
 const serviceRoutes = require("./routes/serviceRoutes");
+const categoryRoutes = require("./routes/categoryRoutes");
 const industryRoutes = require("./routes/industryRoutes");
 const sensorRoutes = require("./routes/sensorRoutes");
 const sensorDataRoutes = require("./routes/sensorDataRoutes");
@@ -31,40 +32,43 @@ const inventoryRoutes = require("./routes/inventoryRoutes");
 const knowledgeBaseRoutes = require("./routes/knowledgeBaseRoutes");
 const equipmentRoutes = require("./routes/equipmentRoutes");
 const reliabilityRoutes = require("./routes/reliabilityRoutes");
-const authRoutes = require("./routes/authRoutes");
 const oilAnalysisRoutes = require("./routes/oilAnalysisRoutes");
 const alertRoutes = require("./routes/alertRoutes");
-const oilTypes = require("./routes/oilTypesRoutes");
+const oilTypesRoutes = require("./routes/oilTypesRoutes");
 const labRoutes = require("./routes/labRoutes");
 const oilParameterRoutes = require("./routes/oilParameterRoutes");
-const oilTrends = require("./routes/trendsRoutes");
-const content = require("./routes/contentRoutes");
+const trendsRoutes = require("./routes/trendsRoutes");
 const newsletterRoutes = require("./routes/newsletterRoutes");
 const contactRoutes = require("./routes/contactRoutes");
-const categoryRoutes = require("./routes/categoryRoutes");
+const mediaAssetRoutes = require("./routes/mediaAssetRoutes");
+const caseStudyRoutes = require("./routes/caseStudyRoutes");
 
 const app = express();
 const server = http.createServer(app);
-const io = initializeSocket(server); // Initialize WebSocket server
+const io = initializeSocket(server);
 
-// Middleware
+// Middlewares
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:3000",
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-    allowedHeaders: [
-      "Content-Type",
-      "Authorization",
-      "Expires",
-      "Cache-Control",
-      "Pragma",
-    ],
-  })
-);
-app.options("*", cors());
+
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || "http://localhost:3000",
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+    "Expires",
+    "Cache-Control",
+    "Pragma",
+    "Cookie",
+  ],
+};
+
+app.use(cors(corsOptions));
+
+// Correct the options route to also use same options
+app.options("*", cors(corsOptions));
 app.use(morgan("dev"));
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(compression());
@@ -80,13 +84,26 @@ app.get("/api/health", (req, res) => {
   });
 });
 
-// Mount Routes
+// Public Routes (No Protect Middleware)
 app.use("/api/auth", authRoutes);
-app.use("/api/users", protect, userRoutes);
-app.use("/api/companies", protect, companyRoutes);
+app.use("/api/public", contactRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/services", serviceRoutes);
-app.use("/api/industries", industryRoutes);
+app.use("/api/categories", categoryRoutes);
+app.use("/api/content", contentRoutes);
+app.use("/api/knowledgebase", knowledgeBaseRoutes);
+app.use("/api/reliability", reliabilityRoutes);
+app.use("/api/newsletter", newsletterRoutes);
+app.use("/api/case-studies", caseStudyRoutes);
+
+// Static Files (Media)
+app.use("/api/media", mediaAssetRoutes);
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+// Protected Routes (Require Login)
+app.use("/api/users", userRoutes);
+app.use("/api/companies", protect, companyRoutes);
+app.use("/api/industries", protect, industryRoutes);
 app.use("/api/sensors", protect, sensorRoutes);
 app.use("/api/sensordata", protect, sensorDataRoutes);
 app.use("/api/maintenance", protect, maintenanceRoutes);
@@ -94,24 +111,27 @@ app.use("/api/orders", protect, orderRoutes);
 app.use("/api/reports", protect, reportRoutes);
 app.use("/api/notifications", protect, notificationRoutes);
 app.use("/api/auditlogs", protect, auditLogRoutes);
-app.use("/api/content", contentRoutes);
 app.use("/api/inventory", protect, inventoryRoutes);
-app.use("/api/knowledgebase", knowledgeBaseRoutes);
 app.use("/api/equipment", protect, equipmentRoutes);
-app.use("/api/reliability", reliabilityRoutes);
 app.use("/api/oil-analysis", protect, oilAnalysisRoutes);
 app.use("/api/alerts", protect, alertRoutes);
-app.use("/api/oil-types", protect, oilTypes);
+app.use("/api/oil-types", protect, oilTypesRoutes);
 app.use("/api/lab-reports", protect, labRoutes);
 app.use("/api/oil-parameter-types", protect, oilParameterRoutes);
-app.use("/api/trends", protect, oilTrends);
-app.use("/api/content", protect, content);
-app.use("/api/newsletter", newsletterRoutes);
-app.use("/api/public", contactRoutes);
-app.use("/api/categories", categoryRoutes);
+app.use("/api/trends", protect, trendsRoutes);
+
+// Catch-all API 404 Handler
+app.use("/api/*", (req, res) => {
+  res.status(404).json({ success: false, message: "API endpoint not found" });
+});
+
+// Global Error Handler
+app.use(errorHandler);
+
 // Serve Frontend in Production
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/out")));
+
   app.get("*", (req, res) =>
     res.sendFile(path.resolve(__dirname, "../frontend/out", "index.html"))
   );
@@ -126,16 +146,13 @@ mongoose
     process.exit(1);
   });
 
-// Make io available to the app
+// Attach io to app
 app.set("io", io);
 
-// Test Endpoint
+// Test API
 app.get("/api/data", (req, res) => {
-  res.json({ message: "Data from SYNIX backend on port 5000" });
+  res.json({ message: "Data from Synix backend server" });
 });
-
-// Global Error Handler
-app.use(errorHandler);
 
 // Start Server
 const PORT = process.env.PORT || 5000;

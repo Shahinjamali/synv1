@@ -14,7 +14,6 @@ const ApprovalSchema = new Schema(
       enum: ["active", "pending", "expired"],
       default: "active",
     },
-    documentId: { type: Schema.Types.ObjectId, ref: "MediaAsset" }, // Optional link to the certificate file
     access: {
       type: String,
       enum: ["public", "authenticated", "subscriber"],

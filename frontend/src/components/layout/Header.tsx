@@ -7,10 +7,7 @@ import React from 'react';
 
 interface HeaderProps {
   scroll: boolean;
-  handlePopup: () => void;
   handleMobileMenu: () => void;
-  handleSidebar: () => void;
-  isMobileMenu: boolean;
   isSidebar: boolean;
 }
 
@@ -26,7 +23,7 @@ const Header: React.FC<HeaderProps> = ({ scroll, handleMobileMenu }) => {
                   <div className="main-menu-three__logo">
                     <Link href="/">
                       <Image
-                        src="/assets/images/resources/synixLogo-1.png"
+                        src="/assets/images/resources/synixLogo.png"
                         alt="Synix Solutions logo"
                         width={150}
                         height={50}
@@ -47,7 +44,7 @@ const Header: React.FC<HeaderProps> = ({ scroll, handleMobileMenu }) => {
                   </button>
                   <Menu />
                 </div>
-                <div className="main-menu-three__right">
+                {/* <div className="main-menu-three__right">
                   <div className="main-menu-three__btn-box">
                     <Link
                       href="/dashboard"
@@ -56,7 +53,7 @@ const Header: React.FC<HeaderProps> = ({ scroll, handleMobileMenu }) => {
                       Dashboard
                     </Link>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -77,7 +74,7 @@ const Header: React.FC<HeaderProps> = ({ scroll, handleMobileMenu }) => {
                     <div className="main-menu-three__logo">
                       <Link href="/">
                         <Image
-                          src="/assets/images/resources/synixLogo-1.png"
+                          src="/assets/images/resources/synixLogo.png"
                           alt="Synix Solutions logo"
                           width={150}
                           height={50}
@@ -98,7 +95,7 @@ const Header: React.FC<HeaderProps> = ({ scroll, handleMobileMenu }) => {
                     </button>
                     <Menu />
                   </div>
-                  <div className="main-menu-three__right">
+                  {/* <div className="main-menu-three__right">
                     <div className="main-menu-three__btn-box">
                       <Link
                         href="/dashboard"
@@ -107,7 +104,7 @@ const Header: React.FC<HeaderProps> = ({ scroll, handleMobileMenu }) => {
                         Dashboard
                       </Link>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

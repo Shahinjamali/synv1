@@ -21,8 +21,11 @@ const ProductsAbout: React.FC = () => {
               >
                 <div className="about-five__shape-1 float-bob-y">
                   <Image
-                    src={image?.[0]?.src || '/fallback.jpg'}
-                    alt={image?.[0]?.alt || 'About Synix'}
+                    src={
+                      image?.[0]?.src ||
+                      '/assets/images/placeholders/productCardCat.webp'
+                    }
+                    alt={image?.[0]?.alt || 'Synix Product'}
                     width={image?.[0]?.width || 400}
                     height={image?.[0]?.height || 100}
                     loading="lazy"

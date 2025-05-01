@@ -1,8 +1,10 @@
 'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import React from 'react';
-import navItems from '@/data/layout/navItem.json'; // Assuming you have a navItems file for the menu items
+import navItems from '@/data/layout/navItem.json';
+import socials from '@/data/common/socials.json'; // ✅ Import shared socials
 
 interface MobileMenuProps {
   handleMobileMenu: () => void;
@@ -33,7 +35,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ handleMobileMenu }) => {
         <div className="logo-box">
           <Link href="/" aria-label="Go to homepage">
             <Image
-              src="/assets/images/resources/synixLogo-2.png"
+              src="/assets/images/resources/synixLogoWhite.png"
               alt="Synix Solutions"
               width={150}
               height={50}
@@ -68,23 +70,18 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ handleMobileMenu }) => {
 
         {/* Social Media */}
         <div className="mobile-nav__top">
-          <div className="mobile-nav__social">
-            <Link href="#" className="fab fa-twitter" aria-label="Twitter" />
-            <Link
-              href="#"
-              className="fab fa-facebook-square"
-              aria-label="Facebook"
-            />
-            <Link
-              href="#"
-              className="fab fa-pinterest-p"
-              aria-label="Pinterest"
-            />
-            <Link
-              href="#"
-              className="fab fa-instagram"
-              aria-label="Instagram"
-            />
+          <div className="mobile-nav__social flex gap-4">
+            {socials.map((social, index) => (
+              <Link
+                key={index}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.platform}
+              >
+                <i className={`${social.icon}`} />
+              </Link>
+            ))}
           </div>
         </div>
       </div>

@@ -5,7 +5,21 @@ const MediaAssetSchema = new Schema(
   {
     type: {
       type: String,
-      enum: ["image", "thumbnail", "icon", "document", "video"],
+      enum: [
+        "image",
+        "thumbnail",
+        "icon",
+        "banner",
+        "productCard",
+        "featureBlock",
+        "verticalFeature",
+        "heroHalf",
+        "serviceCard",
+        "wideBanner",
+        "miniBanner",
+        "document",
+        "video",
+      ],
       required: true,
       index: true,
     },
@@ -54,10 +68,19 @@ const MediaAssetSchema = new Schema(
     },
     owner: {
       // Link back to the owning document (Product or Category)
-      type: { type: String, enum: ["product", "category"], required: true },
-      id: { type: Schema.Types.ObjectId, required: true }, // References either Product or Category _id
+      type: {
+        type: String,
+        enum: ["product", "category", "service", "orphaned"],
+      },
+      id: { type: Schema.Types.ObjectId }, // References either Product or Category _id
     },
-    tags: [String], // Optional tags for filtering media assets themselves
+    tags: [String],
+    status: {
+      type: String,
+      enum: ["orphaned", "assigned"],
+      default: "orphaned", // Track whether the asset has an owner
+      index: true,
+    },
   },
   {
     timestamps: true, // Adds createdAt, updatedAt
@@ -75,5 +98,5 @@ MediaAssetSchema.index({
 MediaAssetSchema.index({ type: 1, access: 1 }); // General query by type and access level
 MediaAssetSchema.index({ "metadata.documentType": 1, language: 1, access: 1 }); // Find documents by type/lang/access globally
 
-const MediaAsset = mongoose.model("Media", MediaAssetSchema);
+const MediaAsset = mongoose.model("MediaAsset", MediaAssetSchema);
 module.exports = MediaAsset;

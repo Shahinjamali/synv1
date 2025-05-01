@@ -1,0 +1,10 @@
+{
+  "thumbnail": { "width": 150, "height": 150 },
+  "productCard": { "width": 285, "height": 262 },
+  "featureBlock": { "width": 380, "height": 297 },
+  "verticalFeature": { "width": 517, "height": 776 },
+  "heroHalf": { "width": 561, "height": 508 },
+  "serviceCard": { "width": 410, "height": 325 },
+  "wideBanner": { "width": 740, "height": 560 },
+  "miniBanner": { "width": 410, "height": 189 }
+}

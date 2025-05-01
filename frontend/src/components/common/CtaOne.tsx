@@ -1,8 +1,8 @@
 'use client';
+
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { subscribeToNewsletter } from '@/utils/api';
 
 const CtaOne: React.FC = () => {
@@ -30,29 +30,23 @@ const CtaOne: React.FC = () => {
   };
 
   return (
-    <section className="cta-one">
+    <section className="cta-one mt-5">
       <div className="container">
         <div className="cta-one__inner">
-          <div className="cta-one__shape-1">
-            <Image
-              src="/assets/images/shapes/cta-one-shape-1.png"
-              alt=""
-              width={100}
-              height={100}
-            />
-          </div>
           <div className="cta-one__img">
             <Image
-              src="/assets/images/resources/cta-one-img.png"
-              alt=""
+              src="/assets/images/placeholders/cta-p.webp"
+              alt="Newsletter Illustration"
               width={500}
               height={400}
             />
           </div>
+
           <h3 className="cta-one__title">
             Craftin digital experiences
             <br /> With that inspire
           </h3>
+
           <div className="cta-one__from-box">
             <form className="cta-one__form" onSubmit={handleSubmit}>
               <div className="cta-one__input-box">
@@ -63,6 +57,7 @@ const CtaOne: React.FC = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   disabled={loading}
+                  autoComplete="email"
                 />
               </div>
               <button

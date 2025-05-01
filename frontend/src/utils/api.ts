@@ -1,14 +1,16 @@
 // src/utils/api.ts
 import axios, { AxiosRequestConfig, AxiosError } from 'axios';
-import { ApiResponse, ApiError, ApiItemResponse } from '@/types/api';
+
+import { ApiResponse, ApiError } from '@/types/api';
+import { User } from '@/types/auth';
 import { Equipment } from '@/types/equipment';
 import {
-  OilAnalysisResponse,
-  OilNotification,
-  OilAnalysis,
   OilEntry,
-  Parameter,
+  OilAnalysis,
+  OilNotification,
   TrendData,
+  OilAnalysisResponse,
+  Parameter,
 } from '@/types/oil';
 import { Category, CategoryListResponse } from '@/types/category';
 import { MediaAsset } from '@/types/mediaAsset';
@@ -18,8 +20,6 @@ import {
   ServiceListResponse,
   GetServicesParams,
 } from '@/types/services';
-import { User } from '@/types/auth';
-
 import { TestimonialData, Blogs } from '@/types/content';
 import { ContactFormData } from '@/types/user';
 
@@ -94,6 +94,238 @@ const apiFetch = async <T>({
   }
 };
 
+// ==============================
+// AUTH APIs
+// ==============================
+export const loginUser = (email: string, password: string) =>
+  apiFetch<User>({
+    method: 'POST',
+    endpoint: '/api/auth/login',
+    data: { email, password },
+  });
+
+export const adminUsers = (email: string, password: string) =>
+  apiFetch<User>({
+    method: 'POST',
+    endpoint: '/api/auth/admin/login',
+    data: { email, password },
+  });
+export const logoutUser = () =>
+  apiFetch<null>({ method: 'POST', endpoint: '/api/auth/logout' });
+export const checkAuthStatus = () =>
+  apiFetch<User>({ method: 'GET', endpoint: '/api/auth/check-auth' });
+export const completeWelcome = () =>
+  apiFetch<{ success: boolean }>({
+    method: 'POST',
+    endpoint: '/api/auth/complete-welcome',
+  });
+
+// ==============================
+// USER APIs
+// ==============================
+export const getUsers = (params: {
+  page?: number;
+  limit?: number;
+  search?: string;
+}) => apiFetch({ method: 'GET', endpoint: '/api/users', params });
+export const getUserById = (userId: string) =>
+  apiFetch<User>({ method: 'GET', endpoint: `/api/users/${userId}` });
+export const createUser = (data: Omit<User, '_id' | 'hasCompletedWelcome'>) =>
+  apiFetch<User>({ method: 'POST', endpoint: '/api/users', data });
+export const updateUser = (userId: string, data: Partial<User>) =>
+  apiFetch<User>({ method: 'PUT', endpoint: `/api/users/${userId}`, data });
+export const deleteUser = (userId: string) =>
+  apiFetch<void>({ method: 'DELETE', endpoint: `/api/users/${userId}` });
+
+// ==============================
+//       Category APIs
+// ==============================
+
+export const getCategories = (): Promise<ApiResponse<Category[]>> =>
+  apiFetch<Category[]>({
+    method: 'GET',
+    endpoint: '/api/categories',
+  });
+
+export const getSubcategories = (
+  categoryId: string
+): Promise<ApiResponse<Category[]>> =>
+  apiFetch<Category[]>({
+    method: 'GET',
+    endpoint: `/api/categories/${categoryId}/subcategories`,
+  });
+
+export const createCategory = (data: FormData) =>
+  apiFetch<{ item: Category }>({
+    method: 'POST',
+    endpoint: '/api/categories',
+    data,
+    customHeaders: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+
+export const updateCategory = (slug: string, data: Partial<Category>) =>
+  apiFetch<Category>({
+    method: 'PATCH',
+    endpoint: `/api/categories/${slug}`,
+    data,
+  });
+
+// ==============================
+// PRODUCT APIs
+// ==============================
+
+export const getProducts = (params: {
+  categorySlug?: string;
+  subcategorySlug?: string;
+  search?: string;
+  page?: number;
+  limit?: number;
+}) =>
+  apiFetch<ProductListResponse>({
+    method: 'GET',
+    endpoint: '/api/products',
+    params,
+  });
+
+// Fetch a single product by slug
+export const getProductBySlug = (slug: string) =>
+  apiFetch<Product>({
+    method: 'GET',
+    endpoint: `/api/products/${slug}`,
+  });
+
+// Create a new product
+export const createProduct = (data: FormData) =>
+  apiFetch<{ item: Product }>({
+    method: 'POST',
+    endpoint: '/api/products',
+    data,
+    customHeaders: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+
+// Update an existing product
+export const updateProduct = (
+  id: string,
+  data: Partial<Product>,
+  files?: File[],
+  deleteMediaAssetIds?: string[]
+) =>
+  apiFetch<{ item: Product }>({
+    method: 'PATCH',
+    endpoint: `/api/products/${id}`,
+    data: (() => {
+      const formData = new FormData();
+      Object.entries(data).forEach(([key, value]) => {
+        formData.append(
+          key,
+          typeof value === 'object' && value !== null
+            ? JSON.stringify(value)
+            : String(value)
+        );
+      });
+      if (files) {
+        files.forEach((file) => formData.append('files', file));
+      }
+      if (deleteMediaAssetIds) {
+        formData.append(
+          'deleteMediaAssetIds',
+          JSON.stringify(deleteMediaAssetIds)
+        );
+      }
+      return formData;
+    })(),
+    customHeaders: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+
+// Delete a product by ID
+export const deleteProduct = (id: string) =>
+  apiFetch<{ success: boolean }>({
+    method: 'DELETE',
+    endpoint: `/api/products/${id}`,
+  });
+
+export const getProductCategories = (): Promise<
+  ApiResponse<CategoryListResponse>
+> =>
+  apiFetch<CategoryListResponse>({
+    method: 'GET',
+    endpoint: '/api/products/categories',
+  });
+
+export const getProductSubcategories = (
+  categorySlug: string
+): Promise<ApiResponse<CategoryListResponse>> =>
+  apiFetch<CategoryListResponse>({
+    method: 'GET',
+    endpoint: `/api/products/${categorySlug}/subcategories`,
+  });
+
+export const getProductCategoryBySlug = (
+  slug: string
+): Promise<ApiResponse<CategoryListResponse>> =>
+  apiFetch<CategoryListResponse>({
+    method: 'GET',
+    endpoint: `/api/products/?slug=${slug}`,
+  });
+
+// ==============================
+// SERVICE APIs
+// ==============================
+export const getServices = (params: GetServicesParams) =>
+  apiFetch<ServiceListResponse>({
+    method: 'GET',
+    endpoint: '/api/services',
+    params: params as Record<string, string | number | boolean>,
+  });
+export const getServiceBySlug = (slug: string) =>
+  apiFetch<Service>({ method: 'GET', endpoint: `/api/services/${slug}` });
+
+export const createService = (data: FormData) =>
+  apiFetch<{ item: Service }>({
+    method: 'POST',
+    endpoint: '/api/services',
+    data,
+    customHeaders: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+
+export const updateService = (slug: string, data: Partial<Service>) =>
+  apiFetch<Service>({ method: 'PUT', endpoint: `/api/services/${slug}`, data });
+export const deleteService = (slug: string) =>
+  apiFetch<{ deleted: boolean }>({
+    method: 'DELETE',
+    endpoint: `/api/services/${slug}`,
+  });
+
+// ==============================
+// MEDIA ASSET APIs
+// ==============================
+export const uploadMediaAsset = (file: File, metadata: Partial<MediaAsset>) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('metadata', JSON.stringify(metadata));
+  return apiClient
+    .post<
+      ApiResponse<MediaAsset>
+    >('/api/media/upload', formData, { headers: { 'Content-Type': 'multipart/form-data' } })
+    .then((res) => res.data);
+};
+
+export const getMediaAssets = (params?: {
+  ownerType?: string;
+  ownerId?: string;
+}) => apiFetch<MediaAsset[]>({ method: 'GET', endpoint: '/api/media', params });
+
+// ==============================
+// MORE Sections (equipment, oil, content, etc.)
+// ==============================
 //Content APIS
 export const getTestimonials = (options?: {
   signal?: AbortSignal;
@@ -131,89 +363,6 @@ export const getBlogBySlug = (
     endpoint: `/api/content/blogs/latest-articles/${encodeURIComponent(slug)}`,
     signal: options?.signal,
   });
-
-//Auth apis
-
-export const loginUser = (
-  email: string,
-  password: string
-): Promise<ApiResponse<User>> =>
-  apiFetch<User>({
-    method: 'POST',
-    endpoint: '/api/auth/login',
-    data: { email, password },
-  });
-
-export const logoutUser = (): Promise<ApiResponse<void>> =>
-  apiFetch<void>({
-    method: 'POST',
-    endpoint: '/api/auth/logout',
-  });
-
-export const checkAuthStatus = (): Promise<ApiResponse<User>> =>
-  apiFetch<User>({
-    endpoint: '/api/auth/check-auth',
-  });
-
-//User APIs
-// User Management APIs
-export const getUsers = (params: {
-  page?: number;
-  limit?: number;
-  search?: string;
-}): Promise<
-  ApiResponse<{
-    data: User[];
-    total: number;
-    pages: number;
-    currentPage: number;
-  }>
-> =>
-  apiFetch<{
-    data: User[];
-    total: number;
-    pages: number;
-    currentPage: number;
-  }>({
-    method: 'GET',
-    endpoint: '/api/users',
-    params,
-  });
-
-export const deleteUser = (userId: string): Promise<ApiResponse<void>> =>
-  apiFetch<void>({
-    method: 'DELETE',
-    endpoint: `/api/users/${userId}`,
-  });
-
-export const updateUser = (
-  userId: string,
-  data: Partial<User>
-): Promise<ApiResponse<User>> =>
-  apiFetch<User>({
-    method: 'PUT',
-    endpoint: `/api/users/${userId}`,
-    data,
-  });
-
-export const createUser = (
-  data: Omit<User, '_id' | 'hasCompletedWelcome'>
-): Promise<ApiResponse<User>> =>
-  apiFetch<User>({
-    method: 'POST',
-    endpoint: '/api/users',
-    data,
-  });
-
-export const getUserById = async (
-  userId: string
-): Promise<ApiResponse<User>> => {
-  const response = await apiFetch<User>({
-    method: 'GET',
-    endpoint: `/api/users/${userId}`,
-  });
-  return response;
-};
 
 // Equipment APIs
 export const createEquipment = (
@@ -353,14 +502,6 @@ export const getOilAnalyses = (
     endpoint: `/api/oil-analysis?equipmentId=${encodeURIComponent(equipmentId)}${oilName ? `&oilName=${encodeURIComponent(oilName)}` : ''}`,
   });
 
-export const completeWelcome = async (): Promise<
-  ApiResponse<{ success: boolean }>
-> =>
-  apiFetch<{ success: boolean }>({
-    method: 'POST',
-    endpoint: '/api/auth/complete-welcome',
-  });
-
 //Lab Data
 
 export const addLabData = (data: {
@@ -460,169 +601,5 @@ export const sendContactMessage = async (
     data,
   });
 };
-
-// ==============================
-//       Product APIs
-// ==============================
-export const getProducts = (params: {
-  categorySlug?: string;
-  subcategorySlug?: string;
-  search?: string;
-  page?: number;
-  limit?: number;
-}): Promise<ApiResponse<ProductListResponse>> =>
-  apiFetch<ProductListResponse>({
-    method: 'GET',
-    endpoint: '/api/products',
-    params,
-  });
-
-export const getProductCategories = (): Promise<
-  ApiResponse<CategoryListResponse>
-> =>
-  apiFetch<CategoryListResponse>({
-    method: 'GET',
-    endpoint: '/api/products/categories',
-  });
-
-export const getProductSubcategories = (
-  categorySlug: string
-): Promise<ApiResponse<CategoryListResponse>> =>
-  apiFetch<CategoryListResponse>({
-    method: 'GET',
-    endpoint: `/api/products/${categorySlug}/subcategories`,
-  });
-
-export const getProductCategoryBySlug = (
-  slug: string
-): Promise<ApiResponse<CategoryListResponse>> =>
-  apiFetch<CategoryListResponse>({
-    method: 'GET',
-    endpoint: `/api/products/?slug=${slug}`,
-  });
-
-export const getProductBySlug = (slug: string): Promise<ApiResponse<Product>> =>
-  apiFetch<Product>({
-    method: 'GET',
-    endpoint: `/api/products/${slug}`,
-  });
-
-export const createProduct = (
-  data: Omit<Product, '_id'>
-): Promise<ApiResponse<Product>> =>
-  apiFetch<Product>({
-    method: 'POST',
-    endpoint: '/api/products',
-    data,
-  });
-
-export const updateProduct = (
-  slug: string,
-  data: Partial<Product>
-): Promise<ApiResponse<Product>> =>
-  apiFetch<Product>({
-    method: 'PUT',
-    endpoint: `/api/products/${slug}`,
-    data,
-  });
-
-export const deleteProduct = (
-  slug: string
-): Promise<ApiResponse<{ deleted: boolean }>> =>
-  apiFetch<{ deleted: boolean }>({
-    method: 'DELETE',
-    endpoint: `/api/products/${slug}`,
-  });
-
-// ==============================
-//       Category APIs
-// ==============================
-
-export const getCategories = (): Promise<ApiResponse<Category[]>> =>
-  apiFetch<Category[]>({
-    method: 'GET',
-    endpoint: '/api/categories',
-  });
-
-export const getSubcategories = (
-  categoryId: string
-): Promise<ApiResponse<Category[]>> =>
-  apiFetch<Category[]>({
-    method: 'GET',
-    endpoint: `/api/categories/${categoryId}/subcategories`,
-  });
-
-export const createCategory = (
-  data: Omit<Category, '_id'>
-): Promise<ApiResponse<Category>> =>
-  apiFetch<Category>({
-    method: 'POST',
-    endpoint: '/api/categories',
-    data,
-  });
-
-// ==============================
-//       Service APIs
-// ==============================
-export const getServices = (
-  params: GetServicesParams
-): Promise<ApiResponse<ServiceListResponse>> =>
-  apiFetch<ServiceListResponse>({
-    method: 'GET',
-    endpoint: '/api/services',
-    params: params as Record<string, string | number | boolean>,
-  });
-
-export const getServiceBySlug = (
-  slug: string
-): Promise<ApiResponse<ApiItemResponse<Service>>> =>
-  apiFetch<ApiItemResponse<Service>>({
-    method: 'GET',
-    endpoint: `/api/services/${slug}`,
-  });
-
-export const createService = (
-  data: Omit<Service, '_id'>
-): Promise<ApiResponse<Service>> =>
-  apiFetch<Service>({
-    method: 'POST',
-    endpoint: '/api/services',
-    data,
-  });
-
-export const updateService = (
-  slug: string,
-  data: Partial<Omit<Service, '_id' | 'createdAt' | 'updatedAt'>>
-): Promise<ApiResponse<Service>> =>
-  apiFetch<Service>({
-    method: 'PUT',
-    endpoint: `/api/services/${slug}`,
-    data,
-    token: localStorage.getItem('token') ?? undefined,
-  });
-
-export const deleteService = (
-  slug: string
-): Promise<ApiResponse<{ deleted: boolean }>> =>
-  apiFetch<{ deleted: boolean }>({
-    method: 'DELETE',
-    endpoint: `/api/services/${slug}`,
-    token: localStorage.getItem('token') ?? undefined,
-  });
-
-// ==============================
-//       Media Asset APIs
-// ==============================
-
-export const uploadMediaAsset = (
-  file: File,
-  metadata: Partial<MediaAsset>
-): Promise<ApiResponse<MediaAsset>> =>
-  apiFetch<MediaAsset>({
-    method: 'POST',
-    endpoint: '/api/media/upload',
-    data: { file, metadata },
-    customHeaders: { 'Content-Type': 'multipart/form-data' },
-  });
 
 export default apiFetch;

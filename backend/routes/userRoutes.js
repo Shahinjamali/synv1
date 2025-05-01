@@ -11,6 +11,7 @@ const {
 
 const { auditLog } = require("../middlewares/auditMiddleware"); // Add this import
 const Company = require("../models/companyModel");
+const Equipment = require("../models/equipmentModel");
 
 router.get(
   "/",
@@ -276,9 +277,21 @@ router.put(
   auditLog("update_equipment", (req, res) => ({ updates: req.body })),
   async (req, res) => {
     try {
-      // Placeholder for equipment update logic
-      // Replace with actual Equipment model logic
-      res.json({ success: true, message: "Equipment updated" });
+      const equipment = await Equipment.findOneAndUpdate(
+        { _id: req.params.id, companyId: req.user.companyId },
+        { $set: req.body, lastUpdated: new Date() },
+        { new: true, runValidators: true }
+      );
+      if (!equipment) {
+        return res
+          .status(404)
+          .json({ success: false, message: "Equipment not found" });
+      }
+      res.json({
+        success: true,
+        message: "Equipment updated",
+        data: equipment,
+      });
     } catch (err) {
       res.status(500).json({ success: false, message: "Server error" });
     }

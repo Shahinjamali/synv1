@@ -26,7 +26,7 @@ const Team: React.FC = () => {
                   <Image
                     src={member.image}
                     alt={member.name || 'Team member'}
-                    width={200}
+                    width={300}
                     height={200}
                     className="rounded-md"
                     loading="lazy"

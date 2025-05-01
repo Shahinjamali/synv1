@@ -3,6 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Product } from '@/types/products';
 
+const PLACEHOLDER_IMAGE = '/assets/images/placeholders/product.webp';
+
 interface ProductCardProps {
   product: Product;
   delay?: string;
@@ -13,12 +15,23 @@ const ProductCard: React.FC<ProductCardProps> = ({
   delay = '100ms',
 }) => {
   const imageUrl =
-    product?.mediaAssets?.[0]?.url ||
-    '/assets/images/services/services-6-1.jpg';
+    Array.isArray(product.mediaAssets) && product.mediaAssets.length > 0
+      ? (product.mediaAssets.find((asset) => asset.type === 'productCard')
+          ?.url ?? PLACEHOLDER_IMAGE)
+      : PLACEHOLDER_IMAGE;
+
+  const isValidLink =
+    product?.slug && product?.categorySlug && product?.subcategorySlug;
+  const hrefUrl = isValidLink
+    ? `/products/${product.categorySlug}/${product.subcategorySlug}/${product.slug}`
+    : '/products';
 
   return (
     <div className="col-xl-4 col-lg-4 wow fadeInLeft" data-wow-delay={delay}>
-      <div className="services-nine__single">
+      <article
+        className="services-nine__single"
+        aria-label={`Product: ${product.title}`}
+      >
         <div className="services-nine__img-box">
           <div className="services-nine__img">
             <Image
@@ -30,30 +43,22 @@ const ProductCard: React.FC<ProductCardProps> = ({
               style={{ width: '100%', height: 'auto' }}
             />
           </div>
-          <div className="services-nine__icon">
-            <span className="icon-proconstruct" aria-hidden="true"></span>
-          </div>
         </div>
         <div className="services-nine__content">
           <h3 className="services-nine__title">
-            <Link href={`/products/${product.slug || product._id}`}>
-              {product.title}
-            </Link>
+            <Link href={hrefUrl}>{product.title}</Link>
           </h3>
           <p className="services-nine__text">
-            {product.description?.short || 'No description available'}
+            {product.description?.short || 'No description available.'}
           </p>
           <div className="services-nine__read-more">
-            <Link href={`/products/${product.slug || product._id}`}>
+            <Link href={hrefUrl}>
               Read More
-              <span
-                className="icon-dabble-arrow-right"
-                aria-hidden="true"
-              ></span>
+              <span className="icon-dabble-arrow-right" aria-hidden="true" />
             </Link>
           </div>
         </div>
-      </div>
+      </article>
     </div>
   );
 };
