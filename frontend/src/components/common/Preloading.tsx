@@ -1,7 +1,7 @@
 'use client';
 
 import { Suspense } from 'react';
-import PreloadingWrapper from './preloadingWrapper';
+import PreloadingWrappers from './preloadingWrappers';
 
 interface PreloadingProps {
   text?: string;
@@ -10,10 +10,10 @@ interface PreloadingProps {
   forceLongDelay?: boolean;
 }
 
-export default function PreloadingWrapper(props: PreloadingProps) {
+export default function Preloading(props: PreloadingProps) {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <PreloadingWrapper {...props} />
+      <PreloadingWrappers {...props} />
     </Suspense>
   );
 }
