@@ -4,7 +4,6 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Product } from '@/types/products';
-import { MediaAsset } from '@/types/mediaAsset';
 
 interface ProductsListProps {
   products: Product[];
@@ -13,12 +12,18 @@ interface ProductsListProps {
 }
 
 // Optional: truncate description to avoid overflow
-const truncateWords = (text: string, maxWords = 15): string => {
+const truncateWords = (text: string, maxWords = 10): string => {
   const words = text.split(' ');
   return words.length > maxWords
     ? words.slice(0, maxWords).join(' ') + '...'
     : text;
 };
+
+const PLACEHOLDER_IMAGE = '/assets/images/placeholders/metalworking-icon.webp';
+const PLACEHOLDER_IMAGE_1 =
+  '/assets/images/placeholders/metalworking-icon-1.webp';
+const PLACEHOLDER_IMAGE_2 =
+  '/assets/images/placeholders/metalworking-icon-2.webp';
 
 export default function ProductsList({
   products,
@@ -38,16 +43,19 @@ export default function ProductsList({
         <ul className="recent-project__list-box list-unstyled">
           {products.length > 0 ? (
             products.map((product, index) => {
-              const mediaAsset = Array.isArray(product.mediaAssets)
-                ? product.mediaAssets.find(
-                    (a): a is MediaAsset =>
-                      typeof a === 'object' && a.type === 'productCard'
-                  )
-                : null;
+              const mediaAssets = product.mediaAssets;
 
-              const imageUrl =
-                mediaAsset?.url ||
-                '/assets/images/placeholders/productList.webp';
+              const fallbackPlaceholders = [
+                PLACEHOLDER_IMAGE,
+                PLACEHOLDER_IMAGE_1,
+                PLACEHOLDER_IMAGE_2,
+              ];
+
+              const iconImage =
+                Array.isArray(mediaAssets) && mediaAssets.length > 0
+                  ? (mediaAssets.find((asset) => asset.type === 'icon')?.url ??
+                    fallbackPlaceholders[index % fallbackPlaceholders.length])
+                  : fallbackPlaceholders[index % fallbackPlaceholders.length];
 
               return (
                 <li
@@ -55,26 +63,15 @@ export default function ProductsList({
                   className="wow fadeInUp"
                   data-wow-delay={`${100 + index * 200}ms`}
                 >
-                  <div className="recent-project__img">
-                    <Image
-                      src={imageUrl}
-                      alt={product.title}
-                      width={100}
-                      height={100}
-                      layout="responsive"
-                    />
-                  </div>
                   <div className="recent-project__list-content">
                     <div className="icon">
-                      <span
-                        className={`icon-${
-                          index % 3 === 0
-                            ? 'architect'
-                            : index % 3 === 1
-                              ? 'blueprint-2'
-                              : 'blueprint-1'
-                        }`}
-                      ></span>
+                      <Image
+                        src={iconImage}
+                        alt={product.title}
+                        width={50}
+                        height={50}
+                        layout="responsive"
+                      />
                     </div>
                     <div className="content">
                       <h3>

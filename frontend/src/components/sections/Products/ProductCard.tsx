@@ -14,11 +14,13 @@ const PLACEHOLDER_IMAGE = '/assets/images/placeholders/product.webp';
 const ProductCard: React.FC<ProductCardProps> = ({ category }) => {
   const imageUrl =
     Array.isArray(category.mediaAssets) && category.mediaAssets.length > 0
-      ? (category.mediaAssets.find((asset) => asset.type === 'productCard')
+      ? (category.mediaAssets.find((asset) => asset.type === 'cardDefault')
           ?.url ?? PLACEHOLDER_IMAGE)
       : PLACEHOLDER_IMAGE;
 
-  const parentSlug = category.isSubcategory ? 'metalworkingfluids' : '';
+  const parentSlug =
+    category.isSubcategory && category.parentSlug ? category.parentSlug : '';
+
   const basePath = category.isSubcategory
     ? `/products/${parentSlug}`
     : '/products';
@@ -32,9 +34,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ category }) => {
         <h5 className="services-four__title">
           <Link href={`${basePath}/${category.slug}`}>{category.title}</Link>
         </h5>
-        {category.subtitle && (
+        {/* {category.subtitle && (
           <p className="services-four__text">{category.subtitle}</p>
-        )}
+        )} */}
         <p className="services-four__text">{category.description.short}</p>
         <div className="services-four__btn-box">
           <Link

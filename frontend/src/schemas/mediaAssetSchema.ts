@@ -1,7 +1,23 @@
 import { z } from 'zod';
 
 export const mediaAssetSchema = z.object({
-  type: z.enum(['image', 'thumbnail', 'icon', 'document', 'video']),
+  type: z.enum([
+    'image',
+    'thumbnail',
+    'cardDefault',
+    'cardWide',
+    'cardFeature',
+    'cardSquare',
+    'bannerDefault',
+    'bannerTall',
+    'heroCompact',
+    'bannerWide',
+    'bannerMini',
+    'document',
+    'video',
+    'icon',
+    'tallFeature',
+  ]),
   url: z.string().url('A valid URL is required'),
   altText: z.string().optional(),
   title: z.string().min(1, 'Title is required'),

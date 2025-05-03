@@ -6,14 +6,16 @@ export interface MediaAsset {
     | 'icon'
     | 'document'
     | 'video'
-    | 'banner'
-    | 'productCard'
-    | 'featureBlock'
-    | 'verticalFeature'
-    | 'heroHalf'
-    | 'serviceCard'
-    | 'wideBanner'
-    | 'miniBanner'; // ✅ Add these
+    | 'cardDefault'
+    | 'cardWide'
+    | 'cardFeature'
+    | 'cardSquare'
+    | 'bannerDefault'
+    | 'bannerTall'
+    | 'heroCompact'
+    | 'bannerWide'
+    | 'bannerMini'
+    | 'tallFeature';
   url?: string;
   altText?: string;
   title: string;

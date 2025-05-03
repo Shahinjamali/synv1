@@ -15,11 +15,11 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   service,
   delay = '100ms',
 }) => {
-  const imageAsset = Array.isArray(service.mediaAssets)
-    ? service.mediaAssets.find((asset) => asset.type === 'serviceCard')
-    : undefined;
-
-  const imageUrl = imageAsset?.url || PLACEHOLDER_IMAGE;
+  const imageUrl =
+    Array.isArray(service.mediaAssets) && service.mediaAssets.length > 0
+      ? (service.mediaAssets.find((asset) => asset.type === 'bannerMini')
+          ?.url ?? PLACEHOLDER_IMAGE)
+      : PLACEHOLDER_IMAGE;
 
   const isValidLink = service.slug && service.categorySlug;
   const hrefUrl = isValidLink

@@ -37,7 +37,7 @@ export default async function Home() {
     const services: Service[] = servicesRes?.data?.items ?? [];
     const testimonials: TestimonialData[] = testimonialsRes?.data ?? [];
     const blogs: Blogs[] = blogsRes?.data ?? [];
-
+    console.log(productsRes);
     return (
       <Layout>
         <Banner />

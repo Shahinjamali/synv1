@@ -1,9 +1,14 @@
 // src/app/products/[category]/[subcategory]/page.tsx
 import Layout from '@/components/layout/Layout';
 import ProductsList from '@/components/sections/Products/ProductsList';
-import { getProductCategoryBySlug, getProducts } from '@/utils/api';
+import {
+  getProductCategoryBySlug,
+  getProducts,
+  getCategoriesbySlug,
+} from '@/utils/api';
 import { Product } from '@/types/products';
 import { Category } from '@/types/category';
+import DescriptionCard from '@/components/common/DescriptionCard';
 
 export default async function SubcategoryPage({
   params: paramsPromise,
@@ -16,6 +21,7 @@ export default async function SubcategoryPage({
   // Fetch category
   const categoryResponse = await getProductCategoryBySlug(category);
   const categoryData: Category[] = categoryResponse?.data?.items ?? [];
+  const catData = await getCategoriesbySlug(subcategory);
 
   if (!categoryData.length) {
     throw new Error(`Category "${category}" not found`);
@@ -32,15 +38,6 @@ export default async function SubcategoryPage({
   const parentCategory = categoryData[0];
   const currentSubcategory = subcategoryData[0];
 
-  // Optional: Validate subcategory belongs to category
-  // if (
-  //   currentSubcategory.parent?.toString() !== parentCategory._id?.toString()
-  // ) {
-  //   throw new Error(
-  //     `Subcategory "${subcategory}" does not belong to category "${category}"`
-  //   );
-  // }
-
   // Fetch products by subcategory
   const productsResponse = await getProducts({ subcategorySlug: subcategory });
   const products: Product[] = productsResponse.data?.items ?? [];
@@ -49,6 +46,7 @@ export default async function SubcategoryPage({
     <Layout
       breadcrumbTitle={`Products - ${parentCategory.title} - ${currentSubcategory.title}`}
     >
+      <DescriptionCard details={catData.data} />
       <ProductsList
         products={products}
         header={currentSubcategory.subtitle || currentSubcategory.title}

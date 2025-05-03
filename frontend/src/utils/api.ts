@@ -147,6 +147,12 @@ export const getCategories = (): Promise<ApiResponse<Category[]>> =>
     endpoint: '/api/categories',
   });
 
+export const getCategoriesbySlug = (slug: string) =>
+  apiFetch<Category>({
+    method: 'GET',
+    endpoint: `/api/categories/${slug}`,
+  });
+
 export const getSubcategories = (
   categoryId: string
 ): Promise<ApiResponse<Category[]>> =>

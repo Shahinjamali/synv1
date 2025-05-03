@@ -1,10 +1,14 @@
 {
   "thumbnail": { "width": 150, "height": 150 },
-  "productCard": { "width": 285, "height": 262 },
-  "featureBlock": { "width": 380, "height": 297 },
-  "verticalFeature": { "width": 517, "height": 776 },
-  "heroHalf": { "width": 561, "height": 508 },
-  "serviceCard": { "width": 410, "height": 325 },
-  "wideBanner": { "width": 740, "height": 560 },
-  "miniBanner": { "width": 410, "height": 189 }
+  "icon": { "width": 150, "height": 150 },
+  "cardDefault": { "width": 820, "height": 640 },
+  "cardWide": { "width": 820, "height": 378 },
+  "cardFeature": { "width": 1100, "height": 680 },
+  "cardSquare": { "width": 850, "height": 850 },
+  "bannerDefault": { "width": 1290, "height": 542 },
+  "bannerTall": { "width": 1290, "height": 858 },
+  "heroCompact": { "width": 561, "height": 508 },
+  "bannerWide": { "width": 740, "height": 560 },
+  "bannerMini": { "width": 410, "height": 189 },
+  "tallFeature": { "width": 600, "height": 740 }
 }

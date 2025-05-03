@@ -16,7 +16,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   const imageUrl =
     Array.isArray(product.mediaAssets) && product.mediaAssets.length > 0
-      ? (product.mediaAssets.find((asset) => asset.type === 'productCard')
+      ? (product.mediaAssets.find((asset) => asset.type === 'cardDefault')
           ?.url ?? PLACEHOLDER_IMAGE)
       : PLACEHOLDER_IMAGE;
 

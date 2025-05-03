@@ -3216,6 +3216,10 @@ ul {
   display: block;
   margin-top: 60px;
 }
+.about-three__rightM {
+  position: relative;
+  display: block;
+}
 
 .about-three__right .section-title {
   margin-bottom: 20px;

@@ -11,17 +11,14 @@ const buildProductFilters = (query, isAuthenticated) => {
     filter.$text = { $search: query.keyword };
   }
 
-  const exactMatchFields = [
-    { queryParam: "category", dbField: "categorySlug" },
-    { queryParam: "subcategory", dbField: "subcategorySlug" },
-    { queryParam: "baseOil", dbField: "properties.baseOil" },
-  ];
+  // ✅ Use explicit slugs only
+  if (query.categorySlug) {
+    filter["categorySlug"] = query.categorySlug;
+  }
 
-  exactMatchFields.forEach(({ queryParam, dbField }) => {
-    if (query[queryParam]) {
-      filter[dbField] = query[queryParam];
-    }
-  });
+  if (query.subcategorySlug) {
+    filter["subcategorySlug"] = query.subcategorySlug;
+  }
 
   if (query.viscosityGrade) {
     filter["properties.viscosityGrade"] = {
@@ -50,6 +47,7 @@ const buildProductFilters = (query, isAuthenticated) => {
 
   return filter;
 };
+
 // ✅ Export function
 module.exports = {
   buildProductFilters,

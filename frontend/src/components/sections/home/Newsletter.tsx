@@ -85,10 +85,10 @@ const NewsLetter: React.FC = () => {
               </form>
 
               {/* Screen reader-friendly feedback */}
-              <div role="status" aria-live="polite" className="sr-only">
+              {/* <div role="status" aria-live="polite" className="sr-only">
                 {status === 'success' && 'Successfully subscribed!'}
                 {status === 'error' && 'Subscription failed. Try again.'}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

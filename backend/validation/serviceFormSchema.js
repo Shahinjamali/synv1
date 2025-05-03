@@ -40,14 +40,11 @@ function unwrapSchema(schemaDef) {
   return currentSchema;
 }
 
-console.log("Generating serviceFormSchema...");
-
 let finalServiceFormSchema;
 let metadataObjectSchema;
 
 try {
   const baseServiceSchema = getBaseSchema(serviceSchema);
-  console.log("Base service schema obtained.");
 
   let metadataSchemaDefinition = baseServiceSchema.shape.metadata;
   if (!metadataSchemaDefinition) {
@@ -55,12 +52,9 @@ try {
       "Original service schema does not have a 'metadata' field. Defaulting to empty object for metadata form."
     );
     metadataSchemaDefinition = z.object({});
-  } else {
-    console.log("Found 'metadata' definition in base schema.");
   }
 
   const unwrappedMetadataDefinition = unwrapSchema(metadataSchemaDefinition);
-  console.log("Unwrapped metadata definition obtained.");
 
   if (!(unwrappedMetadataDefinition instanceof ZodObject)) {
     const fieldType =
@@ -72,21 +66,17 @@ try {
     metadataObjectSchema = z.object({});
   } else {
     metadataObjectSchema = unwrappedMetadataDefinition;
-    console.log("Validated unwrapped metadata as ZodObject.");
   }
 
   const metadataFormSchema = metadataObjectSchema.partial().extend({
     status: z.enum(["active", "draft", "archived"]).default("active"),
     version: z.string().default("1.0.0"),
   });
-  console.log("Created metadataFormSchema.");
 
   finalServiceFormSchema = baseServiceSchema
     .omit({ metadata: true })
     .extend({ metadata: metadataFormSchema })
     .partial();
-
-  console.log("Successfully generated final serviceFormSchema.");
 } catch (error) {
   console.error("Error creating serviceFormSchema:", error);
   finalServiceFormSchema = z.object({});

@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { Service } from '@/types/services';
-import { MediaAsset } from '@/types/mediaAsset';
 import ReactPlayer from 'react-player';
 import { toast } from 'react-toastify';
 import WrappedParagraph from '@/components/common/WrappedParagraph';
@@ -22,6 +21,9 @@ interface ContactFormData {
   message: string;
 }
 
+const PLACEHOLDER_IMAGE = '/assets/images/placeholders/service-banner.webp';
+const PLACEHOLDER_IMAGE_2 = '/assets/images/placeholders/service.webp';
+
 const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
   const [isOpen, setOpen] = useState(false);
   const [form, setForm] = useState<ContactFormData>({
@@ -32,15 +34,17 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
     message: '',
   });
 
-  const mediaAssets = Array.isArray(service.mediaAssets)
-    ? service.mediaAssets.filter(
-        (a): a is MediaAsset => typeof a === 'object' && a !== null
-      )
-    : [];
-
   const bannerImage =
-    mediaAssets.find((a) => a.type === 'banner')?.url ||
-    '/assets/images/placeholders/service-banner.webp';
+    Array.isArray(service.mediaAssets) && service.mediaAssets.length > 0
+      ? (service.mediaAssets.find((asset) => asset.type === 'bannerDefault')
+          ?.url ?? PLACEHOLDER_IMAGE)
+      : PLACEHOLDER_IMAGE;
+
+  const featureImage =
+    Array.isArray(service.mediaAssets) && service.mediaAssets.length > 0
+      ? (service.mediaAssets.find((asset) => asset.type === 'cardSquare')
+          ?.url ?? PLACEHOLDER_IMAGE_2)
+      : PLACEHOLDER_IMAGE_2;
 
   const handleContactChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -64,6 +68,9 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
       toast.error('Something went wrong. Please try again.');
     }
   };
+
+  const { title, overview, tagline, keyBenefits, applicableIndustries } =
+    service;
 
   return (
     <>
@@ -134,11 +141,9 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
         </div>
 
         <div className="project-details__content">
-          <h3 className="project-details__title">Building the Future Today</h3>
-          <WrappedParagraph text={service.overview} wordsPerLine={9} />
-          <h3 className="project-details__title-2">
-            Excellence in Maintenance
-          </h3>
+          <h3 className="project-details__title">{title}</h3>
+          <WrappedParagraph text={overview} wordsPerLine={9} />
+          <h3 className="project-details__title-2">{tagline}</h3>
           <p className="project-details__text-2">
             {service.description.detailed}
           </p>
@@ -149,7 +154,7 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
                 <div className="project-details__bottom-left">
                   <h3 className="project-details__title-2">Benefits</h3>
                   <ul className="project-details__bottom-points list-unstyled">
-                    {service.keyBenefits?.map((benefit, index) => (
+                    {keyBenefits?.map((benefit, index) => (
                       <li key={index}>
                         <div className="services-details__points-bullet"></div>
                         <p>{benefit}</p>
@@ -159,7 +164,7 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
 
                   <h3 className="project-details__title-2">Application</h3>
                   <ul className="project-details__bottom-points list-unstyled">
-                    {service.applicableIndustries?.map((ind, index) => (
+                    {applicableIndustries?.map((ind, index) => (
                       <li key={index}>
                         <div className="services-details__points-bullet"></div>
                         <p>{ind}</p>
@@ -182,12 +187,7 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
               <div className="col-xl-4 col-lg-5">
                 <div className="project-details__bottom-right">
                   <div className="project-details__bottom-img">
-                    <Image
-                      src="/assets/images/placeholders/service-details-p.webp"
-                      alt=""
-                      width={400}
-                      height={300}
-                    />
+                    <Image src={featureImage} alt="" width={400} height={300} />
                     <div className="project-details__video-link">
                       <a onClick={() => setOpen(true)} className="video-popup">
                         <div className="project-details__video-icon">

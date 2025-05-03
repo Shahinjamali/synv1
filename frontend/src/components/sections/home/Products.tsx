@@ -10,16 +10,7 @@ interface ProductsProps {
 }
 
 const Products: React.FC<ProductsProps> = ({ products }) => {
-  if (!Array.isArray(products) || products.length === 0) {
-    return (
-      <section className="services-nine">
-        <div className="container text-center py-12">
-          <h2>{productsData.title || 'Products'}</h2>
-          <p>No products available at this time.</p>
-        </div>
-      </section>
-    );
-  }
+  const productsList = products || [];
 
   return (
     <section className="services-nine" aria-labelledby="homepage-products">
@@ -36,15 +27,19 @@ const Products: React.FC<ProductsProps> = ({ products }) => {
             dangerouslySetInnerHTML={{ __html: productsData.title }}
           />
         </div>
-        <div className="row">
-          {products.map((product, index) => (
-            <ProductCard
-              key={product._id || index}
-              product={product}
-              delay={`${100 + index * 100}ms`}
-            />
-          ))}
-        </div>
+        {productsList.length === 0 ? (
+          <p className="text-center">No products available at this time.</p>
+        ) : (
+          <div className="row">
+            {productsList.map((product, index) => (
+              <ProductCard
+                key={product._id || index}
+                product={product}
+                delay={`${100 + index * 100}ms`}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

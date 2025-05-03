@@ -5,6 +5,7 @@ const CategorySchema = new Schema(
   {
     title: { type: String, required: true, trim: true },
     subtitle: { type: String, trim: true },
+    tagline: { type: String, trim: true },
     slug: {
       type: String,
       required: true,
@@ -31,6 +32,8 @@ const CategorySchema = new Schema(
       short: { type: String, required: true, trim: true },
       detailed: { type: String, trim: true },
     },
+    keyFeatures: [{ type: String, trim: true }],
+    applications: [{ type: String, trim: true }],
     mediaAssets: [{ type: Schema.Types.ObjectId, ref: "MediaAsset" }],
     metadata: {
       status: {

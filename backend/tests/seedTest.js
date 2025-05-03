@@ -139,7 +139,6 @@ async function seedTest() {
     media.owner.id = product._id;
     await media.save();
 
-    console.log("✅ Test data seeded successfully.");
     await mongoose.disconnect();
   } catch (err) {
     console.error("❌ Error during seed:", err);

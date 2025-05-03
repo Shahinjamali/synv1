@@ -1,9 +1,14 @@
 // src/app/products/[category]/page.tsx
 import Layout from '@/components/layout/Layout';
 import ProductsGrid from '@/components/sections/Products/ProductsGrid';
-import { getProductCategoryBySlug, getProductSubcategories } from '@/utils/api';
+import {
+  getCategoriesbySlug,
+  getProductCategoryBySlug,
+  getProductSubcategories,
+} from '@/utils/api';
 import { Category } from '@/types/category';
 import productsHeader from '@/data/products/subCategory.json';
+import DescriptionCard from '@/components/common/DescriptionCard';
 
 export default async function CategoryPage({
   params: paramsPromise, // Rename to indicate it's a Promise
@@ -15,6 +20,8 @@ export default async function CategoryPage({
 
   // Fetch the category details
   const categoriesResponse = await getProductCategoryBySlug(category);
+  const categoryData = await getCategoriesbySlug(category);
+
   const categories: Category[] = categoriesResponse?.data?.items ?? [];
 
   if (!categories) {
@@ -27,6 +34,7 @@ export default async function CategoryPage({
 
   return (
     <Layout breadcrumbTitle={`Products - ${category}`}>
+      <DescriptionCard details={categoryData.data} />
       <ProductsGrid
         categories={subcategories}
         title={productsHeader.title}

@@ -10,7 +10,6 @@ const cacheMiddleware = async (req, res, next) => {
   const cachedData = await redis.get(key);
 
   if (cachedData) {
-    console.log("📌 Serving from Cache:", key);
     return res.json(JSON.parse(cachedData));
   }
 

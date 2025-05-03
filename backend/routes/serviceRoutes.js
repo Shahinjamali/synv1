@@ -76,20 +76,18 @@ router.get("/", async (req, res) => {
     const {
       categorySlug,
       status = "active",
-      scope, // 👈 new param to support service/product filtering
+      scope,
       page = 1,
       limit = 10,
     } = req.query;
 
     const filter = { "metadata.status": status };
 
-    // Filter by scope (e.g., 'service')
     if (scope) {
       const categoryIds = await Category.find({ scope }, "_id");
       filter.category = { $in: categoryIds.map((cat) => cat._id) };
     }
 
-    // Filter by categorySlug if provided (overrides scope-based filtering if both present)
     if (categorySlug) {
       filter.categorySlug = categorySlug;
     }
@@ -100,19 +98,23 @@ router.get("/", async (req, res) => {
 
     const services = await Service.find(filter)
       .populate("category", "title slug")
-      .populate("mediaAssets", "url type title altText") // ✅ auto-join like in product
+      .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limitNum)
       .lean();
 
     const total = await Service.countDocuments(filter);
 
+    const mappedServices = await Promise.all(
+      services.map((s) => mapServiceForResponse(s, req.user))
+    );
+
     res.json(
       formatResponse("success", "Services fetched", {
         total,
         page: pageNum,
         totalPages: Math.ceil(total / limitNum),
-        items: services,
+        items: mappedServices,
       })
     );
   } catch (err) {
@@ -121,22 +123,17 @@ router.get("/", async (req, res) => {
   }
 });
 
-// GET service by slug
 router.get("/:slug", async (req, res) => {
   try {
     const service = await Service.findOne({ slug: req.params.slug })
       .populate("category", "title slug")
-      .populate("mediaAssets", "url type title altText access")
       .lean();
 
     if (!service) {
       return res.status(404).json(formatResponse("error", "Service not found"));
     }
 
-    const mappedService = {
-      ...service,
-      mediaAssets: groupMediaAssets(service.mediaAssets),
-    };
+    const mappedService = await mapServiceForResponse(service, req.user);
 
     res.json(formatResponse("success", "Service fetched", mappedService));
   } catch (err) {
@@ -144,7 +141,6 @@ router.get("/:slug", async (req, res) => {
     res.status(500).json(formatResponse("error", "Server error"));
   }
 });
-
 // ----------------------------------------
 //               protected Routes
 // ----------------------------------------

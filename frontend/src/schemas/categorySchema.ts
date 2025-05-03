@@ -7,6 +7,7 @@ export const categorySchema = z
   .object({
     title: z.string().min(1, 'Title is required'),
     subtitle: z.string().optional(),
+    tagline: z.string().optional(),
     slug: z.string().min(1, 'Slug is required'),
     scope: z.enum(['product', 'service']),
     isSubcategory: z.boolean().default(false),
@@ -24,6 +25,8 @@ export const categorySchema = z
         detailed: z.string().optional(),
       })
       .optional(),
+    keyFeatures: z.array(z.string()).optional(),
+    applications: z.array(z.string()).optional(),
     mediaAssets: z.array(z.string()).optional(),
     metadata: z
       .object({

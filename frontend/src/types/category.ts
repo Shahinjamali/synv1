@@ -11,10 +11,14 @@ export interface Category {
   parent: string | null;
   parentSlug: string | null;
   overview?: string;
+  tagline?: string;
+
   description: {
     short: string;
     detailed?: string;
   };
+  keyFeatures?: string[];
+  applications?: string[];
   mediaAssets?: MediaAsset[];
   metadata: {
     status: 'active' | 'draft' | 'archived';

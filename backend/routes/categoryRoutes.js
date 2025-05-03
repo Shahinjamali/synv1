@@ -99,6 +99,26 @@ router.get("/", async (req, res) => {
 // GET /api/categories/:id
 // Fetch category by ID
 //--------------------------------------
+router.get("/:slug", async (req, res) => {
+  try {
+    const { slug } = req.params;
+    const category = await Category.findOne({ slug })
+      .populate("mediaAssets", "url type title altText")
+      .lean();
+
+    if (!category) {
+      return res
+        .status(404)
+        .json(apiResponse(false, null, "Category not found"));
+    }
+
+    res.json(apiResponse(true, category));
+  } catch (error) {
+    console.error("[GET /categories/slug/:slug] Error:", error);
+    res.status(500).json(apiResponse(false, null, "Failed to fetch category"));
+  }
+});
+
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;

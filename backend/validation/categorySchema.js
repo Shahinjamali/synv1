@@ -6,6 +6,7 @@ const categorySchema = z
   .object({
     title: z.string().min(1, "Title is required"),
     subtitle: z.string().optional(),
+    tagline: z.string().optional(),
     slug: z.string().min(1, "Slug is required"),
     scope: z.enum(["product", "service"]),
     isSubcategory: z.boolean().default(false),
@@ -17,6 +18,8 @@ const categorySchema = z
       }),
     parentSlug: z.string().optional(),
     overview: z.string().optional(),
+    keyFeatures: z.array(z.string()).optional(),
+    applications: z.array(z.string()).optional(),
     description: z
       .object({
         short: z.string().min(1, "Short description is required"),

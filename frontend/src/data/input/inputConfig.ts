@@ -466,6 +466,7 @@ export const inputConfig: Record<
     sections: {
       basicInfo: [
         { name: 'title', label: 'Title', type: 'text', required: true },
+        { name: 'tagline', label: 'Tagline', type: 'text' },
         { name: 'subtitle', label: 'Subtitle', type: 'text' },
         { name: 'slug', label: 'Slug', type: 'text', required: true },
         {
@@ -493,6 +494,20 @@ export const inputConfig: Record<
       ],
       categorization: [], // Handled by CategorySelector
       media: [], // Handled by MediaUploader and MediaForm
+      details: [
+        {
+          name: 'keyFeatures',
+          label: 'Key Features',
+          type: 'array',
+          subFields: [{ name: '', label: 'Feature', type: 'text' }],
+        },
+        {
+          name: 'applications',
+          label: 'Applications',
+          type: 'array',
+          subFields: [{ name: '', label: 'Application', type: 'text' }],
+        },
+      ],
       metadata: [
         {
           name: 'metadata.status',

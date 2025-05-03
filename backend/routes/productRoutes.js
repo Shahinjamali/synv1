@@ -78,15 +78,17 @@ router.get("/", async (req, res, next) => {
     const products = await Product.find(filter)
       .populate("category", "title slug")
       .populate("subcategory", "title slug")
-      .populate("mediaAssets", "url type altText title access")
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(Number(limit))
       .lean();
 
     const total = await Product.countDocuments(filter);
+
     const mappedProducts = await Promise.all(
-      products.map((product) => mapProductForResponse(product, req.user))
+      products.map((product) =>
+        mapProductForResponse(product, req.user, { groupMedia: false })
+      )
     );
 
     res.json(
@@ -177,14 +179,15 @@ router.get("/:slug", async (req, res, next) => {
     const product = await Product.findOne(filter)
       .populate("category", "title slug")
       .populate("subcategory", "title slug")
-      .populate("mediaAssets", "url type title altText")
       .lean();
 
     if (!product) {
       return res.status(404).json(formatResponse("error", "Product not found"));
     }
 
-    const mappedProduct = await mapProductForResponse(product, req.user);
+    const mappedProduct = await mapProductForResponse(product, req.user, {
+      groupMedia: false,
+    });
     res.json(formatResponse("success", "Product fetched", mappedProduct));
   } catch (error) {
     console.error("[GET /products/:slug] Error:", error);
