@@ -1,7 +1,5 @@
 module.exports = function configureSocket(io, { OilAnalysis }) {
   io.on("connection", (socket) => {
-    console.log(`🔧 Configuring WebSocket for Oil Analysis: ${socket.id}`);
-
     // Listen for Oil Analysis updates
     socket.on("fetchOilAnalysis", async (equipmentId) => {
       try {

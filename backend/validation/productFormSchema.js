@@ -57,5 +57,3 @@ const productFormSchema = baseProductSchema
   .partial();
 
 module.exports = { productFormSchema };
-
-console.log("Successfully generated productFormSchema");

@@ -208,8 +208,6 @@ router.post(
   authorize("owner", ["superadmin", "admin"]),
   async (req, res) => {
     try {
-      console.log("[DEBUG] Incoming req.body:", req.body);
-
       const parsedBody = { ...req.body };
 
       const fieldsToParse = [

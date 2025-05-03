@@ -239,9 +239,6 @@ router.post(
     const { additionalUsers } = req.body;
     try {
       // Placeholder for Synix approval process (e.g., queue request)
-      console.log(
-        `User ${req.user._id} requested ${additionalUsers} more users for company ${req.user.companyId}`
-      );
       res.json({ success: true, message: "Request submitted to Synix" });
       // TODO: Implement Synix approval (e.g., email or admin queue)
     } catch (err) {

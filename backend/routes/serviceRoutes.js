@@ -155,7 +155,6 @@ router.post(
   authorize("owner", ["superadmin", "admin"]),
   upload.array("files", 10), // Allow up to 10 files
   async (req, res) => {
-    console.log("[DEBUG] Incoming req.body:", req.body);
     try {
       const parsedBody = { ...req.body };
 
@@ -198,7 +197,6 @@ router.post(
           let mediaAssetsString = "";
 
           if (Array.isArray(rawMediaAssets)) {
-            console.log("[DEBUG] mediaAssets is array, taking last element");
             mediaAssetsString = rawMediaAssets[rawMediaAssets.length - 1];
           } else if (typeof rawMediaAssets === "string") {
             mediaAssetsString = rawMediaAssets;

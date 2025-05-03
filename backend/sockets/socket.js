@@ -28,17 +28,13 @@ function initializeSocket(server) {
 
   // Handle WebSocket connections
   io.on("connection", (socket) => {
-    console.log(`✅ New WebSocket Connection: ${socket.id}`);
-
     // Register user for targeted notifications
     socket.on("registerUser", (userId) => {
       connectedClients.set(userId, socket);
-      console.log(`👤 User Registered: ${userId}`);
     });
 
     // Handle user disconnection
     socket.on("disconnect", () => {
-      console.log(`❌ User Disconnected: ${socket.id}`);
       for (let [key, value] of connectedClients) {
         if (value === socket) connectedClients.delete(key);
       }
@@ -53,7 +49,6 @@ function sendNotification(userId, notification) {
   const socket = connectedClients.get(userId);
   if (socket) {
     socket.emit("newNotification", notification);
-    console.log(`📢 Sent real-time notification to user: ${userId}`);
   }
 }
 
@@ -63,7 +58,6 @@ function emitNotificationBatch(notificationsArray) {
     console.error("❌ WebSocket server is not initialized!");
     return;
   }
-  console.log(`📢 Sending ${notificationsArray.length} notifications`);
   io.emit("newNotifications", notificationsArray);
 }
 

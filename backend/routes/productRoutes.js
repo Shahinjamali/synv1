@@ -363,7 +363,6 @@ router.post(
         try {
           if (fs.existsSync(filePath)) {
             fs.unlinkSync(filePath);
-            console.log(`Cleaned up file: ${file.filename}`);
           }
         } catch (unlinkError) {
           console.error(
@@ -585,7 +584,6 @@ router.patch(
           try {
             if (fs.existsSync(filePath)) {
               fs.unlinkSync(filePath);
-              console.log(`Deleted file: ${path.basename(asset.url)}`);
             }
           } catch (unlinkError) {
             console.error(
@@ -640,7 +638,6 @@ router.patch(
         try {
           if (fs.existsSync(filePath)) {
             fs.unlinkSync(filePath);
-            console.log(`Cleaned up file: ${file.filename}`);
           }
         } catch (unlinkError) {
           console.error(
@@ -701,7 +698,6 @@ router.delete(
           try {
             if (fs.existsSync(filePath)) {
               fs.unlinkSync(filePath);
-              console.log(`Deleted file: ${path.basename(asset.url)}`);
             }
           } catch (unlinkError) {
             console.error(
