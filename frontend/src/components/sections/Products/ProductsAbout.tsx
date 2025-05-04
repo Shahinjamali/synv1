@@ -2,10 +2,13 @@
 import React from 'react';
 import Image from 'next/image';
 import productsData from '@/data/products/about.json';
+import { resolveMediaUrl } from '@/utils/media';
 
 const ProductsAbout: React.FC = () => {
   const { title, tagline, description, subtitle, features, badge, image } =
     productsData;
+
+  const imageUrl = resolveMediaUrl(image?.[0]?.src);
 
   return (
     <section className="about-five">
@@ -22,7 +25,7 @@ const ProductsAbout: React.FC = () => {
                 <div className="about-five__shape-1 float-bob-y">
                   <Image
                     src={
-                      image?.[0]?.src ||
+                      imageUrl ||
                       '/assets/images/placeholders/productCardCat.webp'
                     }
                     alt={image?.[0]?.alt || 'Synix Product'}

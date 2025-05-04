@@ -1,7 +1,9 @@
+'use client';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Product } from '@/types/products';
+import { resolveMediaUrl } from '@/utils/media'; // ✅ Use your helper
 
 const PLACEHOLDER_IMAGE = '/assets/images/placeholders/product.webp';
 
@@ -14,14 +16,17 @@ const ProductCard: React.FC<ProductCardProps> = ({
   product,
   delay = '100ms',
 }) => {
-  const imageUrl =
-    Array.isArray(product.mediaAssets) && product.mediaAssets.length > 0
-      ? (product.mediaAssets.find((asset) => asset.type === 'cardDefault')
-          ?.url ?? PLACEHOLDER_IMAGE)
-      : PLACEHOLDER_IMAGE;
+  const rawUrl = product.mediaAssets?.find(
+    (asset) => asset.type === 'cardDefault'
+  )?.url;
+
+  console.log('product', product);
+
+  const imageUrl = resolveMediaUrl(rawUrl) || PLACEHOLDER_IMAGE;
 
   const isValidLink =
     product?.slug && product?.categorySlug && product?.subcategorySlug;
+
   const hrefUrl = isValidLink
     ? `/products/${product.categorySlug}/${product.subcategorySlug}/${product.slug}`
     : '/products';

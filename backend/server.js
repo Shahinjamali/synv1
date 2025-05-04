@@ -100,7 +100,7 @@ app.use("/api/case-studies", caseStudyRoutes);
 
 // Static Files (Media)
 app.use("/api/media", mediaAssetRoutes);
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/uploads", express.static(path.join(__dirname, "../public/uploads")));
 
 // Protected Routes (Require Login)
 app.use("/api/users", userRoutes);

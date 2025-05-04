@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Product } from '@/types/products';
+import { resolveMediaUrl } from '@/utils/media';
 
 interface ProductsListProps {
   products: Product[];
@@ -11,7 +12,6 @@ interface ProductsListProps {
   header?: string;
 }
 
-// Optional: truncate description to avoid overflow
 const truncateWords = (text: string, maxWords = 10): string => {
   const words = text.split(' ');
   return words.length > maxWords
@@ -19,11 +19,11 @@ const truncateWords = (text: string, maxWords = 10): string => {
     : text;
 };
 
-const PLACEHOLDER_IMAGE = '/assets/images/placeholders/metalworking-icon.webp';
-const PLACEHOLDER_IMAGE_1 =
-  '/assets/images/placeholders/metalworking-icon-1.webp';
-const PLACEHOLDER_IMAGE_2 =
-  '/assets/images/placeholders/metalworking-icon-2.webp';
+const PLACEHOLDERS = [
+  '/assets/images/placeholders/metalworking-icon.webp',
+  '/assets/images/placeholders/metalworking-icon-1.webp',
+  '/assets/images/placeholders/metalworking-icon-2.webp',
+];
 
 export default function ProductsList({
   products,
@@ -43,19 +43,13 @@ export default function ProductsList({
         <ul className="recent-project__list-box list-unstyled">
           {products.length > 0 ? (
             products.map((product, index) => {
-              const mediaAssets = product.mediaAssets;
+              const mediaAssets = product.mediaAssets ?? [];
+              const fallback = PLACEHOLDERS[index % PLACEHOLDERS.length];
 
-              const fallbackPlaceholders = [
-                PLACEHOLDER_IMAGE,
-                PLACEHOLDER_IMAGE_1,
-                PLACEHOLDER_IMAGE_2,
-              ];
-
-              const iconImage =
-                Array.isArray(mediaAssets) && mediaAssets.length > 0
-                  ? (mediaAssets.find((asset) => asset.type === 'icon')?.url ??
-                    fallbackPlaceholders[index % fallbackPlaceholders.length])
-                  : fallbackPlaceholders[index % fallbackPlaceholders.length];
+              const rawUrl = mediaAssets.find(
+                (asset) => asset.type === 'icon'
+              )?.url;
+              const iconImage = resolveMediaUrl(rawUrl ?? fallback);
 
               return (
                 <li

@@ -1,6 +1,6 @@
 [
   {
-    "iconType": "OilBarrel",
+    "icon": "/assets/images/icons/sustainable-lubricants.webp",
     "size": 40,
     "defaultColor": "#faa319",
     "hoverColor": "#FAFAFA",
@@ -8,7 +8,7 @@
     "text": "Advanced, eco-friendly lubricants tailored for diverse industrial needs"
   },
   {
-    "iconType": "Rel",
+    "icon": "/assets/images/icons/reliability-services.webp",
     "size": 40,
     "defaultColor": "#faa319",
     "hoverColor": "#FAFAFA",
@@ -16,19 +16,19 @@
     "text": "Proactive maintenance strategies to optimize performance and prevent failures"
   },
   {
-    "iconType": "Trend1",
-    "size": 40,
-    "defaultColor": "#faa319",
-    "hoverColor": "#FAFAFA",
-    "title": "Data Platform",
-    "text": "Centralized, real-time view of equipment and lubricant conditions"
-  },
-  {
-    "iconType": "Drops",
+    "icon": "/assets/images/icons/predictive-analytics.webp",
     "size": 40,
     "defaultColor": "#faa319",
     "hoverColor": "#FAFAFA",
     "title": "Predictive Analytics",
-    "text": "AI predicts equipment failures and recommends proactive maintenance actions"
+    "text": "Centralized, real-time view of equipment and lubricant conditions"
+  },
+  {
+    "icon": "/assets/images/icons/oil-monitoring.webp",
+    "size": 40,
+    "defaultColor": "#faa319",
+    "hoverColor": "#FAFAFA",
+    "title": "Oil Monitoring",
+    "text": "AI predicts oil failures and recommends proactive actions"
   }
 ]

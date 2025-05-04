@@ -5,17 +5,18 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Service } from '@/types/services';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import { resolveMediaUrl } from '@/utils/media'; // ✅ Import your helper
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 interface servicesListProps {
   services: Service[];
   title2?: string;
   header?: string;
 }
-
-import { Autoplay, Navigation, Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 
 const swiperOptions = {
   modules: [Autoplay, Pagination, Navigation],
@@ -68,10 +69,12 @@ export default function servicesList({ services }: servicesListProps) {
                 aria-label="Service Highlights Carousel"
               >
                 {services.map((service) => {
+                  const rawUrl = service.mediaAssets?.find(
+                    (asset) => asset.type === 'cardFeature'
+                  )?.url;
+
                   const cardImage =
-                    service.mediaAssets?.find(
-                      (asset) => asset.type === 'cardFeature'
-                    )?.url || PLACEHOLDER_IMAGE;
+                    resolveMediaUrl(rawUrl) || PLACEHOLDER_IMAGE;
 
                   const categoryPath = service.categorySlug
                     ? service.categorySlug.toLowerCase().replace(/\s+/g, '-')
@@ -100,11 +103,10 @@ export default function servicesList({ services }: servicesListProps) {
                             </h4>
                           </div>
                           <p className="services-eight__text">
-                            {service.description.short ||
-                              truncateWords(
-                                service.description?.short || '',
-                                20
-                              )}
+                            {truncateWords(
+                              service.description?.short || '',
+                              20
+                            )}
                           </p>
                           <div className="services-eight__btn-box">
                             <Link

@@ -4,9 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import heroData from '@/data/about/hero.json';
-import { Drops, DashboardGauge } from '@/components/common/Icons';
 
-const iconMap = [DashboardGauge, Drops];
 const PLACEHOLDER_IMAGE = '/assets/images/resources/about-banner.webp';
 
 const AboutBanner: React.FC = () => {
@@ -55,17 +53,16 @@ const AboutBanner: React.FC = () => {
               {/* Feature List */}
               <ul className="about-one__points-list list-unstyled">
                 {Array.isArray(features) &&
-                  features.slice(0, 2).map((feature, index) => {
-                    const Icon =
-                      iconMap[index % iconMap.length] || DashboardGauge;
+                  features.map((feature, index) => {
                     return (
                       <li key={feature.title + index}>
                         <div className="icon">
-                          <Icon
-                            size={40}
-                            defaultColor="#faa319"
-                            hoverColor="#FAFAFA"
-                            aria-hidden="true"
+                          <Image
+                            src={feature.icon}
+                            alt={image?.alt || 'About Synix Solutions'}
+                            width={500}
+                            height={600}
+                            priority
                           />
                         </div>
                         <div className="content">

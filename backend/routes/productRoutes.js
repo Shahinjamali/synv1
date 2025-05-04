@@ -111,14 +111,28 @@ router.get("/categories", async (req, res) => {
       isSubcategory: false,
       "metadata.status": "active",
       scope: "product",
-    })
-      .populate("mediaAssets", "url type altText title")
-      .lean();
+    }).lean();
+
+    const categoriesWithMedia = await Promise.all(
+      categories.map(async (category) => {
+        const mediaAssets = await MediaAsset.find({
+          owner: {
+            $elemMatch: {
+              type: "category",
+              id: category._id,
+            },
+          },
+        })
+          .select("url type altText title")
+          .lean();
+        return { ...category, mediaAssets };
+      })
+    );
 
     res.json(
       formatResponse("success", "Top-level product categories fetched", {
         total: categories.length,
-        items: categories,
+        items: categoriesWithMedia,
       })
     );
   } catch (error) {
@@ -147,14 +161,28 @@ router.get("/:categorySlug/subcategories", async (req, res) => {
       isSubcategory: true,
       "metadata.status": "active",
       scope: "product",
-    })
-      .populate("mediaAssets", "url type altText title")
-      .lean();
+    }).lean();
+
+    const subcategoriesWithMedia = await Promise.all(
+      subcategories.map(async (subcategory) => {
+        const mediaAssets = await MediaAsset.find({
+          owner: {
+            $elemMatch: {
+              type: "category",
+              id: subcategory._id,
+            },
+          },
+        })
+          .select("url type altText title")
+          .lean();
+        return { ...subcategory, mediaAssets };
+      })
+    );
 
     res.json(
       formatResponse("success", "Subcategories fetched", {
         total: subcategories.length,
-        items: subcategories,
+        items: subcategoriesWithMedia,
       })
     );
   } catch (error) {
@@ -184,6 +212,19 @@ router.get("/:slug", async (req, res, next) => {
     if (!product) {
       return res.status(404).json(formatResponse("error", "Product not found"));
     }
+
+    const mediaAssets = await MediaAsset.find({
+      owner: {
+        $elemMatch: {
+          type: "product",
+          id: product._id,
+        },
+      },
+    })
+      .select("url type title altText")
+      .lean();
+
+    product.mediaAssets = mediaAssets;
 
     const mappedProduct = await mapProductForResponse(product, req.user, {
       groupMedia: false,
@@ -315,9 +356,9 @@ router.post(
           language: metadata.language || "en",
           access: metadata.access || "public",
           metadata: metadata.metadata || {},
-          owner: { type: "product", id: null },
+          owner: [],
           tags: Array.isArray(metadata.tags) ? metadata.tags : [],
-          status: "orphaned",
+          status: "assigned",
         });
 
         await mediaAsset.save();
@@ -332,9 +373,13 @@ router.post(
         await MediaAsset.updateMany(
           { _id: { $in: mediaAssetIds } },
           {
+            $push: {
+              owner: {
+                type: "product",
+                id: product._id,
+              },
+            },
             $set: {
-              "owner.type": "product",
-              "owner.id": product._id,
               status: "assigned",
             },
           }
@@ -344,8 +389,20 @@ router.post(
       const populatedProduct = await Product.findById(product._id)
         .populate("category", "title slug")
         .populate("subcategory", "title slug")
-        .populate("mediaAssets", "url type title altText")
         .lean();
+
+      const mediaAssets = await MediaAsset.find({
+        owner: {
+          $elemMatch: {
+            type: "product",
+            id: product._id,
+          },
+        },
+      })
+        .select("url type title altText")
+        .lean();
+
+      populatedProduct.mediaAssets = mediaAssets;
 
       const mappedProduct = await mapProductForResponse(
         populatedProduct,
@@ -396,22 +453,18 @@ router.patch(
   "/:id",
   protect,
   authorize("owner", ["superadmin", "admin"]),
-  upload.array("files", 10), // Optional file uploads
+  upload.array("files", 10),
   async (req, res, next) => {
     try {
       const { id } = req.params;
 
-      // Find existing product
-      const existingProduct = await Product.findById(id)
-        .populate("mediaAssets", "url type title altText")
-        .lean();
+      const existingProduct = await Product.findById(id).lean();
       if (!existingProduct) {
         return res
           .status(404)
           .json(formatResponse("error", "Product not found"));
       }
 
-      // Preprocess req.body to parse JSON strings
       const parsedBody = { ...req.body };
       const fieldsToParse = [
         "description",
@@ -440,7 +493,6 @@ router.patch(
         }
       });
 
-      // Parse mediaAssets (optional)
       let parsedMediaAssetsArray = [];
       if (parsedBody.mediaAssets) {
         let mediaAssetsString = "";
@@ -471,7 +523,6 @@ router.patch(
       }
       parsedBody.mediaAssets = parsedMediaAssetsArray;
 
-      // Handle deleted media assets
       let deleteMediaAssetIds = [];
       if (parsedBody.deleteMediaAssetIds) {
         try {
@@ -483,7 +534,6 @@ router.patch(
         }
       }
 
-      // Validate product data (partial update)
       const {
         mediaAssets: _,
         deleteMediaAssetIds: __,
@@ -494,7 +544,6 @@ router.patch(
         .partial()
         .parseAsync(otherData);
 
-      // Validate category and subcategory if provided
       if (productData.category || productData.subcategory) {
         const category = await Category.findById(
           productData.category || existingProduct.category
@@ -515,7 +564,6 @@ router.patch(
         productData.subcategory = subcategory._id;
       }
 
-      // Handle media assets
       const mediaAssetsData = parsedBody.mediaAssets || [];
       const files = req.files || [];
       if (mediaAssetsData.length !== files.length) {
@@ -524,12 +572,10 @@ router.patch(
         );
       }
 
-      // Maintain existing media assets, remove deleted ones
       let mediaAssetIds = existingProduct.mediaAssets
-        .map((asset) => asset._id.toString())
+        .map((asset) => asset.toString())
         .filter((id) => !deleteMediaAssetIds.includes(id));
 
-      // Process new media assets
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         const metadata = mediaAssetsData[i];
@@ -560,7 +606,7 @@ router.patch(
           language: metadata.language || "en",
           access: metadata.access || "public",
           metadata: metadata.metadata || {},
-          owner: { type: "product", id },
+          owner: [],
           tags: Array.isArray(metadata.tags) ? metadata.tags : [],
           status: "assigned",
         });
@@ -569,7 +615,6 @@ router.patch(
         mediaAssetIds.push(mediaAsset._id);
       }
 
-      // Delete specified media assets
       if (deleteMediaAssetIds.length > 0) {
         const assetsToDelete = await MediaAsset.find({
           _id: { $in: deleteMediaAssetIds },
@@ -591,11 +636,18 @@ router.patch(
               unlinkError
             );
           }
+          asset.owner = asset.owner.filter(
+            (own) => !(own.type === "product" && own.id.toString() === id)
+          );
+          asset.status = asset.owner.length > 0 ? "assigned" : "orphaned";
+          if (asset.status === "orphaned") {
+            await MediaAsset.deleteOne({ _id: asset._id });
+          } else {
+            await asset.save();
+          }
         }
-        await MediaAsset.deleteMany({ _id: { $in: deleteMediaAssetIds } });
       }
 
-      // Update product
       productData.mediaAssets = mediaAssetIds;
       const updatedProduct = await Product.findByIdAndUpdate(
         id,
@@ -604,21 +656,36 @@ router.patch(
       )
         .populate("category", "title slug")
         .populate("subcategory", "title slug")
-        .populate("mediaAssets", "url type title altText")
         .lean();
 
       if (!updatedProduct) {
         throw new Error("Failed to update product");
       }
 
-      // Update media assets ownership
+      const mediaAssets = await MediaAsset.find({
+        owner: {
+          $elemMatch: {
+            type: "product",
+            id: updatedProduct._id,
+          },
+        },
+      })
+        .select("url type title altText")
+        .lean();
+
+      updatedProduct.mediaAssets = mediaAssets;
+
       if (mediaAssetIds.length > 0) {
         await MediaAsset.updateMany(
           { _id: { $in: mediaAssetIds } },
           {
+            $push: {
+              owner: {
+                type: "product",
+                id: updatedProduct._id,
+              },
+            },
             $set: {
-              "owner.type": "product",
-              "owner.id": updatedProduct._id,
               status: "assigned",
             },
           }
@@ -675,7 +742,6 @@ router.delete(
     try {
       const { id } = req.params;
 
-      // Find product
       const product = await Product.findById(id).lean();
       if (!product) {
         return res
@@ -683,10 +749,14 @@ router.delete(
           .json(formatResponse("error", "Product not found"));
       }
 
-      // Delete associated media assets
       if (product.mediaAssets && product.mediaAssets.length > 0) {
         const mediaAssets = await MediaAsset.find({
-          _id: { $in: product.mediaAssets },
+          owner: {
+            $elemMatch: {
+              type: "product",
+              id: product._id,
+            },
+          },
         });
         for (const asset of mediaAssets) {
           const filePath = path.join(
@@ -705,11 +775,18 @@ router.delete(
               unlinkError
             );
           }
+          asset.owner = asset.owner.filter(
+            (own) => !(own.type === "product" && own.id.toString() === id)
+          );
+          asset.status = asset.owner.length > 0 ? "assigned" : "orphaned";
+          if (asset.status === "orphaned") {
+            await MediaAsset.deleteOne({ _id: asset._id });
+          } else {
+            await asset.save();
+          }
         }
-        await MediaAsset.deleteMany({ _id: { $in: product.mediaAssets } });
       }
 
-      // Delete product
       await Product.findByIdAndDelete(id);
 
       res.json(

@@ -7,6 +7,7 @@ import ReactPlayer from 'react-player';
 import { toast } from 'react-toastify';
 import WrappedParagraph from '@/components/common/WrappedParagraph';
 import { sendContactMessage } from '@/utils/api';
+import { resolveMediaUrl } from '@/utils/media';
 import './videoModel.css';
 
 interface ServiceDetailsProps {
@@ -35,16 +36,14 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
   });
 
   const bannerImage =
-    Array.isArray(service.mediaAssets) && service.mediaAssets.length > 0
-      ? (service.mediaAssets.find((asset) => asset.type === 'bannerDefault')
-          ?.url ?? PLACEHOLDER_IMAGE)
-      : PLACEHOLDER_IMAGE;
+    resolveMediaUrl(
+      service.mediaAssets?.find((asset) => asset.type === 'bannerDefault')?.url
+    ) || PLACEHOLDER_IMAGE;
 
   const featureImage =
-    Array.isArray(service.mediaAssets) && service.mediaAssets.length > 0
-      ? (service.mediaAssets.find((asset) => asset.type === 'cardSquare')
-          ?.url ?? PLACEHOLDER_IMAGE_2)
-      : PLACEHOLDER_IMAGE_2;
+    resolveMediaUrl(
+      service.mediaAssets?.find((asset) => asset.type === 'cardSquare')?.url
+    ) || PLACEHOLDER_IMAGE_2;
 
   const handleContactChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -127,7 +126,6 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
                   <p>
                     <span>Documents:</span>
                   </p>
-
                   <a
                     href="mailto:info@synix.com"
                     className="btn btn-outline-primary mt-3"
@@ -219,21 +217,16 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
               className="contact-three__form"
             >
               <div className="row">
-                {[
-                  { name: 'name', placeholder: 'Your Name' },
-                  { name: 'email', placeholder: 'Your Email' },
-                  { name: 'phone', placeholder: 'Phone Number' },
-                  { name: 'subject', placeholder: 'Your Subject' },
-                ].map(({ name, placeholder }, idx) => (
+                {['name', 'email', 'phone', 'subject'].map((field, idx) => (
                   <div className="col-xl-3 col-lg-6" key={idx}>
                     <div className="contact-three__input-box">
                       <input
                         type="text"
-                        placeholder={placeholder}
-                        name={name}
-                        value={form[name as keyof ContactFormData]}
+                        placeholder={`Your ${field.charAt(0).toUpperCase() + field.slice(1)}`}
+                        name={field}
+                        value={form[field as keyof ContactFormData]}
                         onChange={handleContactChange}
-                        required={name !== 'phone'}
+                        required={field !== 'phone'}
                       />
                     </div>
                   </div>

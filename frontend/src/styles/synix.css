@@ -2023,12 +2023,14 @@ ul {
 .about-one__left {
   position: relative;
   display: block;
+  height: 100%;
 }
 
 .about-one__img {
   position: relative;
   display: block;
   overflow: hidden;
+  height: 100%;
 }
 
 .about-one__img::before {
@@ -2055,6 +2057,7 @@ ul {
 
 .about-one__img img {
   width: 100%;
+  height: 100%;
   transform: scale3d(1, 1, 1);
   transition: transform 1s ease-in-out;
 }
@@ -2095,49 +2098,10 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
+  width: 80px !important;
   height: 80px;
-  border: 1px solid var(--synix-bdr-color);
   overflow: hidden;
   z-index: 1;
-}
-
-.about-one__points-list li:hover .icon {
-  border: 1px solid var(--synix-base);
-}
-
-.about-one__points-list li .icon::after {
-  transition-duration: 800ms;
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  content: '';
-  top: 110%;
-  left: 50%;
-  background-color: var(--synix-base);
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
-  border-radius: 50%;
-  z-index: -1;
-}
-
-.about-one__points-list li:hover .icon::after {
-  top: -40%;
-}
-
-.about-one__points-list li .icon span {
-  position: relative;
-  display: inline-block;
-  font-size: 40px;
-  color: var(--synix-base);
-  transition: all 500ms linear;
-  transition-delay: 0.1s;
-  transform: scale(1);
-}
-
-.about-one__points-list li:hover .icon span {
-  transform: scale(0.9);
-  color: var(--synix-white);
 }
 
 .about-one__points-list li .content {
@@ -4757,8 +4721,21 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 125px;
-  height: 125px;
+  width: 100px;
+  height: 100px;
+  background-color: var(--synix-white);
+  border-radius: 50%;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+.work-process__icon img {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 90px;
   background-color: var(--synix-white);
   border-radius: 50%;
   margin: 0 auto;

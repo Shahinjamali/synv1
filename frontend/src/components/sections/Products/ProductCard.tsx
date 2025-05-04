@@ -1,9 +1,9 @@
-// src/components/sections/Products/ProductCard.tsx
 'use client';
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Category } from '@/types/category';
+import { resolveMediaUrl } from '@/utils/media';
 
 interface ProductCardProps {
   category: Category;
@@ -12,11 +12,12 @@ interface ProductCardProps {
 const PLACEHOLDER_IMAGE = '/assets/images/placeholders/product.webp';
 
 const ProductCard: React.FC<ProductCardProps> = ({ category }) => {
-  const imageUrl =
+  const rawUrl =
     Array.isArray(category.mediaAssets) && category.mediaAssets.length > 0
-      ? (category.mediaAssets.find((asset) => asset.type === 'cardDefault')
-          ?.url ?? PLACEHOLDER_IMAGE)
-      : PLACEHOLDER_IMAGE;
+      ? category.mediaAssets.find((asset) => asset.type === 'cardDefault')?.url
+      : undefined;
+
+  const imageUrl = resolveMediaUrl(rawUrl ?? PLACEHOLDER_IMAGE);
 
   const parentSlug =
     category.isSubcategory && category.parentSlug ? category.parentSlug : '';
@@ -34,9 +35,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ category }) => {
         <h5 className="services-four__title">
           <Link href={`${basePath}/${category.slug}`}>{category.title}</Link>
         </h5>
-        {/* {category.subtitle && (
-          <p className="services-four__text">{category.subtitle}</p>
-        )} */}
         <p className="services-four__text">{category.description.short}</p>
         <div className="services-four__btn-box">
           <Link

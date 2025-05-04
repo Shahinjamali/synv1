@@ -10,13 +10,13 @@
   },
   "features": [
     {
-      "icon": "/assets/images/icon/gauge.png",
+      "icon": "/assets/images/icons/ai-predictive.webp",
       "title": "AI Predictive Maintenance",
       "link": "/services/ai-maintenance",
       "description": "Leverage AI to predict and prevent equipment failures, minimizing downtime."
     },
     {
-      "icon": "/assets/images/icon/oil-drop.png",
+      "icon": "/assets/images/icons/innovative-lubricants.webp",
       "title": "Innovative Lubricants",
       "link": "/products",
       "description": "Eco-friendly, high-performance lubricants designed for durability."

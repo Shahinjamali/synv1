@@ -1,5 +1,7 @@
 const { z } = require("zod");
 
+const isValidObjectId = (val) => /^[0-9a-fA-F]{24}$/.test(val);
+
 const productSchema = z.object({
   title: z.string().min(1, "Title is required"),
   subtitle: z.string().optional(),
@@ -120,7 +122,13 @@ const productSchema = z.object({
       })
     )
     .optional(),
-  mediaAssets: z.array(z.string()).optional(),
+  mediaAssets: z
+    .array(
+      z.string().refine((val) => isValidObjectId(val), {
+        message: "Each media asset ID must be a valid 24-character hex string",
+      })
+    )
+    .optional(),
   visibility: z
     .object({
       isPublic: z.boolean().default(true),

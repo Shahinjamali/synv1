@@ -58,7 +58,13 @@ const serviceSchema = z.object({
   applicableIndustries: z.array(z.string()).optional(),
   applicableEquipment: z.array(z.string()).optional(),
   prerequisites: z.array(z.string()).optional(),
-  mediaAssets: z.array(z.string()).optional(),
+  mediaAssets: z
+    .array(
+      z.string().refine((val) => isValidObjectId(val), {
+        message: "Each media asset ID must be a valid 24-character hex string",
+      })
+    )
+    .optional(),
   visibility: z
     .object({
       isPublic: z.boolean().default(true),

@@ -1,6 +1,5 @@
 const { z } = require("zod");
-
-const isValidObjectId = (val) => /^[0-9a-fA-F]{24}$/.test(val);
+const { isValidObjectId } = require("../utils/validationHelpers"); // Assuming this is where isValidObjectId is defined
 
 const categorySchema = z
   .object({
@@ -26,7 +25,14 @@ const categorySchema = z
         detailed: z.string().optional(),
       })
       .optional(),
-    mediaAssets: z.array(z.string()).optional(),
+    mediaAssets: z
+      .array(
+        z.string().refine((val) => isValidObjectId(val), {
+          message:
+            "Each media asset ID must be a valid 24-character hex string",
+        })
+      )
+      .optional(),
     metadata: z
       .object({
         status: z.enum(["active", "draft", "archived"]).default("active"),

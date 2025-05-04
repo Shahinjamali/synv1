@@ -18,8 +18,12 @@ const mapServiceForResponse = async (service, user) => {
   const isSubscriber = roles.includes("subscriber");
 
   const mediaAssetsRaw = await MediaAsset.find({
-    "owner.type": "service",
-    "owner.id": service._id,
+    owner: {
+      $elemMatch: {
+        type: "service",
+        id: service._id,
+      },
+    },
   }).lean();
 
   const allowedAccess = (asset) => {
@@ -62,8 +66,12 @@ const mapProductForResponse = async (
   const isSubscriber = roles.includes("subscriber");
 
   const mediaAssetsRaw = await MediaAsset.find({
-    "owner.type": "product",
-    "owner.id": product._id,
+    owner: {
+      $elemMatch: {
+        type: "product",
+        id: product._id,
+      },
+    },
   }).lean();
 
   const allowedAccess = (asset) => {

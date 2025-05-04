@@ -68,14 +68,15 @@ const MediaAssetSchema = new Schema(
       // Video specific fields
       duration: { type: Number }, // in seconds
     },
-    owner: {
-      // Link back to the owning document (Product or Category)
-      type: {
-        type: String,
-        enum: ["product", "category", "service", "orphaned"],
+    owner: [
+      {
+        type: {
+          type: String,
+          enum: ["product", "category", "service", "orphaned"],
+        },
+        id: { type: Schema.Types.ObjectId }, // References either Product or Category _id
       },
-      id: { type: Schema.Types.ObjectId }, // References either Product or Category _id
-    },
+    ],
     tags: [String],
     status: {
       type: String,

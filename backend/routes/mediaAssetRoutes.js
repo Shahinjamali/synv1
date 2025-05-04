@@ -53,6 +53,7 @@ const upload = multer({
     cb(new Error("Unsupported file type"));
   },
 });
+
 // Upload Media
 router.post(
   "/upload",
@@ -90,10 +91,18 @@ router.post(
         language: req.body.language || "en",
         access: req.body.access || "public",
         metadata: parsedMetadata || {},
-        owner: parsedOwner || { type: "orphaned", id: null },
+        owner: [],
         tags: parsedTags || [],
         status: "orphaned",
       });
+
+      if (parsedOwner && parsedOwner.type && parsedOwner.id) {
+        mediaAsset.owner.push({
+          type: parsedOwner.type,
+          id: parsedOwner.id,
+        });
+        mediaAsset.status = "assigned";
+      }
 
       await mediaAsset.save();
 
@@ -129,8 +138,12 @@ router.get("/", async (req, res) => {
     if (access) filter.access = access;
     if (language) filter.language = language;
     if (ownerType && ownerId) {
-      filter["owner.type"] = ownerType;
-      filter["owner.id"] = ownerId;
+      filter.owner = {
+        $elemMatch: {
+          type: ownerType,
+          id: ownerId,
+        },
+      };
     }
     if (status) filter.status = status;
 
@@ -209,6 +222,27 @@ router.put(
         }
       }
 
+      if (req.body.owner) {
+        const parsedOwner =
+          typeof req.body.owner === "string"
+            ? JSON.parse(req.body.owner)
+            : req.body.owner;
+        if (parsedOwner && parsedOwner.type && parsedOwner.id) {
+          const ownerExists = media.owner.some(
+            (own) =>
+              own.type === parsedOwner.type &&
+              own.id.toString() === parsedOwner.id.toString()
+          );
+          if (!ownerExists) {
+            media.owner.push({
+              type: parsedOwner.type,
+              id: parsedOwner.id,
+            });
+          }
+          media.status = media.owner.length > 0 ? "assigned" : "orphaned";
+        }
+      }
+
       await media.save();
 
       res.json(formatResponse("success", "Media updated", { item: media }));
@@ -231,7 +265,6 @@ router.delete(
         return res.status(404).json(formatResponse("error", "Media not found"));
       }
 
-      // Remove file from disk
       const filePath = path.join(__dirname, "../", media.url);
       if (fs.existsSync(filePath)) {
         fs.unlinkSync(filePath);
@@ -280,20 +313,18 @@ router.patch(
           .json(formatResponse("error", "No new file uploaded"));
       }
 
-      // ✅ Delete old file from disk
       const oldFilePath = path.join(__dirname, "../", media.url);
       if (fs.existsSync(oldFilePath)) {
         fs.unlinkSync(oldFilePath);
       }
 
-      // ✅ Update file info
       media.url = `/uploads/${req.file.filename}`;
       media.size = req.file.size;
       media.format = path
         .extname(req.file.originalname)
         .replace(".", "")
         .toLowerCase();
-      media.updatedAt = new Date(); // Refresh update timestamp
+      media.updatedAt = new Date();
 
       await media.save();
 

@@ -56,10 +56,15 @@ const mediaAssetSchema = z.object({
       duration: z.number().optional(),
     })
     .optional(),
-  owner: z.object({
-    type: z.enum(["product", "category", "service", "orphaned"]),
-    id: z.string(),
-  }),
+  owner: z
+    .array(
+      z.object({
+        type: z.enum(["product", "category", "service", "orphaned"]),
+        id: z.string(),
+      })
+    )
+    .optional()
+    .default([]),
   tags: z.array(z.string()).optional(),
 });
 

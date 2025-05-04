@@ -2,20 +2,7 @@
 
 import React from 'react';
 import featureData from '@/data/about/features.json';
-import {
-  Drops,
-  OilBarrel,
-  Rel,
-  Trend1,
-  IconProps,
-} from '@/components/common/Icons';
-
-const iconComponents: { [key: string]: React.FC<IconProps> } = {
-  Drops,
-  OilBarrel,
-  Rel,
-  Trend1,
-};
+import Image from 'next/image';
 
 const AboutFeature: React.FC = () => {
   return (
@@ -32,8 +19,6 @@ const AboutFeature: React.FC = () => {
           <div className="work-process__shape-1" />
           <div className="row">
             {featureData.map((item) => {
-              const IconComponent = iconComponents[item.iconType];
-
               return (
                 <div key={item.title} className="col-xl-3 col-lg-6 col-md-6">
                   <div
@@ -41,20 +26,13 @@ const AboutFeature: React.FC = () => {
                     data-wow-delay="100ms"
                   >
                     <div className="work-process__icon" aria-label={item.title}>
-                      {IconComponent ? (
-                        <IconComponent
-                          size={40}
-                          defaultColor="#12203C"
-                          hoverColor="#FFF"
-                        />
-                      ) : (
-                        <span
-                          className="text-red-500"
-                          style={{ fontSize: '1.5rem' }}
-                        >
-                          ⚠️
-                        </span>
-                      )}
+                      <Image
+                        src={item.icon}
+                        alt={item?.title || 'About Synix Solutions'}
+                        width={500}
+                        height={600}
+                        priority
+                      />
                     </div>
                     <h3 className="work-process__title">{item.title}</h3>
                     <p className="work-process__text">{item.text}</p>

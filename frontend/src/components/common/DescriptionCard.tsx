@@ -4,10 +4,12 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { Category } from '@/types/category';
 import ReactPlayer from 'react-player';
+import { resolveMediaUrl } from '@/utils/media';
 
 interface DescriptionCardProps {
   details: Category;
 }
+
 const PLACEHOLDER_IMAGE = '/assets/images/placeholders/product.webp';
 
 const DescriptionCard: React.FC<DescriptionCardProps> = ({ details }) => {
@@ -17,14 +19,18 @@ const DescriptionCard: React.FC<DescriptionCardProps> = ({ details }) => {
 
   const featureImage =
     Array.isArray(mediaAssets) && mediaAssets.length > 0
-      ? (mediaAssets.find((asset) => asset.type === 'cardSquare')?.url ??
-        PLACEHOLDER_IMAGE)
+      ? resolveMediaUrl(
+          mediaAssets.find((asset) => asset.type === 'cardSquare')?.url ??
+            PLACEHOLDER_IMAGE
+        )
       : PLACEHOLDER_IMAGE;
 
   const iconImage =
     Array.isArray(mediaAssets) && mediaAssets.length > 0
-      ? (mediaAssets.find((asset) => asset.type === 'icon')?.url ??
-        PLACEHOLDER_IMAGE)
+      ? resolveMediaUrl(
+          mediaAssets.find((asset) => asset.type === 'icon')?.url ??
+            PLACEHOLDER_IMAGE
+        )
       : PLACEHOLDER_IMAGE;
 
   return (
@@ -92,6 +98,7 @@ const DescriptionCard: React.FC<DescriptionCardProps> = ({ details }) => {
           </div>
         </div>
       </div>
+
       {isOpen && (
         <div className="modal-overlay" onClick={() => setOpen(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>

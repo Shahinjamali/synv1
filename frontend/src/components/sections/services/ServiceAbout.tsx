@@ -2,20 +2,23 @@
 import React from 'react';
 import Image from 'next/image';
 import { Category } from '@/types/category';
+import { resolveMediaUrl } from '@/utils/media';
 
 interface serviceAboutProps {
   details: Category;
 }
+
 const PLACEHOLDER_IMAGE = '/assets/images/placeholders/predictive-600x740.webp';
 
 const serviceAbout: React.FC<serviceAboutProps> = ({ details }) => {
   const { title, mediaAssets, overview, keyFeatures } = details;
 
-  const featureImage =
-    Array.isArray(mediaAssets) && mediaAssets.length > 0
-      ? (mediaAssets.find((asset) => asset.type === 'tallFeature')?.url ??
-        PLACEHOLDER_IMAGE)
-      : PLACEHOLDER_IMAGE;
+  const rawImageUrl = Array.isArray(mediaAssets)
+    ? mediaAssets.find((asset) => asset.type === 'tallFeature')?.url
+    : undefined;
+
+  const featureImage = resolveMediaUrl(rawImageUrl ?? PLACEHOLDER_IMAGE);
+
   return (
     <section className="about-three" aria-labelledby="about-section-title">
       <div className="container">

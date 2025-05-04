@@ -3,6 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Service } from '@/types/services';
+import { resolveMediaUrl } from '@/utils/media'; // ✅ Use helper
 
 const PLACEHOLDER_IMAGE = '/assets/images/placeholders/service.webp';
 
@@ -15,11 +16,11 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   service,
   delay = '100ms',
 }) => {
-  const imageUrl =
-    Array.isArray(service.mediaAssets) && service.mediaAssets.length > 0
-      ? (service.mediaAssets.find((asset) => asset.type === 'bannerMini')
-          ?.url ?? PLACEHOLDER_IMAGE)
-      : PLACEHOLDER_IMAGE;
+  const rawUrl = service.mediaAssets?.find(
+    (asset) => asset.type === 'bannerMini'
+  )?.url;
+
+  const imageUrl = resolveMediaUrl(rawUrl) || PLACEHOLDER_IMAGE;
 
   const isValidLink = service.slug && service.categorySlug;
   const hrefUrl = isValidLink

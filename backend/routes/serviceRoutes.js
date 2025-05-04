@@ -70,7 +70,6 @@ const upload = multer({
 // @access  Public / Authenticated
 
 // GET all services
-// GET all services
 router.get("/", async (req, res) => {
   try {
     const {
@@ -105,8 +104,24 @@ router.get("/", async (req, res) => {
 
     const total = await Service.countDocuments(filter);
 
+    const servicesWithMedia = await Promise.all(
+      services.map(async (service) => {
+        const mediaAssets = await MediaAsset.find({
+          owner: {
+            $elemMatch: {
+              type: "service",
+              id: service._id,
+            },
+          },
+        })
+          .select("url type title altText")
+          .lean();
+        return { ...service, mediaAssets };
+      })
+    );
+
     const mappedServices = await Promise.all(
-      services.map((s) => mapServiceForResponse(s, req.user))
+      servicesWithMedia.map((s) => mapServiceForResponse(s, req.user))
     );
 
     res.json(
@@ -133,6 +148,19 @@ router.get("/:slug", async (req, res) => {
       return res.status(404).json(formatResponse("error", "Service not found"));
     }
 
+    const mediaAssets = await MediaAsset.find({
+      owner: {
+        $elemMatch: {
+          type: "service",
+          id: service._id,
+        },
+      },
+    })
+      .select("url type title altText")
+      .lean();
+
+    service.mediaAssets = mediaAssets;
+
     const mappedService = await mapServiceForResponse(service, req.user);
 
     res.json(formatResponse("success", "Service fetched", mappedService));
@@ -153,12 +181,11 @@ router.post(
   "/",
   protect,
   authorize("owner", ["superadmin", "admin"]),
-  upload.array("files", 10), // Allow up to 10 files
+  upload.array("files", 10),
   async (req, res) => {
     try {
       const parsedBody = { ...req.body };
 
-      // These fields are expected to arrive as stringified JSON
       const fieldsToParse = [
         "description",
         "keyBenefits",
@@ -188,7 +215,6 @@ router.post(
         }
       }
 
-      // --- Special mediaAssets handling ---
       let mediaAssetsArray = [];
       const rawMediaAssets = parsedBody.mediaAssets;
 
@@ -223,7 +249,6 @@ router.post(
 
       parsedBody.mediaAssets = mediaAssetsArray;
 
-      // --- Validate input against schema (excluding mediaAssets) ---
       const { mediaAssets: _, ...rest } = parsedBody;
       const serviceData = await serviceSchema
         .omit({ mediaAssets: true })
@@ -231,7 +256,6 @@ router.post(
 
       serviceData.mediaAssets = mediaAssetsArray;
 
-      // --- Validate category ---
       const category = await Category.findById(serviceData.category);
       if (!category) {
         throw new Error("Invalid category ID");
@@ -244,7 +268,6 @@ router.post(
         );
       }
 
-      // --- Process media files ---
       const mediaAssetIds = [];
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
@@ -273,37 +296,50 @@ router.post(
           language: metadata.language || "en",
           access: metadata.access || "public",
           metadata: metadata.metadata || {},
-          owner: { type: "service", id: null },
+          owner: [],
           tags: Array.isArray(metadata.tags) ? metadata.tags : [],
-          status: "orphaned",
+          status: "assigned",
         });
 
         await mediaAsset.save();
         mediaAssetIds.push(mediaAsset._id);
       }
 
-      // --- Create service ---
       serviceData.mediaAssets = mediaAssetIds;
       const service = new Service(serviceData);
       await service.save();
 
-      // --- Link media assets to this service ---
       await MediaAsset.updateMany(
         { _id: { $in: mediaAssetIds } },
         {
+          $push: {
+            owner: {
+              type: "service",
+              id: service._id,
+            },
+          },
           $set: {
-            "owner.type": "service",
-            "owner.id": service._id,
             status: "assigned",
           },
         }
       );
 
-      // --- Final response ---
       const populatedService = await Service.findById(service._id)
         .populate("category", "title slug")
-        .populate("mediaAssets", "url type title altText")
         .lean();
+
+      const mediaAssets = await MediaAsset.find({
+        owner: {
+          $elemMatch: {
+            type: "service",
+            id: service._id,
+          },
+        },
+      })
+        .select("url type title altText")
+        .lean();
+
+      populatedService.mediaAssets = mediaAssets;
 
       const mappedService = await mapServiceForResponse(
         populatedService,
@@ -353,7 +389,6 @@ router.patch(
           .json(formatResponse("error", "Service not found"));
       }
 
-      // ✅ Validate slug uniqueness if changed
       if (updates.slug && updates.slug.toLowerCase() !== service.slug) {
         const existing = await Service.findOne({
           slug: updates.slug.toLowerCase(),
@@ -363,10 +398,9 @@ router.patch(
             .status(400)
             .json(formatResponse("error", "Slug already in use"));
         }
-        updates.slug = updates.slug.toLowerCase(); // normalize
+        updates.slug = updates.slug.toLowerCase();
       }
 
-      // ✅ Validate category if changed
       if (updates.category) {
         const category = await Category.findById(updates.category);
         if (!category) {
@@ -387,7 +421,6 @@ router.patch(
         }
       }
 
-      // ✅ Validate mediaAssets if provided
       if (updates.mediaAssets?.length > 0) {
         const validMediaAssets = await MediaAsset.find({
           _id: { $in: updates.mediaAssets },
@@ -399,9 +432,23 @@ router.patch(
               formatResponse("error", "One or more media asset IDs are invalid")
             );
         }
+
+        await MediaAsset.updateMany(
+          { _id: { $in: updates.mediaAssets } },
+          {
+            $push: {
+              owner: {
+                type: "service",
+                id: service._id,
+              },
+            },
+            $set: {
+              status: "assigned",
+            },
+          }
+        );
       }
 
-      // ✅ Validate metadata.relatedCaseStudies if provided
       if (updates.metadata?.relatedCaseStudies?.length > 0) {
         for (const id of updates.metadata.relatedCaseStudies) {
           if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -412,7 +459,6 @@ router.patch(
         }
       }
 
-      // ✅ Validate metadata.relatedservices if provided
       if (updates.metadata?.relatedservices?.length > 0) {
         for (const id of updates.metadata.relatedservices) {
           if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -433,9 +479,21 @@ router.patch(
         }
       }
 
-      // ✅ Perform update
       Object.assign(service, updates);
       const savedService = await service.save();
+
+      const mediaAssets = await MediaAsset.find({
+        owner: {
+          $elemMatch: {
+            type: "service",
+            id: savedService._id,
+          },
+        },
+      })
+        .select("url type title altText")
+        .lean();
+
+      savedService.mediaAssets = mediaAssets;
 
       res.json(
         formatResponse("success", "Service updated", { item: savedService })
@@ -465,8 +523,31 @@ router.delete(
           .json(formatResponse("error", "Service not found"));
       }
 
-      // ✅ Soft delete: Mark as archived
       service.metadata.status = "archived";
+      await service.save();
+
+      const mediaAssets = await MediaAsset.find({
+        owner: {
+          $elemMatch: {
+            type: "service",
+            id: service._id,
+          },
+        },
+      });
+
+      for (const asset of mediaAssets) {
+        asset.owner = asset.owner.filter(
+          (own) =>
+            !(
+              own.type === "service" &&
+              own.id.toString() === service._id.toString()
+            )
+        );
+        asset.status = asset.owner.length > 0 ? "assigned" : "orphaned";
+        await asset.save();
+      }
+
+      service.mediaAssets = [];
       await service.save();
 
       res.json(formatResponse("success", "Service archived successfully"));

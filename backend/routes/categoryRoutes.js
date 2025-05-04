@@ -1,4 +1,3 @@
-// src/routes/categoryRoutes.js
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
@@ -96,15 +95,13 @@ router.get("/", async (req, res) => {
 });
 
 //--------------------------------------
-// GET /api/categories/:id
-// Fetch category by ID
+// GET /api/categories/:slug
+// Fetch category by slug
 //--------------------------------------
 router.get("/:slug", async (req, res) => {
   try {
     const { slug } = req.params;
-    const category = await Category.findOne({ slug })
-      .populate("mediaAssets", "url type title altText")
-      .lean();
+    const category = await Category.findOne({ slug }).lean();
 
     if (!category) {
       return res
@@ -112,31 +109,64 @@ router.get("/:slug", async (req, res) => {
         .json(apiResponse(false, null, "Category not found"));
     }
 
+    // Fetch MediaAssets where this category is in the owner array
+    const mediaAssets = await MediaAsset.find({
+      owner: {
+        $elemMatch: {
+          type: "category",
+          id: category._id,
+        },
+      },
+    })
+      .select("url type title altText")
+      .lean();
+
+    // Attach mediaAssets to the category response
+    category.mediaAssets = mediaAssets;
+
     res.json(apiResponse(true, category));
   } catch (error) {
-    console.error("[GET /categories/slug/:slug] Error:", error);
+    console.error("[GET /categories/:slug] Error:", error);
     res.status(500).json(apiResponse(false, null, "Failed to fetch category"));
   }
 });
 
+//--------------------------------------
+// GET /api/categories/:id
+// Fetch category by ID
+//--------------------------------------
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
+    // Only treat the parameter as an ID if it's a valid ObjectId
     if (!mongoose.Types.ObjectId.isValid(id)) {
+      // If it's not a valid ObjectId, let the next route handle it (e.g., the slug route)
       return res
         .status(400)
         .json(apiResponse(false, null, "Invalid category ID"));
     }
 
-    const category = await Category.findById(id)
-      .populate("mediaAssets", "url type title altText")
-      .lean();
-
+    const category = await Category.findById(id).lean();
     if (!category) {
       return res
         .status(404)
         .json(apiResponse(false, null, "Category not found"));
     }
+
+    // Fetch MediaAssets where this category is in the owner array
+    const mediaAssets = await MediaAsset.find({
+      owner: {
+        $elemMatch: {
+          type: "category",
+          id: category._id,
+        },
+      },
+    })
+      .select("url type title altText")
+      .lean();
+
+    // Attach mediaAssets to the category response
+    category.mediaAssets = mediaAssets;
 
     res.json(apiResponse(true, category));
   } catch (error) {
@@ -180,15 +210,28 @@ router.get("/:categoryId/subcategories", async (req, res) => {
 router.get("/slug/:slug", async (req, res) => {
   try {
     const { slug } = req.params;
-    const category = await Category.findOne({ slug })
-      .populate("mediaAssets", "url type title altText")
-      .lean();
+    const category = await Category.findOne({ slug }).lean();
 
     if (!category) {
       return res
         .status(404)
         .json(apiResponse(false, null, "Category not found"));
     }
+
+    // Fetch MediaAssets where this category is in the owner array
+    const mediaAssets = await MediaAsset.find({
+      owner: {
+        $elemMatch: {
+          type: "category",
+          id: category._id,
+        },
+      },
+    })
+      .select("url type title altText")
+      .lean();
+
+    // Attach mediaAssets to the category response
+    category.mediaAssets = mediaAssets;
 
     res.json(apiResponse(true, category));
   } catch (error) {
@@ -271,10 +314,7 @@ router.post(
           metadata: metadata.metadata || {},
           tags: metadata.tags || [],
           status: "assigned",
-          owner: {
-            type: "category",
-            id: null,
-          },
+          owner: [], // Updated to use array for owner
         });
 
         await media.save();
@@ -290,9 +330,13 @@ router.post(
         await MediaAsset.updateMany(
           { _id: { $in: mediaAssetIds } },
           {
+            $push: {
+              owner: {
+                type: "category",
+                id: category._id,
+              },
+            },
             $set: {
-              "owner.type": "category",
-              "owner.id": category._id,
               status: "assigned",
             },
           }
@@ -382,17 +426,36 @@ router.delete(
           .json(apiResponse(false, null, "Invalid category ID"));
       }
 
-      const category = await Category.findByIdAndUpdate(
-        id,
-        { "metadata.status": "archived" },
-        { new: true }
-      );
-
+      const category = await Category.findById(id);
       if (!category) {
         return res
           .status(404)
           .json(apiResponse(false, null, "Category not found"));
       }
+
+      category.metadata.status = "archived";
+      await category.save();
+
+      const mediaAssets = await MediaAsset.find({
+        owner: {
+          $elemMatch: {
+            type: "category",
+            id: category._id,
+          },
+        },
+      });
+
+      for (const mediaAsset of mediaAssets) {
+        mediaAsset.owner = mediaAsset.owner.filter(
+          (own) => !(own.type === "category" && own.id.toString() === id)
+        );
+        mediaAsset.status =
+          mediaAsset.owner.length > 0 ? "assigned" : "orphaned";
+        await mediaAsset.save();
+      }
+
+      category.mediaAssets = [];
+      await category.save();
 
       res.json(apiResponse(true, { deleted: true }));
     } catch (error) {
