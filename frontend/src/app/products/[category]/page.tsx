@@ -31,7 +31,6 @@ export default async function CategoryPage({
   // Fetch subcategories
   const subcategoriesResponse = await getProductSubcategories(category);
   const subcategories: Category[] = subcategoriesResponse?.data?.items ?? [];
-  console.log('categoryList', subcategories);
 
   return (
     <Layout breadcrumbTitle={`Products - ${category}`}>

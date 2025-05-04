@@ -12,7 +12,6 @@ export default async function ServicesPage() {
     scope: 'service',
   });
   const services = response?.data?.items || [];
-  console.log('services', services);
 
   return (
     <Layout breadcrumbTitle="Services">
