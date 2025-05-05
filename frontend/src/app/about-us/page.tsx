@@ -6,7 +6,7 @@ import WhyUs from '@/components/sections/about/WhyUs';
 import AboutContact from '@/components/sections/about/AboutContact';
 import AboutFeatures from '@/components/sections/about/AboutFeatures';
 import { getTestimonials } from '@/utils/api';
-import { TestimonialData } from '@/types/content';
+import { TestimonialData, ContentDocument } from '@/types/content';
 import GlobalLoader from '@/components/common/GlobalLoader';
 
 // Metadata for SEO
@@ -35,8 +35,19 @@ const AboutTestimonial = dynamic(
 
 export default async function About() {
   try {
-    const testimonialsResponse = await getTestimonials();
-    const testimonials: TestimonialData[] = testimonialsResponse.data;
+    const [testimonialsResult] = await Promise.allSettled([getTestimonials()]);
+
+    const testimonials: (TestimonialData & { imageUrl?: string })[] =
+      testimonialsResult.status === 'fulfilled'
+        ? (testimonialsResult.value.data?.map(
+            (item: ContentDocument<TestimonialData>) => ({
+              ...item.content,
+              imageUrl:
+                item.mediaAssets?.[0]?.url ??
+                '/assets/images/testimonial/default.jpg',
+            })
+          ) ?? [])
+        : [];
 
     return (
       <Suspense fallback={<GlobalLoader stage="about" />}>

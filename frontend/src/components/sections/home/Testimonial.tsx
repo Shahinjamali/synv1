@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { TestimonialData } from '@/types/content';
 import testimonialData from '@/data/home/testimonials.json';
 import { truncateWords } from '@/utils/string';
+import { resolveMediaUrl } from '@/utils/media';
 
 interface TestimonialProps {
   testimonials?: TestimonialData[];
@@ -34,6 +35,7 @@ const swiperOptions = {
 const Testimonial: React.FC<TestimonialProps> = ({ testimonials }) => {
   const testimonialsList = testimonials || [];
   const staticImg = '/assets/images/placeholders/testimonialsection.webp';
+  const placeholder = resolveMediaUrl(staticImg);
 
   return (
     <section
@@ -56,7 +58,7 @@ const Testimonial: React.FC<TestimonialProps> = ({ testimonials }) => {
             <div className="testimonial-four__left">
               <div className="testimonial-four__img">
                 <Image
-                  src={staticImg}
+                  src={placeholder}
                   alt="Synix Clients"
                   width={600}
                   height={400}
@@ -74,9 +76,7 @@ const Testimonial: React.FC<TestimonialProps> = ({ testimonials }) => {
                 aria-label="Client Testimonials"
               >
                 {testimonialsList.map((testimonial, index) => {
-                  const avatarSrc =
-                    testimonial.img?.trim() ||
-                    '/assets/images/placeholders/avatar.png';
+                  const avatarSrc = resolveMediaUrl(testimonial.imageUrl);
 
                   return (
                     <SwiperSlide
@@ -91,7 +91,7 @@ const Testimonial: React.FC<TestimonialProps> = ({ testimonials }) => {
                           </div>
                           <div className="testimonial-four__rating">
                             {Array.from(
-                              { length: Math.floor(testimonial.rating) },
+                              { length: Math.ceil(testimonial.rating) },
                               (_, i) => (
                                 <span
                                   key={i}

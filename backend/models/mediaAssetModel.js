@@ -72,7 +72,7 @@ const MediaAssetSchema = new Schema(
       {
         type: {
           type: String,
-          enum: ["product", "category", "service", "orphaned"],
+          enum: ["product", "category", "service", "content", "orphaned"],
         },
         id: { type: Schema.Types.ObjectId }, // References either Product or Category _id
       },

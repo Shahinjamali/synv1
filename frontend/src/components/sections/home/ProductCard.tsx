@@ -20,8 +20,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
     (asset) => asset.type === 'cardDefault'
   )?.url;
 
-  console.log('product', product);
-
   const imageUrl = resolveMediaUrl(rawUrl) || PLACEHOLDER_IMAGE;
 
   const isValidLink =

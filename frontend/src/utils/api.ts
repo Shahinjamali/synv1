@@ -20,7 +20,7 @@ import {
   ServiceListResponse,
   GetServicesParams,
 } from '@/types/services';
-import { TestimonialData, Blogs } from '@/types/content';
+import { Blogs, ContentDocument, TestimonialData } from '@/types/content';
 import { ContactFormData } from '@/types/user';
 
 const API_BASE_URL =
@@ -332,16 +332,26 @@ export const getMediaAssets = (params?: {
 // ==============================
 // MORE Sections (equipment, oil, content, etc.)
 // ==============================
-//Content APIS
-export const getTestimonials = (options?: {
-  signal?: AbortSignal;
-}): Promise<ApiResponse<TestimonialData[]>> =>
-  apiFetch<TestimonialData[]>({
+// Content APIS
+// ✅ Generic typed content fetcher
+export const getContentByPageAndSection = <T>(
+  page: string,
+  section: string,
+  options?: { signal?: AbortSignal }
+): Promise<ApiResponse<ContentDocument<T>[]>> =>
+  apiFetch<ContentDocument<T>[]>({
     method: 'GET',
-    endpoint: '/api/content/home/testimonials',
+    endpoint: `/api/content/${page}/${section}`,
     signal: options?.signal,
   });
 
+// ✅ Testimonials – wrapper for clarity & DRY
+export const getTestimonials = (options?: {
+  signal?: AbortSignal;
+}): Promise<ApiResponse<ContentDocument<TestimonialData>[]>> =>
+  getContentByPageAndSection<TestimonialData>('home', 'testimonials', options);
+
+// ✅ Blogs: returns only Blog[] array (custom route)
 export const getThreeBlogs = (options?: {
   signal?: AbortSignal;
 }): Promise<ApiResponse<Blogs[]>> =>
@@ -351,6 +361,7 @@ export const getThreeBlogs = (options?: {
     signal: options?.signal,
   });
 
+// ✅ All blogs (returns wrapped content object)
 export const getAllBlogs = (options?: {
   signal?: AbortSignal;
 }): Promise<ApiResponse<{ content: Blogs[] }>> =>
@@ -360,6 +371,7 @@ export const getAllBlogs = (options?: {
     signal: options?.signal,
   });
 
+// ✅ Get a single blog by slug
 export const getBlogBySlug = (
   slug: string,
   options?: { signal?: AbortSignal }

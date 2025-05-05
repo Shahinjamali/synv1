@@ -25,7 +25,6 @@ const formatDate = (dateStr?: string): string => {
 };
 
 const BlogCard: React.FC<BlogCardProps> = ({ blog, delay = '100ms' }) => {
-  const imageUrl = blog.image?.trim() || PLACEHOLDER_IMAGE;
   const blogSlug =
     typeof blog.slug === 'string' && blog.slug.trim()
       ? blog.slug
@@ -38,7 +37,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog, delay = '100ms' }) => {
         <div className="blog-four__img-box">
           <div className="blog-four__img">
             <Image
-              src={imageUrl}
+              src={PLACEHOLDER_IMAGE}
               alt={blog.title || 'Blog Post'}
               width={400}
               height={300}

@@ -59,7 +59,7 @@ const mediaAssetSchema = z.object({
   owner: z
     .array(
       z.object({
-        type: z.enum(["product", "category", "service", "orphaned"]),
+        type: z.enum(["product", "category", "service", "content", "orphaned"]),
         id: z.string(),
       })
     )

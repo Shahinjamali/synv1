@@ -31,12 +31,18 @@
     "links": [
       {
         "name": "AI Predictive Maintenance",
-        "url": "/services/ai-maintenance"
+        "url": "/services"
       },
-      { "name": "Industrial Lubricants", "url": "/services/lubricants" },
-      { "name": "Maintenance Consulting", "url": "/services/consulting" },
-      { "name": "Equipment Monitoring", "url": "/services/monitoring" },
-      { "name": "Sustainability Solutions", "url": "/services/sustainability" }
+      { "name": "Industrial Lubricants", "url": "/products" },
+      { "name": "Metalworking Fluids", "url": "/products/metalworking-fluids" },
+      {
+        "name": "Vibration Analysis",
+        "url": "/services/predictive-maintenance/vibration-analysis"
+      },
+      {
+        "name": "Oil Monitoring",
+        "url": "/services/predictive-maintenance/oil-analysis"
+      }
     ]
   },
   "news": {
@@ -44,12 +50,12 @@
     "articles": [
       {
         "title": "How AI is Revolutionizing Maintenance",
-        "url": "/blog/ai-maintenance-revolution",
+        "url": "#",
         "date": "March 15, 2025"
       },
       {
         "title": "The Future of Lubricants in Industry",
-        "url": "/blog/future-lubricants",
+        "url": "#",
         "date": "February 28, 2025"
       }
     ]

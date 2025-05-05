@@ -10,12 +10,11 @@ import 'swiper/css/pagination';
 import Image from 'next/image';
 import { TestimonialData } from '@/types/content';
 import testimonialData from '@/data/about/testimonial.json';
+import { resolveMediaUrl } from '@/utils/media';
 
 interface TestimonialProps {
   testimonials?: TestimonialData[];
 }
-
-const STATIC_IMAGE = '/assets/images/resources/testi-2.webp';
 
 const swiperOptions: SwiperOptions = {
   modules: [Autoplay, Pagination, Navigation],
@@ -34,6 +33,8 @@ const swiperOptions: SwiperOptions = {
 
 const AboutTestimonial: React.FC<TestimonialProps> = ({ testimonials }) => {
   const testimonialsList = testimonials || [];
+  const staticImg = '/assets/images/placeholders/testimonialsection.webp';
+  const placeholder = resolveMediaUrl(staticImg);
 
   return (
     <section className="testimonial-one" aria-labelledby="testimonial-title">
@@ -60,6 +61,7 @@ const AboutTestimonial: React.FC<TestimonialProps> = ({ testimonials }) => {
           >
             {testimonialsList.length > 0 ? (
               testimonialsList.map((item, index) => {
+                const avatarSrc = resolveMediaUrl(item.imageUrl);
                 return (
                   <SwiperSlide key={`${item.name}-${index}`}>
                     <div className="testimonial-one__single">
@@ -68,7 +70,7 @@ const AboutTestimonial: React.FC<TestimonialProps> = ({ testimonials }) => {
                           <div className="testimonial-one__content">
                             <div className="testimonial-one__quote">
                               <Image
-                                src="/assets/images/placeholders/avatar.png"
+                                src={avatarSrc}
                                 alt={item.name || 'Anonymous'}
                                 width={50}
                                 height={50}
@@ -91,7 +93,7 @@ const AboutTestimonial: React.FC<TestimonialProps> = ({ testimonials }) => {
                         <div className="col-xl-6 col-lg-6">
                           <div className="testimonial-one__img">
                             <Image
-                              src={STATIC_IMAGE}
+                              src={placeholder}
                               alt="Synix Testimonial Showcase"
                               width={300}
                               height={400}

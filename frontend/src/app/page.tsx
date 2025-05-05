@@ -1,4 +1,3 @@
-// app/page.tsx
 import { Suspense } from 'react';
 import Layout from '@/components/layout/Layout';
 import Banner from '@/components/sections/home/Banner';
@@ -13,9 +12,8 @@ import {
 import ClientHome from '@/components/sections/home/ClientHome';
 import { Product } from '@/types/products';
 import { Service } from '@/types/services';
-import { TestimonialData, Blogs } from '@/types/content';
+import { TestimonialData, Blogs, ContentDocument } from '@/types/content';
 import { HOMEPAGE_LIMIT } from '@/data/constants/homepage';
-// import * as Sentry from '@sentry/nextjs'; // Uncomment when ready
 
 export const metadata = {
   title: 'Synix Solutions - Home',
@@ -25,18 +23,40 @@ export const metadata = {
 
 export default async function Home() {
   try {
-    const [productsRes, servicesRes, testimonialsRes, blogsRes] =
-      await Promise.all([
-        getProducts({ limit: HOMEPAGE_LIMIT }),
-        getServices({ limit: HOMEPAGE_LIMIT }),
-        getTestimonials(),
-        getThreeBlogs(),
-      ]);
+    const results = await Promise.allSettled([
+      getProducts({ limit: HOMEPAGE_LIMIT }),
+      getServices({ limit: HOMEPAGE_LIMIT }),
+      getTestimonials(),
+      getThreeBlogs(),
+    ]);
 
-    const products: Product[] = productsRes?.data?.items ?? [];
-    const services: Service[] = servicesRes?.data?.items ?? [];
-    const testimonials: TestimonialData[] = testimonialsRes?.data ?? [];
-    const blogs: Blogs[] = blogsRes?.data ?? [];
+    const [productsResult, servicesResult, testimonialsResult, blogsResult] =
+      results;
+
+    const products: Product[] =
+      productsResult.status === 'fulfilled'
+        ? (productsResult.value?.data?.items ?? [])
+        : [];
+
+    const services: Service[] =
+      servicesResult.status === 'fulfilled'
+        ? (servicesResult.value?.data?.items ?? [])
+        : [];
+
+    const testimonials: (TestimonialData & { imageUrl?: string })[] =
+      testimonialsResult.status === 'fulfilled'
+        ? (testimonialsResult.value.data?.map(
+            (item: ContentDocument<TestimonialData>) => ({
+              ...item.content,
+              imageUrl:
+                item.mediaAssets?.[0]?.url ??
+                '/assets/images/testimonial/default.jpg',
+            })
+          ) ?? [])
+        : [];
+
+    const blogs: Blogs[] =
+      blogsResult.status === 'fulfilled' ? (blogsResult.value?.data ?? []) : [];
 
     return (
       <Layout>
@@ -59,9 +79,6 @@ export default async function Home() {
       </Layout>
     );
   } catch (error) {
-    if (process.env.NODE_ENV === 'production') {
-      // Sentry.captureException(error);
-    }
     console.error('[Home Page] Data fetch failed:', error);
     return (
       <Layout>

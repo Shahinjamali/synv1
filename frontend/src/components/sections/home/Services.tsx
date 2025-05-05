@@ -18,8 +18,7 @@ const Services: React.FC<ServicesProps> = ({ services }) => {
         <div
           className="services-six__bg"
           style={{
-            backgroundImage:
-              'url(/assets/images/shapes/services-six-bg-shape.png)',
+            backgroundImage: 'url(/assets/images/placeholders/services-bg.png)',
           }}
         />
       </div>
