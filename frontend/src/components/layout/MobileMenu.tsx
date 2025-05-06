@@ -50,7 +50,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ handleMobileMenu }) => {
           <ul className="main-menu__list">
             {navItems.map((item, idx) => (
               <li key={`menu-${idx}`} className="dropdown">
-                <Link href={item.href}>{item.label}</Link>
+                <Link href={item.href} onClick={handleMobileMenu}>
+                  {item.label}
+                </Link>
               </li>
             ))}
           </ul>
