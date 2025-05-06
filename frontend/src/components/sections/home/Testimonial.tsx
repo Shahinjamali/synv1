@@ -32,10 +32,10 @@ const swiperOptions = {
   },
 };
 
+const staticImg = '/assets/images/resources/testimonialsection.webp';
+
 const Testimonial: React.FC<TestimonialProps> = ({ testimonials }) => {
   const testimonialsList = testimonials || [];
-  const staticImg = '/assets/images/placeholders/testimonialsection.webp';
-  const placeholder = resolveMediaUrl(staticImg);
 
   return (
     <section
@@ -58,7 +58,7 @@ const Testimonial: React.FC<TestimonialProps> = ({ testimonials }) => {
             <div className="testimonial-four__left">
               <div className="testimonial-four__img">
                 <Image
-                  src={placeholder}
+                  src={staticImg}
                   alt="Synix Clients"
                   width={600}
                   height={400}

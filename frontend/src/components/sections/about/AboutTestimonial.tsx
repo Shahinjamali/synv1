@@ -30,11 +30,10 @@ const swiperOptions: SwiperOptions = {
     clickable: true,
   },
 };
+const staticImg = '/assets/images/resources/testimonialsection.webp';
 
 const AboutTestimonial: React.FC<TestimonialProps> = ({ testimonials }) => {
   const testimonialsList = testimonials || [];
-  const staticImg = '/assets/images/placeholders/testimonialsection.webp';
-  const placeholder = resolveMediaUrl(staticImg);
 
   return (
     <section className="testimonial-one" aria-labelledby="testimonial-title">
@@ -93,7 +92,7 @@ const AboutTestimonial: React.FC<TestimonialProps> = ({ testimonials }) => {
                         <div className="col-xl-6 col-lg-6">
                           <div className="testimonial-one__img">
                             <Image
-                              src={placeholder}
+                              src={staticImg}
                               alt="Synix Testimonial Showcase"
                               width={300}
                               height={400}
